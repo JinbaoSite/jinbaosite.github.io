@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、I/O系统的可靠性、可用性和可信性 系统的可靠性是指系统从某个初始参考点开始一直连续提供服务的能力，通常用平均无故障时间（MTTF）来衡量， MTTF的倒数就是系统的失效率。  如果系统中每个模块的生存期服从指数分布，则系统整体的失效率是各部件的失效率之和。  系统中断服务的时间用平均修复时间（MTTR）来衡量。  系统的可用性是指系统正常工作的时间在连续两次正常服务间隔时间中所占的比例。 其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入&#x2F;输出系统">
+<meta property="og:url" content="www.dongjinbao.com/计算机系统结构/输入-输出系统.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="一、I/O系统的可靠性、可用性和可信性 系统的可靠性是指系统从某个初始参考点开始一直连续提供服务的能力，通常用平均无故障时间（MTTF）来衡量， MTTF的倒数就是系统的失效率。  如果系统中每个模块的生存期服从指数分布，则系统整体的失效率是各部件的失效率之和。  系统中断服务的时间用平均修复时间（MTTR）来衡量。  系统的可用性是指系统正常工作的时间在连续两次正常服务间隔时间中所占的比例。 其">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503112430.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503114509.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503114659.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130354.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130638.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130848.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131136.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131219.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131231.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131440.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131503.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131518.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131756.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131808.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131822.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132158.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132318.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132330.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132530.jpg">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132651.jpg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="输入&#x2F;输出系统">
+<meta name="twitter:description" content="一、I/O系统的可靠性、可用性和可信性 系统的可靠性是指系统从某个初始参考点开始一直连续提供服务的能力，通常用平均无故障时间（MTTF）来衡量， MTTF的倒数就是系统的失效率。  如果系统中每个模块的生存期服从指数分布，则系统整体的失效率是各部件的失效率之和。  系统中断服务的时间用平均修复时间（MTTR）来衡量。  系统的可用性是指系统正常工作的时间在连续两次正常服务间隔时间中所占的比例。 其">
+<meta name="twitter:image" content="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503112430.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/计算机系统结构/输入-输出系统.html">
+
+
+
+
+
+  <title>输入/输出系统 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/计算机系统结构/输入-输出系统.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">输入/输出系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-06T00:03:51+08:00">
+                2016-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机系统结构/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机系统结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、I/O系统的可靠性、可用性和可信性</p>
+<pre><code>系统的可靠性是指系统从某个初始参考点开始一直连续提供服务的能力，通常用平均无故障时间（MTTF）来衡量，
+MTTF的倒数就是系统的失效率。
+
+如果系统中每个模块的生存期服从指数分布，则系统整体的失效率是各部件的失效率之和。
+
+系统中断服务的时间用平均修复时间（MTTR）来衡量。
+
+系统的可用性是指系统正常工作的时间在连续两次正常服务间隔时间中所占的比例。</code></pre><p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503112430.jpg" alt></p>
+<p>其中MTTF+MTTR通常用平均失效间隔时间（MTBF）来替换。</p>
+<pre><code>系统的可信性是指服务的质量。</code></pre><p>二、RAID</p>
+<pre><code>RAID原理是将并行处理技术引入到磁盘系统。
+RAID的特点是：盘阵列容量大、速度快、可靠性高、造价低廉，是解决I/O瓶颈的有效方法之一。</code></pre><p>2.1 RAID0 (非冗余)</p>
+<pre><code>从数据层面讲，将数据按块分布在多个盘上，实际上是非冗余阵列，无冗余信息。严格地说，它不属于RAID系列。
+优点：高性能，磁盘利用率高。
+缺点：系统可靠性差。</code></pre><p>2.2 RAID1 (镜像)</p>
+<pre><code>数据每写入到一个盘时，就将其也写到另一个冗余盘，形成两个备份。
+优点：系统可靠性好，设计简单。
+缺点：硬件开销大，效率低。</code></pre><p>2.3 RAID2—存储式ECC</p>
+<pre><code>位交叉式海明编码阵列
+优点：高速误差校正，数据传输速率高，设计较简单。
+缺点：校正空间大，磁盘阵列利用率低。仅仅理论上体现其优越，未能广泛应用。</code></pre><p>2.4 RAID3—位交叉奇偶校验</p>
+<pre><code>是单盘容错并行传输的阵列，即数据以位或字节交叉的方式存储于各盘，冗余的奇偶校验信息存储在一台专用盘上。
+在RAID3中，磁盘被分组，读写要访问组中所有盘，每组有一个盘作为校验盘，当一个盘出故障时，通过校验和
+恢复出错数据。
+优点：读写速度快，盘失效对吞吐率影响小，盘阵列利用率高。
+缺点：设计较复杂。</code></pre><p>2.5 RAID4—块交叉奇偶校验</p>
+<pre><code>是专用奇偶校验独立存取阵列，即数据以块交叉的方式存储于各盘，冗余的奇偶校验信息存储在一台专用盘上。
+优点：读写速度快，盘阵列利用率高。
+缺点：设计较复杂，盘失效对吞吐率影响大。</code></pre><p>2.6 RAID5—块交叉分布奇偶校验</p>
+<pre><code>是块交叉分布式奇偶校验盘阵列（或称旋转奇偶校验独立存取阵列），即数据以块交叉的方式存储于各盘，但无专用
+的校验盘，而是将冗余的奇偶校验信息均匀地分布在所有盘上。数据块每一行的相联奇偶校验不再限制在单一盘上，
+只要块单元不位于同一个磁盘内，这种组织方法可以支持多个写同时执行。
+优点：读数据速率最高，盘阵列利用率高。
+缺点：控制器设计复杂，盘失效对系统可靠性有一定影响。</code></pre><p>2.7 RAID6—P+Q冗余</p>
+<pre><code>是双维奇偶校验独立存取阵列，即数据以块交叉的方式存储于各盘，冗余的检、纠错信息均匀地分布在所有盘上。并且，每次
+写入数据都要一个数据盘和两个校验盘，可容忍双盘出错。</code></pre><p>2.8 RAID7—Cache+异步</p>
+<pre><code>是采用Cache和异步技术的RAID6，使响应速度和传输速率有了较大地提高。</code></pre><p>2.9 RAID10与RAID01</p>
+<pre><code>RAID10又称为RAID1+0，先进行镜像（RAID1），再进行条带存放（RAID0）
+RAID01又称为RAID0+1，先进行条带存放（RAID0），再进行镜像（RAID1）</code></pre><p>三、通道处理机</p>
+<p>3.1 通道的作用</p>
+<pre><code>① 接受CPU发来的I/O指令，与指定的设备连接,访问指定的设备。
+② 执行CPU为通道组织的通道程序。从通道缓冲区中读取通道指令，经译码分析，向指定的设备控制器或设备发出各种操作控
+制命令。
+③ 组织和控制数据在内存与外设之间的信息传送操作。
+④ 在数据传输过程中完成必要的格式变换，例如，把字拆卸为字节，或者把字节装配成字等。
+⑤ 读取和接收外设的状态信息， 检查外围设备的工作状态是正常还是故障，形成通道状态信息，并根据需要将设备的状态信
+息送往主存指定单元保存。
+⑥ 向CPU发出I/O中断请求。对来自外设及通道的中断请求按优先次序进行排队后报告CPU。</code></pre><p>3.2 通道的硬件</p>
+<p>通道的主要硬件包括寄存器部分和控制部分。</p>
+<pre><code>⑴ 寄存器部分
+数据缓冲寄存器(DBR)、主存地址计数器、传输字节数计数器(WCNT)、通道命令字寄存器(CCWR)、通道地址寄存器(CAR)，
+通道状态字寄存器(STR) 。
+⑵ 控制部分
+包括数据装配和拆卸控制、数据传送控制、地址分配控制、分时控制等控制逻辑。</code></pre><p>3.3 通道的工作过程</p>
+<pre><code>1）在用户程序中使用广义指令进入管理程序，由CPU通过管理程序组织 一个通道程序，并启动通道。
+2）通道进行设备选择
+3）通道执行通道程序，控制主存—通道—设备之间的信息传送，直至完成指定的I/O工作。
+4）通道信息传送结束</code></pre><p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503114509.jpg" alt></p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503114659.jpg" alt></p>
+<p>3.4 通道的种类</p>
+<p>（1）字节多路通道</p>
+<pre><code>字节多路通道是一种简单的共享通道，主要为多台低速或中速的外设服务。这些设备一般是以字节为宽度进行输入/输出，而且相
+邻的两次传送之间有较长的等待。</code></pre><p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130354.jpg" alt></p>
+<p>（2）选择通道</p>
+<pre><code>选择通道只有一套完整的硬件，以独占的方式工作，逐个轮流地为物理上连接的几台高速外设服务。
+选择通道在一段时间内单独为一台外设服务，但在不同的时间内可以选择不同的设备。
+选择通道一旦选中某一设备，通道就进入“忙”状态直到该设备的数据传输工作全部结束为止。
+选择通道传送的数据宽度是可变的，它为一台外设传送完数据后才转去处理其他外设。</code></pre><p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130638.jpg" alt></p>
+<p>（3）数组多路通道</p>
+<pre><code>数组多路通道将字节多路通道和选择通道的特性结合起来。一个通道可带有多个子通道，各子通道以成组交叉模式轮流使用通道。
+成组交叉模式：利用通道传送完一组数据（数据块）后让出通道。
+数组多路通道适用于以数组为单位的高速外设。
+数组多路通道选择一个高速设备后，先向其发出一个寻找的命令，然后在这个设备寻找期间可以为其他设备服务。在设备寻找
+完成后再与其真正建立数据连接，并一直维持到一个数据块传输完毕。</code></pre><p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503130848.jpg" alt></p>
+<p>3.5 通道流量分析</p>
+<pre><code>通道流量（通道吞吐率、通道数据传输率）
+通道在数据传送期间单位时间所传送的数据量。通常用单位时间传送的字节数表示。
+通道极限流量（通道最大流量）
+通道在数据传送期间单位时间所允许传送的最大数据量。通常用单位时间传送的最大字节数表示。
+通道极限流量反映了一个通道在满负荷工作状态下的数据流量。</code></pre><p>参数说明：<br>Ts：设备选择时间。从通道响应设备发出数据传送请求开始，到通道实际为这台设备传送数据所需要的时间。<br>TD：传送一个字节所需的时间。即通道执行一条通道指令传送一个字节所用的时间。<br>P：在一个通道上连接的设备台数，且这些设备同时都在工作。<br>n：每一个设备传送的字节个数。假设每一 台设备传送的字节数都相同。<br>T：通道完成全部数据传送工作所需要的时间。<br>k：一个数据块中的字节数。<br>Dij：连接在通道上的第i台设备传送的第j个数据，其中：i＝1，2，…，p；j＝1，2，…，n。</p>
+<p>（1）字节多路通道的流量分析</p>
+<p>设一个字节多路通道上连接了P台设备，每一台设备都需传送n个字节。<br>字节多路通道上设备选择时间Ts和数据传送时间TD是间隔进行的。</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131136.jpg" alt></p>
+<p>完成所有设备的数据传送所需的时间为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131219.jpg" alt></p>
+<p>极限流量为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131231.jpg" alt></p>
+<p>（2）选择通道的流量分析</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131440.jpg" alt></p>
+<p>完成所有设备的数据传送所需的时间为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131503.jpg" alt></p>
+<p>极限流量为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131518.jpg" alt></p>
+<p>（3）数组多路通道的流量分析</p>
+<p>设一个数组多路通道上连接了P台设备，每一台设备都按数据块进行传送，若每个数据块中包含k个字节，<br>则传送n个字节需n/k个数据块。<br>数组多路通道上每台设备的经过设备选择时间Ts和一个数据块的传送时间TD1…TDk后，就可以开始下一<br>台设备的数据块传送。</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131756.jpg" alt></p>
+<p>完成所有设备的数据传送所需的时间为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131808.jpg" alt></p>
+<p>极限流量为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503131822.jpg" alt></p>
+<p>3.6 通道实际流量分析</p>
+<p>（1）字节多路通道</p>
+<p>因为通道上的每台设备都拥有一小片时间段，所以通道的实际流量为所有设备流量之和。</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132158.jpg" alt></p>
+<p>fi是第 i 台设备的流量</p>
+<p>（2）选择通道和数组多路通道</p>
+<p>因为一个通道在一个时间段内只能为一台设备服务，所以通道的流量等于所有设备中流量最大的设备的流量。</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132318.jpg" alt></p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132330.jpg" alt></p>
+<p>（3）通道流量的设计要求</p>
+<p>为了保证通道能够正常工作，不丢失数据，通道的实际流量不应超过通道的极限流量。</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132530.jpg" alt></p>
+<p>（4）I/O系统流量设计</p>
+<p>I/O系统的极限流量为：</p>
+<p><img src="http://7xta8e.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160503132651.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/计算机系统结构/存储体系.html" rel="next" title="存储体系">
+                <i class="fa fa-chevron-left"></i> 存储体系
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/计算机系统结构/互连网络.html" rel="prev" title="互连网络">
+                互连网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

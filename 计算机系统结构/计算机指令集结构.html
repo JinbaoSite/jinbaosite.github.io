@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、寻址方式 二、指令集结构的功能设计 对于指令集的基本要求是：完整性、规整性、高效性和兼容性。2.1 CISC指令集结构的功能设计 1.面向目标程序增强指令功能 1）增强运算型指令的功能 2）增强数据传送指令的功能 3）增强程序控制指令的功能2.面向高级语言的优化实现来改进指令集 1）增强对高级语言和编译器的支持 2）高级语言机器3.面向操作系统的优化实现改进指令集 1）处理机工作状态和访问方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机指令集结构">
+<meta property="og:url" content="www.dongjinbao.com/计算机系统结构/计算机指令集结构.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="一、寻址方式 二、指令集结构的功能设计 对于指令集的基本要求是：完整性、规整性、高效性和兼容性。2.1 CISC指令集结构的功能设计 1.面向目标程序增强指令功能 1）增强运算型指令的功能 2）增强数据传送指令的功能 3）增强程序控制指令的功能2.面向高级语言的优化实现来改进指令集 1）增强对高级语言和编译器的支持 2）高级语言机器3.面向操作系统的优化实现改进指令集 1）处理机工作状态和访问方式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xta8e.com1.z0.glb.clouddn.com/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F.jpg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机指令集结构">
+<meta name="twitter:description" content="一、寻址方式 二、指令集结构的功能设计 对于指令集的基本要求是：完整性、规整性、高效性和兼容性。2.1 CISC指令集结构的功能设计 1.面向目标程序增强指令功能 1）增强运算型指令的功能 2）增强数据传送指令的功能 3）增强程序控制指令的功能2.面向高级语言的优化实现来改进指令集 1）增强对高级语言和编译器的支持 2）高级语言机器3.面向操作系统的优化实现改进指令集 1）处理机工作状态和访问方式">
+<meta name="twitter:image" content="http://7xta8e.com1.z0.glb.clouddn.com/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/计算机系统结构/计算机指令集结构.html">
+
+
+
+
+
+  <title>计算机指令集结构 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/计算机系统结构/计算机指令集结构.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机指令集结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-05T23:57:35+08:00">
+                2016-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机系统结构/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机系统结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、寻址方式<br><img src="http://7xta8e.com1.z0.glb.clouddn.com/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F.jpg" alt></p>
+<p>二、指令集结构的功能设计</p>
+<pre><code>对于指令集的基本要求是：完整性、规整性、高效性和兼容性。</code></pre><p>2.1 CISC指令集结构的功能设计</p>
+<p>1.面向目标程序增强指令功能</p>
+<pre><code>1）增强运算型指令的功能
+2）增强数据传送指令的功能
+3）增强程序控制指令的功能</code></pre><p>2.面向高级语言的优化实现来改进指令集</p>
+<pre><code>1）增强对高级语言和编译器的支持
+2）高级语言机器</code></pre><p>3.面向操作系统的优化实现改进指令集</p>
+<pre><code>1）处理机工作状态和访问方式的切换
+2）进程的管理和切换
+3）存储管理和信息保护
+4）进程的同步与互斥，信号灯的管理</code></pre><p>2.2 RISC指令集结构的功能设计</p>
+<p>设计RISC机器一般应当遵守以下规则</p>
+<pre><code>1）指令条数少而简单。确定指令集时，只选取使用频率很高的指令，在此基础上补充一些最有用的指令。
+2）采用简单而又统一的指令格式，并减少寻址方式。指令字长都为32位或64位。
+3）指令的执行在单个机器周期内完成。
+4）只有load和store指令才能访问存储器，其他指令的操作都是在寄存器之间进行。即采用load-store结构。
+5）大多数指令都采用硬逻辑来实现。
+6）强化优化编译器的作用，为高级语言程序生成优化的代码。
+7）充分利用流水技术来提高性能。</code></pre><p>三、MIPS指令集结构</p>
+<p>3.1 MIPS的寄存器</p>
+<pre><code>MIPS64有32个64位通用寄存器（GPR）：R0,R1,...,R31，它们有时被称为整数寄存器，R0的值永远是0.
+32个64位浮点数寄存器（FPR）：F1,F2,...,F31.</code></pre><p>3.2 MIPS的数据表示</p>
+<pre><code>MIPS的数据表示有：
+（1）整数：字节（8位）、半字（16位）、字（32位）、双字（64位）
+（2）浮点数：单精度浮点数（32位）、双精度浮点数（64位）</code></pre><p>3.3 MIPS的数据寻址方式</p>
+<pre><code>MIPS的数据寻址只有立即数寻址和偏移量寻址。</code></pre><p>3.4 MIPS的指令格式</p>
+<p>（1）I类指令</p>
+<pre><code>这类指令包括所有的load和store指令、立即数指令、分支指令、寄存器跳转指令、寄存器链接跳转指令。
+1）load指令：访问有效地址为Regs[rs] + immediate,从存储器取来的数据放入寄存器rt。
+2）store指令：访问有效地址为Regs[rs] + immediate,要存入存储器的数据放在寄存器rt中。
+3）立即数指令：Regs[rt] &lt;- Regs[rs] op immediate。
+4）分支指令：转移目标地址为Regs[rs] + immediate，rt无用。
+5）寄存器跳转、寄存器跳转并链接：转移目标地址为Regs[rs]。</code></pre><p>（2）R类指令</p>
+<pre><code>包括ALU指令、专用寄存器读/写指令、move指令等
+ALU指令：Regs[rd] &lt;- Regs[rs] func Regs[rt] （func为具体的运算操作编码）</code></pre><p>（3）J类指令</p>
+<pre><code>包括跳转指令、跳转并链接指令、自陷指令、异常返回指令。在这类指令中，指令字的低26位是偏移量，它与PC值相加形成跳转的地址。</code></pre><p>3.5 MIPS的操作</p>
+<pre><code>MIPS指令可以分为4大类：load和store、ALU操作、分支与跳转、浮点操作。</code></pre><p>3.6 MIPS的控制指令</p>
+<pre><code>(1)J name : 跳转
+(2)JAL name : 跳转并链接
+(3)JALR R3 ： 寄存器跳转并链接
+(4)JR R5 : 寄存器跳转
+(5)BEQZ R4,name ： 等于零时分支
+(6)BNE R3，R4,name : 不相等时分支
+(7)MOVZ R1,R2,R3 ： 等于零时移动</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/计算机系统结构/计算机系统结构的基本概念.html" rel="next" title="计算机系统结构的基本概念">
+                <i class="fa fa-chevron-left"></i> 计算机系统结构的基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/计算机系统结构/流水线技术-标量.html" rel="prev" title="流水线技术-标量">
+                流水线技术-标量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

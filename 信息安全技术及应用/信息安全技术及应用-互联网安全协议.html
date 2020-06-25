@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、互联网安全协议概述1.1 互联网协议体系TCP/IP协议的体系结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全技术及应用|互联网安全协议">
+<meta property="og:url" content="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-互联网安全协议.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="一、互联网安全协议概述1.1 互联网协议体系TCP/IP协议的体系结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620192728.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620192904.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194107.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194116.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194127.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620200104.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621110321.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621110927.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621112514.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621144457.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621150437.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621150757.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621152922.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621175714.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621181334.jpg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息安全技术及应用|互联网安全协议">
+<meta name="twitter:description" content="一、互联网安全协议概述1.1 互联网协议体系TCP/IP协议的体系结构">
+<meta name="twitter:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620192728.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-互联网安全协议.html">
+
+
+
+
+
+  <title>信息安全技术及应用|互联网安全协议 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-互联网安全协议.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息安全技术及应用|互联网安全协议</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-21T18:16:11+08:00">
+                2016-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/信息安全技术及应用/" itemprop="url" rel="index">
+                    <span itemprop="name">信息安全技术及应用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、互联网安全协议概述"><a href="#一、互联网安全协议概述" class="headerlink" title="一、互联网安全协议概述"></a>一、互联网安全协议概述</h1><h2 id="1-1-互联网协议体系"><a href="#1-1-互联网协议体系" class="headerlink" title="1.1 互联网协议体系"></a>1.1 互联网协议体系</h2><p>TCP/IP协议的体系结构</p>
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620192728.jpg" alt="TCP/IP协议的体系结构"></p>
+<a id="more"></a>
+
+<p>IP数据报格式及TCP/UDP报文段格式</p>
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620192904.jpg" alt="IP数据报格式及TCP/UDP报文段格式"></p>
+<blockquote>
+<p>Web技术构成：HTTP协议、HTML标记语言。</p>
+</blockquote>
+<p>TCP/IP协议栈中安全机制的相对位置：网络层、运输层和应用层。</p>
+<h2 id="1-2-互联网安全协议"><a href="#1-2-互联网安全协议" class="headerlink" title="1.2 互联网安全协议"></a>1.2 互联网安全协议</h2><p>1、将安全机制放置在网络层：如IPSec协议，好处是对最终用户和应用程序透明。<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194107.jpg" alt><br>2、将安全机制放置在运输层：如SSL协议，好处是对最终用户和应用程序透明。<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194116.jpg" alt><br>3、将安全机制放置在应用层：好处是与应用有关的安全服务被嵌入到特定的应用程序中，可根据需要制定安全服务。<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620194127.jpg" alt><br>4、网络安全协议是各种安全服务的集成，通过安全协议的设计和编程实现，形成更高的安全服务，在提供安全服务的同时方便用户使用。</p>
+<p>5、各种网络安全协议在实际使用时，需要安装相关程序进行设置。</p>
+<h1 id="二、IP安全协议与VPN"><a href="#二、IP安全协议与VPN" class="headerlink" title="二、IP安全协议与VPN"></a>二、IP安全协议与VPN</h1><h2 id="2-1-VPN概念与构成"><a href="#2-1-VPN概念与构成" class="headerlink" title="2.1 VPN概念与构成"></a>2.1 VPN概念与构成</h2><blockquote>
+<p>VPN：以公共开放网络作为通信平台，通过在相关网络层次中附加多种安全技术（加密、鉴别和访问控制），向用户提供类似于专用网络性能的一种网络安全技术。</p>
+</blockquote>
+<h3 id="2-1-1-VPN常见的应用模式"><a href="#2-1-1-VPN常见的应用模式" class="headerlink" title="2.1.1 VPN常见的应用模式"></a>2.1.1 VPN常见的应用模式</h3><p>1、内部网VPN：适用于同一企业或组织内部的远程分支机构局域网的连接。<br>特点：数据通信量较大，连接时间较长。</p>
+<p>2、外部网VPN：适用于不同企业或组织之间的内部网的连接。<br>特点：安全策略存在较大差异，对访问控制要求较高。</p>
+<p>3、远程访问VPN：远程移动用户、单机接入等。</p>
+<h3 id="2-1-2-VPN功能"><a href="#2-1-2-VPN功能" class="headerlink" title="2.1.2 VPN功能"></a>2.1.2 VPN功能</h3><p>1、数据封装：通过构造虚拟专用网隧道，使远程用户能够用内部网的地址和协议传递信息。</p>
+<p>2、数据加密：通过对传输数据的加密，隐藏内部网的协议、地址和数据。</p>
+<p>3、报文鉴别和身份鉴别：提供报文鉴别和身份鉴别。</p>
+<h3 id="2-1-3-隧道协议"><a href="#2-1-3-隧道协议" class="headerlink" title="2.1.3 隧道协议"></a>2.1.3 隧道协议</h3><p>1、隧道技术：其基本方法是在内网与公网接口处，将要传输的数据作为载荷封装在一种可在公用网上传输的数据格式中，在目的内网与公网接口处，将数据封装除去取出载荷。</p>
+<p>2、隧道技术的主体是隧道协议。</p>
+<p>3、隧道，实质上是一种封装，是将一种协议封装在另一种协议中传输，从而实现内部网络协议对公用网络的透明性。</p>
+<p>4、安全隧道：在隧道中引入密码技术和鉴别技术，使公用网具有和内部网类似的安全性。</p>
+<p>5、VPN使用的隧道技术涉及三种数据格式<br>（1）用户数据包格式<br>（2）封装格式<br>（3）公用网传输格式</p>
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160620200104.jpg" alt></p>
+<p>6、三个数据格式对应得数据格式</p>
+<p>（1）乘客协议：内部网使用的协议在VPN中称为乘客协议。</p>
+<p>（2）隧道协议：用于封装乘客协议的封装协议被称为隧道协议。</p>
+<p>（3）传输协议：在VPN中，内部网数据以公用网作为传输载体，因此，用户数据包经隧道协议封装后还必须以公用网的传输格式进行封装。公用网使用的协议为传输协议。</p>
+<blockquote>
+<p>IP协议是目前最常见的传输协议。IP协议具有路由器功能强大，可运行于不同的传输介意，应用面广等特点。</p>
+</blockquote>
+<h2 id="2-2-IPSec概述"><a href="#2-2-IPSec概述" class="headerlink" title="2.2 IPSec概述"></a>2.2 IPSec概述</h2><p>1、用因特网进行互连，IP层适合设置安全机制。在IP层实现的安全机制也称为IPSec。</p>
+<p>2、IP层的安全包含了三个功能域：鉴别、机密性和密钥管理。<br>（1）鉴别：提供报文信源鉴别和完整性鉴别。<br>（2）机密性：通过报文加密可防止第三方窃听报文。<br>（3）密钥管理：处理密钥的安全交换。</p>
+<p>3、IPSec协议运行在内网与外网相连的网络设备上，如路由器或防火墙。</p>
+<p>4、IPSec网络设备一般将对进入广域网的所有通信量进行加密和压缩，对所有来自广域网的通信量进行解密和解压。这些操作对于局域网上的工作站和服务器是透明的。</p>
+<p>5、IPSec优点：<br>（1）当在防火墙或路由器中实现IPSec时，IPSec能够对所有穿越边界的数据通信量提供安全防护。同时又不会在内部引起与安全有关的处理负荷。<br>（2）防火墙内部的IPSec可以抵制旁路，如果从外界进来的所有通信量必须使用IP，并且防火墙是从Internet进入内部的唯一入口。<br>（3）IPSec在运输层（TCP，UDP）以下，因此对于应用程序时透明的。<br>（4）IPSec对终端用户是透明的，没有必要对用户进行安全培训，给每个用户下发密钥，或在用户离开组织是取消其密钥。</p>
+<p>6、IPSec提供的安全服务<br>（1）无连接完整性和访问控制。<br>（2）数据源的鉴别。<br>（3）拒绝重放的分组。<br>（4）机密性（加密）。<br>（5）有限的通信量机密性。</p>
+<p>7、IPSec使用两个协议来提供上述的安全服务：首部鉴别协议（AH）和封装安全载荷协议（ESP）。<br><strong>首部鉴别协议</strong>（AH）：对IP数据报提供鉴别服务。<br><strong>封装安全载荷协议</strong>（ESP）：对IP数据报提供鉴别和机密性服务。该协议是加密/鉴别混合协议。<br>AH和ESP可单独使用，也可结合使用。</p>
+<h2 id="2-3-IPSec协议"><a href="#2-3-IPSec协议" class="headerlink" title="2.3 IPSec协议"></a>2.3 IPSec协议</h2><h3 id="2-3-1-安全关联SA"><a href="#2-3-1-安全关联SA" class="headerlink" title="2.3.1 安全关联SA"></a>2.3.1 安全关联SA</h3><p>1、安全关联是发送方与接送方间的一种单向关系。通常与一个或者一组给定的网络连接相关，为所承载的网络流量提供安全服务。</p>
+<p>2、如果需要一个对等的关系用于双向的安全交换，就要有两个安全关联。一个SA可用于AH或ESP，但不能同时用于两者。</p>
+<p>3、每个安全关联可表示为一个三元组：<br>（1）安全参数索引（SPI）：SPI是一个32比特的值，用于区别相同目的地和协议的不同安全关联。SPI出现在AH和ESP的首部中，接收方根据首部中的SPI确定对于的SA。<br>（2）IP目的地址（IPDA）：目前只允许单播地址；这是SA的目的端点的地址，可能是终端用户系统或者是网络系统，如防火墙或路由器。<br>（3）安全协议标识（SPR）：指出这个关联是一个AH或ESP的安全关联。</p>
+<h3 id="2-3-2-安全关联数据库"><a href="#2-3-2-安全关联数据库" class="headerlink" title="2.3.2 安全关联数据库"></a>2.3.2 安全关联数据库</h3><p>1、安全策略数据库（SPD）：定义了对从主机或安全网关出入站的IP通信流量的处理策略。SPD包含一个策略列表，每个表项标明如何处理与该策略相匹配的信息流，IPSec定义了三种处理方法：旁路、丢弃或者进行IPSec安全处理。</p>
+<p>2、安全关联数据库（SAD）：包含了与SA相关的各种安全参数。每个SA在SAD中都有一个对应得表项。</p>
+<p>SAD表项涉及的主要字段：<br>（1）序号计数器：用于产生AH或ESP首部中序号字段的32位值。<br>（2）序号计数器溢出：一个标记，用于指示序号计数器的溢出是否可审计的事件，并禁止在该SA上继续传输分组。<br>（3）抗重放窗口：一个32位计数器，用来确定进入AH或ESP报文分组是否是重放。<br>（4）AH信息：AH使用的鉴别算法、密钥等信息。<br>（5）ESP加密信息：ESP加密算法、密钥、初始向量模式、初始向量等信息。<br>（6）ESP鉴别信息：ESP使用的鉴别算法、密钥等。<br>（7）SA生存期：一个时间段，该时间段到期后，SA必须被终止或者被一个新的SA取代。<br>（8）IPSec协议模式：指明该SA上通信流量的AH或ESP模式。AH和ESP都具有隧道模式和传输模式。<br>（9）路径MTU：不经分片可传送的分组最大长度。</p>
+<h3 id="2-3-3-SA选择器"><a href="#2-3-3-SA选择器" class="headerlink" title="2.3.3 SA选择器"></a>2.3.3 SA选择器</h3><p>1、对于每个从提供IPSec服务的设备发出的报文分组，设备将检查分组的相应字段，并根据选择器进行SPD查找，由此确定安全关联，然后根据安全关联完成对应的IPSec处理。</p>
+<p>2、选择器用于过滤通信流量，目的是将输出的流量映射到特定的安全关联。</p>
+<p>3、选择器可使用的参数：IP地址、端口号、协议等。</p>
+<p>4、SA选择器、SPD、SAD之间的关系：<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621110321.jpg" alt></p>
+<p>5、IPSec工作流程<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621110927.jpg" alt></p>
+<p>（1）主机A上用户向主机B上用户发送一消息。<br>（2）主机A上的IPSec驱动程序检查SA选择器，查看数据包是否需要保护及需要何种保护。<br>（3）IPSec驱动程序通知IKE开始安全协商。<br>（4）主机B上IKE收到请求安全协商通知。<br>（5）两台主机建立第一阶段SA，各自生成共享主密钥。如第一阶段SA已建立，则直接进入第二阶段SA协商。<br>（6）协商建立第二阶段SA对：入站SA和出站SA。<br>（7）主机A上的IPSec驱动程序使用出站SA对数据包进行安全处理。<br>（8）IPSec驱动程序将处理后的数据包交给IP层，再由IP层将数据包发给主机B。</p>
+<h3 id="2-3-4-鉴别首部AH"><a href="#2-3-4-鉴别首部AH" class="headerlink" title="2.3.4 鉴别首部AH"></a>2.3.4 鉴别首部AH</h3><p>1、功能：AH用于为IP数据报提供无连接完整性和数据源鉴别，并提供防重放保护。但不能防止被窃听，只适合用于传输没机密数据。</p>
+<p>2、工作原理：在每个IP分组上添加一个鉴别首部。此首部包含一个带密钥的散列值，散列值根据整个数据包计算，对数据的任何改变将致使散列值无效——完整性保护。鉴别特征使得端系统能够鉴别用户或应用的身份。</p>
+<p>3、AH首部格式</p>
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621112514.jpg" alt></p>
+<p>（1）下个首部（Next Header）：8位，标识AH首部后面的下一个有效载荷，其值为IP协议号。<br>（2）有效载荷长度（Payload Length）：8位，以32位字为单位，AH首部中鉴别数据的长度。<br>（3）保留（Reserved）：16位。必须置0，将来使用。<br>（4）安全参数索引（SPI）：32位，用于标识一个安全关联。<br>（5）序列号（Sequence Number）：32位，唯一标识了每个报文分组，为安全关联提供反重放保护。<br>（6）鉴别数据（Authentication Data）：长度可变，但为字长的整数倍，不足时可通过填充达到。鉴别数据包含完整性校验值ICV。</p>
+<h1 id="三、Web安全协议"><a href="#三、Web安全协议" class="headerlink" title="三、Web安全协议"></a>三、Web安全协议</h1><h2 id="3-1-Web安全协议概述"><a href="#3-1-Web安全协议概述" class="headerlink" title="3.1 Web安全协议概述"></a>3.1 Web安全协议概述</h2><p>1、目前用来保护Web页面传输安全的协议主要有两个：HTTPS和S-HTTP<br>（1）HTTPS：表示“Hypertext Transfer Protocol over Secure Socket Layer”。HTTPS不是独立的协议，而是HTTP协议与SSL/TLS协议的组合。当使用HTTPS访问页面时，端口号为443。<br>（2）S-HTTP：表示“Secure Hypertext Transfer Protocol”。S—HTTP是独立的安全超文本传输协议，可与HTTP共存并相互兼容。只有在双方经过协商都使用S-HTTP时，才进行安全的页面传输。由于HTTPS的出现，S-HTTP已基本不用。</p>
+<p>2、SSL/TLS安全套接层协议：工作在运输层与应用层之间，可为各种应用层协议提供安全服务。</p>
+<p>3、SSL（Secure Socket Layer）是一个用来保证传输安全的Internet协议。该协议通过在两个实体（客户和服务器）之间建立一个安全通道，来实现文件在Internet中传输的保密性。</p>
+<h2 id="3-2-SSL协议概念与结构"><a href="#3-2-SSL协议概念与结构" class="headerlink" title="3.2 SSL协议概念与结构"></a>3.2 SSL协议概念与结构</h2><p>1、SSL协议概念与结构<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621144457.jpg" alt></p>
+<p>2、SSL握手协议：在服务器端与客户端在开始传输数据之前，相互鉴别并交换必要的信息以建立安全会话状态。</p>
+<p>3、SSL记录协议：为不同的高层协议提供基本的安全服务，特别是超文本传输协议。SSL记录协议建立在可靠的传输协议上，用来安全封装高层的协议。</p>
+<p>4、修改密文协议：修改会话密文族。</p>
+<p>5、告警协议：将SSL有关告警传送对方实体。告警级别非为警告和致命，用来说明事件的严重等级。如果是致命的，SSL将立刻终止该连接。</p>
+<p>6、SSL会话：SSL会话是客户和服务器之间的关联，会话通过握手协议来创建。会话定义了加密安全参数的一个集合，该集合可以被多个连接所共享。会话可以用来避免为每个连接进行新的安全参数的协商。</p>
+<p>7、SLL连接：等同于网络连接，只是增加了安全防护。对于SSL来说，每个连接与一个会话相联系。</p>
+<p>8、会话状态的一些参数：<br>（1）会话标识符：服务器选择的任意字节序列，用来标识活动的或可恢复的会话状态。<br>（2）对方的证书：对方的X509.v3证书。状态的这个元素可以为空。<br>（3）压缩方法：在加密之前用来压缩数据的算法。<br>（4）密文规约：指明大块数据加密算法，用于MAC计算的散列算法，它还定义了加密属性。<br>（5）主密钥：48字节客户/服务器之间的共享密钥。<br>（6）可重用否：一个标志，用于指明该会话是否可以用来初始化一个新的连接。</p>
+<p>9、连接状态的一些参数：<br>（1）服务器和客户端随机数：服务器和客户为每个连接选择的字节序列。<br>（2）MAC密钥：对发送数据进行MAC操作的密钥。<br>（3）写密钥：对数据加密和解密的常规加密密钥。<br>（4）初始化向量：当使用CBC模式的分组加密时，为每个密钥维护的初始化向量。<br>（5）序号：每一方为每个连接的传输和接收报文维持着单独的序号。</p>
+<p>10、会话主密钥与连接中使用密钥的关系：<br>（1）有会话主密钥生成各种连接的加密参数。<br>（2）客户写MAC密钥，服务器写MAC密钥，客户写密钥，服务器写密钥，客户写IV以及服务器写IV。</p>
+<h2 id="3-3-SSL记录协议"><a href="#3-3-SSL记录协议" class="headerlink" title="3.3 SSL记录协议"></a>3.3 SSL记录协议</h2><p>1、SSL记录协议为SSL连接提供两种服务：<br>（1）机密性：握手协议定义了共享的会话密钥、由该密钥生成用于对SSL有效载荷进行常规加密的密钥。记录协议使用该密钥进行加密和解密。<br>（2）报文完整性：用会话密钥生成报文鉴别码（MAC）密钥，进行报文的鉴别。</p>
+<p>2、SSL记录协议进行的操作：<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621150437.jpg" alt><br>（1）记录协议接收要传输的应用报文，将数据分片，可选地压缩数据，应用MAC，加密，增加首部，然后再TCP报文段中传输结果单元。<br>（2）被接收的数据被解密、验证、解压和重新装配，然后交付给高层的用户。</p>
+<p>3、SSL记录协议层报文格式<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621150757.jpg" alt><br>（1）内容类型（8bit）：指明所携带的高层协议类型（如：修改密文、告警、握手和应用数据）。<br>（2）主要版本（8bit）：指示使用SSL的主要版本。对于SSLv3，字段为0.<br>（3）压缩长度（16bit）：明文数据片以字节为单位的长度（如果使用压缩就是压缩数据片的长度）。</p>
+<h2 id="3-4-SSL握手协议"><a href="#3-4-SSL握手协议" class="headerlink" title="3.4 SSL握手协议"></a>3.4 SSL握手协议</h2><p>1、握手协议的作用：使服务器和客户能够相互鉴别对方的身份、协商加密和MAC算法以及加密密钥。即建立交换实体之间的会话或改变会话的状态。</p>
+<p>2、握手协议报文由三个字段组成：<br>（1）类型字段：用来说明报文的类型，握手协议报文中的常见类型将在下面介绍。<br>（2）长度字段：表示以字节为单位的报文长度。<br>（3）报文体：则用来携带不同类型报文的参数。<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621152922.jpg" alt></p>
+<h1 id="四、安全电子交易协议SET"><a href="#四、安全电子交易协议SET" class="headerlink" title="四、安全电子交易协议SET"></a>四、安全电子交易协议SET</h1><p>SET协议提供了三种服务：<br>（1）在交易涉及的各方之间提供安全的通信信道。<br>（2）使用X.509v3数字证书进行身份鉴别。<br>（3）保证机密性，信息只是在必要的时候、必要的地方菜对交易各方可用。</p>
+<h2 id="4-1-SET协议概述"><a href="#4-1-SET协议概述" class="headerlink" title="4.1 SET协议概述"></a>4.1 SET协议概述</h2><p>1、SET协议的特点：<br>（1）信息机密性：卡用户的账号和支付信息在网上传输时时加密的，SET防止商人得到卡用户的信用卡号码，该信息值对发卡银行有用。<br>（2）数据完整性：卡用户发送给商人的支付信息包括订购信息、个人数据和支付提示。SET协议保证这些信息的内容在传输时不被修改。<br>（3）卡用户账号的鉴别：SET协议允许商人验证卡用户是否是有效卡账号的合法用户。<br>（4）商人的鉴别：SET允许卡用户验证商人与金融机构之间的关系及是否允许商人接受支付信用卡。<br>（5）互操作性：可以在不同的硬、软件平台上应用该规范。不论是持卡人还是商人，只要其SET软件符合标准并兼容旧可以进行安全交易。<br>（6）与IPSec和SSL/TLS不同，SET对每种加密算法仅提供了一种选择。这是因为SET是满足单个需求集合的单个应用，而IPSec和SSL/TLS是要支持一定范围的应用。</p>
+<p>2、SET要求的事件序列：<br>（1）消费者开通账号。消费者从支持电子支付和SET的银行处获得信用卡账号。<br>（2）消费者获得证书。经过适当的身份验证之后，消费者将收到包含帐户信息摘要的X.509v3数字证书。证书将消费者的密钥对和信用卡捆绑在一起(通过证书的扩展字段)。<br>（3）商家获得证书。接受特定信用卡的商家必须获得两个X.509v3证书：一个用于报文签名，一个用于密钥交换。商人还需要支付网关的证书。<br>（4）消费者提出一项订购。消费者通过浏览商家的网站来选择商品并确定价格。然后，将要购买的商品清单发送给商家，商家返回包含了商品列表、价格、总价格和订购号码的表格。<br>（5）商家被验证。除了订购表格之外，商家还发送自己的证书。消费者可以验证商家的合法性。<br>（6）发送订购和支付信息。消费者将订单、支付信息以及证书一起发送给商家，订单确认对订购表格中商品的购买，支付包含了信用卡的细节，支付信息被加密使商家不可阅读，消费者的证书使商家可以鉴别消费者。<br>（7）商家请求支付认可。商家将支付信息发送给支付网关，请求核准消费者的存款是否足以支付这次购买。<br>（8）商家确认该项订购。商家将订购的确认发送给消费者。<br>（9）商家提供货物或服务。商家将货物递送给消费者，或者为消费者提供服务。<br>（10）商家请求支付。这个请求被发送给支付网关，后者处理所有的支付细节。</p>
+<h2 id="4-2-双向签名"><a href="#4-2-双向签名" class="headerlink" title="4.2 双向签名"></a>4.2 双向签名</h2><p>1、双向签名的目的：连接两个发送给不同接收者的报文。</p>
+<p>2、双向签名的构造过程：消费者取得PI的散列码和OI的散列码，将这两个散列码拼接起来，再取得拼接结果的散列码。之后，使用其私有密钥对最后的散列码进行签名，就创建了双向签名。即：DS=$E_{SKc}$[H(H(PI)||H(OI))] </p>
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621175714.jpg" alt></p>
+<p>3、双向签名的验证过程：<br>(1)商家验证双向签名：假设商家获得了双向签名(DS)、OI和PI的报文摘要(PIMD)，以及从消费者证书中取得的公开密钥。然后商家可以计算这两个数值： H(PIMD||H(OI))、$D_{PKc}$[DS]，如果两个值相等，商家就验证了该签名。<br>(2)银行验证双向签名：如果银行获得了DS、PI和OI的报文摘要(OIMD)以及消费者的公开密钥，那么银行可以计算下面的数值：H(H(PI)||OIMD)、$D_{PKc}$[DS]，如果两个值相等，银行就验证了该签名。 </p>
+<h2 id="4-3-交易处理"><a href="#4-3-交易处理" class="headerlink" title="4.3 交易处理"></a>4.3 交易处理</h2><h3 id="4-3-1-购买请求"><a href="#4-3-1-购买请求" class="headerlink" title="4.3.1 购买请求"></a>4.3.1 购买请求</h3><p>购买请求阶段需要交换四个报文：发起请求、发起响应、购买请求和购买响应。</p>
+<p>1、发起请求报文：(卡用户→商家)<br>目的：请求商家和支付网关的证书(身份鉴别)。<br>明文传输。<br>报文主要内容：{请求/响应对ID、现时C、信用卡商标、发卡行标识}</p>
+<p>2、发起响应报文：(商家→卡用户)<br>商家生成响应，并用自己的私有密钥对其签名。<br>报文主要内容：{请求/响应对ID、现时C、现时M、交易ID、商家证书、支付网关证书}</p>
+<p>3、购买请求：(卡用户→商家)<br>收到响应报文后，卡用户首先检验报文的合法性，然后通过相应的CA签名来验证商家证书和支付网关证书。<br>创建OI和PI(商家赋予的交易ID被放在OI和PI中)。接下来，卡用户准备购买请求报文。为了这个目的，卡用户生成了一次性的对称加密密钥$K_S$。</p>
+<p>4、购买响应：(商家→卡用户)<br>商家收到了购买请求报文后，进行如下处理：<br>验证卡用户的证书。<br>使用消费者证书中的公开密钥来验证双向签名。<br>处理订购信息，并将支付信息转交给支付网关。<br>等待支付网关的确认，然后向卡用户发送购买响应报文。</p>
+<h3 id="4-3-2-支付认可"><a href="#4-3-2-支付认可" class="headerlink" title="4.3.2 支付认可"></a>4.3.2 支付认可</h3><p>1、认可请求：(商家→支付网关)<br>商家向支付网关发送一个认可请求报文，该报文由以下几个部分组成：<br>与购买有关的信息：(来自消费者)<br>PI：支付信息。<br>双向签名DS：用消费者的私有密钥签名。<br>OI报文摘要(OIMD)<br>数字信封：封装会话密钥。</p>
+<p>2、认可响应：(支付网关→商家)<br>支付网关收到商家认可请求后，完成下列工作：<br>验证所有的证书。<br>解密商家数字信封，然后解密认可数据块并验证认可数据块中商家的签名。<br>解密卡用户数字信封，然后解密支付数据块并验证支付数据块的双向签名。<br>验证商家交易ID与消费者PI中的交易ID是否匹配。<br>向发卡行请求和接收一个认可。</p>
+<h3 id="4-3-3-支付获取"><a href="#4-3-3-支付获取" class="headerlink" title="4.3.3 支付获取"></a>4.3.3 支付获取</h3><p>1、获取请求：(商家→支付网关)<br>商家生成、签署和加密获取请求数据块，数据块中包括了支付的数量和交易ID。<br>报文还包括以前收到的关于本交易的加密获取权标(在认可响应中)。<br>商家证书。</p>
+<p>2、获取响应：(支付网关→商家)<br>支付网关收到获取请求报文后，进行如下处理：<br>解密并验证获取请求数据块。<br>解密并验证获取权标块。<br>检查获取请求和获取权标的一致性。<br>创建清算请求并通过私有支付网络发送给发卡行，这个请求引起资金被划拨到商人的账户中。</p>
+<p>3、SET协议的报文交互<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160621181334.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/计算机系统结构/互连网络.html" rel="next" title="互连网络">
+                <i class="fa fa-chevron-left"></i> 互连网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/信息安全技术及应用/信息安全技术及应用-系统安全防护技术.html" rel="prev" title="信息安全技术及应用|系统安全防护技术">
+                信息安全技术及应用|系统安全防护技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、互联网安全协议概述"><span class="nav-number">1.</span> <span class="nav-text">一、互联网安全协议概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-互联网协议体系"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 互联网协议体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-互联网安全协议"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 互联网安全协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、IP安全协议与VPN"><span class="nav-number">2.</span> <span class="nav-text">二、IP安全协议与VPN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-VPN概念与构成"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 VPN概念与构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-VPN常见的应用模式"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 VPN常见的应用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-VPN功能"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 VPN功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-隧道协议"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 隧道协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-IPSec概述"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 IPSec概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-IPSec协议"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 IPSec协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-安全关联SA"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 安全关联SA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-安全关联数据库"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 安全关联数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-SA选择器"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 SA选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-鉴别首部AH"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 鉴别首部AH</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Web安全协议"><span class="nav-number">3.</span> <span class="nav-text">三、Web安全协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Web安全协议概述"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Web安全协议概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-SSL协议概念与结构"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 SSL协议概念与结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-SSL记录协议"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 SSL记录协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-SSL握手协议"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 SSL握手协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、安全电子交易协议SET"><span class="nav-number">4.</span> <span class="nav-text">四、安全电子交易协议SET</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-SET协议概述"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 SET协议概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-双向签名"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 双向签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-交易处理"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 交易处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-购买请求"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 购买请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-支付认可"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 支付认可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-支付获取"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3 支付获取</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

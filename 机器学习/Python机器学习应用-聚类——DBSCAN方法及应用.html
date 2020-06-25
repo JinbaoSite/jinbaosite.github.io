@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 DBSCAN密度聚类DBSCAN算法是一种基于密度的聚类算法：• 聚类的时候不需要预先指定簇的个数• 最终的簇的个数不定 DBSCAN算法将数据点分为三类：• 核心点：在半径Eps内含有超过MinPts数目的点• 边界点：在半径Eps内点的数量小于MinPts，但是落在核心点的邻域内• 噪音点：既不是核心点也不是边界点的点  2 DBSCAN算法流程1.将所有点标记为核心点、边界点或噪声点；2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python机器学习应用 | 聚类——DBSCAN方法及应用">
+<meta property="og:url" content="www.dongjinbao.com/机器学习/Python机器学习应用-聚类——DBSCAN方法及应用.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="1 DBSCAN密度聚类DBSCAN算法是一种基于密度的聚类算法：• 聚类的时候不需要预先指定簇的个数• 最终的簇的个数不定 DBSCAN算法将数据点分为三类：• 核心点：在半径Eps内含有超过MinPts数目的点• 边界点：在半径Eps内点的数量小于MinPts，但是落在核心点的邻域内• 噪音点：既不是核心点也不是边界点的点  2 DBSCAN算法流程1.将所有点标记为核心点、边界点或噪声点；2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/dbscan.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/db.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/eps.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/min.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/mini.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/stu.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/gong.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/ans.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/figure_1.jpeg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python机器学习应用 | 聚类——DBSCAN方法及应用">
+<meta name="twitter:description" content="1 DBSCAN密度聚类DBSCAN算法是一种基于密度的聚类算法：• 聚类的时候不需要预先指定簇的个数• 最终的簇的个数不定 DBSCAN算法将数据点分为三类：• 核心点：在半径Eps内含有超过MinPts数目的点• 边界点：在半径Eps内点的数量小于MinPts，但是落在核心点的邻域内• 噪音点：既不是核心点也不是边界点的点  2 DBSCAN算法流程1.将所有点标记为核心点、边界点或噪声点；2">
+<meta name="twitter:image" content="http://oltfslql1.bkt.clouddn.com/dbscan.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/机器学习/Python机器学习应用-聚类——DBSCAN方法及应用.html">
+
+
+
+
+
+  <title>Python机器学习应用 | 聚类——DBSCAN方法及应用 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/机器学习/Python机器学习应用-聚类——DBSCAN方法及应用.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python机器学习应用 | 聚类——DBSCAN方法及应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T15:03:00+08:00">
+                2017-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-DBSCAN密度聚类"><a href="#1-DBSCAN密度聚类" class="headerlink" title="1 DBSCAN密度聚类"></a>1 DBSCAN密度聚类</h2><p>DBSCAN算法是一种基于密度的聚类算法：<br>• 聚类的时候不需要预先指定簇的个数<br>• 最终的簇的个数不定</p>
+<p>DBSCAN算法将数据点分为三类：<br>• 核心点：在半径Eps内含有超过MinPts数目的点<br>• 边界点：在半径Eps内点的数量小于MinPts，但是落在核心点的邻域内<br>• 噪音点：既不是核心点也不是边界点的点</p>
+<p><img src="http://oltfslql1.bkt.clouddn.com/dbscan.jpg" alt></p>
+<h2 id="2-DBSCAN算法流程"><a href="#2-DBSCAN算法流程" class="headerlink" title="2 DBSCAN算法流程"></a>2 DBSCAN算法流程</h2><p>1.将所有点标记为核心点、边界点或噪声点；<br>2.删除噪声点；<br>3.为距离在Eps之内的所有核心点之间赋予一条边；<br>4.每组连通的核心点形成一个簇；<br>5.将每个边界点指派到一个与之关联的核心点的簇中（哪一个核心点的半径范围之内）。</p>
+<p>有如下13个样本点，使用DBSCAN进行聚类<br><img src="http://oltfslql1.bkt.clouddn.com/db.jpg" alt><br>取Eps=3，MinPts=3，依据DBSACN对所有点进行聚类（曼哈顿距离）。<br><img src="http://oltfslql1.bkt.clouddn.com/eps.jpg" alt><br>对每个点计算其邻域Eps=3内的点的集合。<br>集合内点的个数超过MinPts=3的点为核心点<br>查看剩余点是否在核心点的邻域内，若在，则为边界点，否则为噪声点。<br><img src="http://oltfslql1.bkt.clouddn.com/min.jpg" alt><br>将距离不超过Eps=3的点相互连接，构成一个簇，核心点邻域内的点也会被加入到这个簇中。则右侧形成3个簇。<br><img src="http://oltfslql1.bkt.clouddn.com/mini.jpg" alt></p>
+<h2 id="3-DBSCAN的应用实例"><a href="#3-DBSCAN的应用实例" class="headerlink" title="3 DBSCAN的应用实例"></a>3 DBSCAN的应用实例</h2><h3 id="3-1-数据介绍"><a href="#3-1-数据介绍" class="headerlink" title="3.1 数据介绍"></a>3.1 数据介绍</h3><p>现有大学校园网的日志数据，290条大学生的校园网使用情况数据，数据包括用户ID，设备的MAC地址，IP地址，开始上网时间，停止上网时间，上网时长，校园网套餐等。利用已有数据，分析学生上网的模式。</p>
+<h3 id="3-2-实验目的"><a href="#3-2-实验目的" class="headerlink" title="3.2 实验目的"></a>3.2 实验目的</h3><p>通过DBSCAN聚类，分析学生上网时间和上网时长的模式。<br>技术路线：sklearn.cluster.DBSCAN</p>
+<h3 id="3-3-数据实例"><a href="#3-3-数据实例" class="headerlink" title="3.3 数据实例"></a>3.3 数据实例</h3><p><img src="http://oltfslql1.bkt.clouddn.com/stu.jpg" alt></p>
+<h3 id="3-4-实验过程"><a href="#3-4-实验过程" class="headerlink" title="3.4 实验过程"></a>3.4 实验过程</h3><p>使用算法： DBSCAN聚类算法<br><img src="http://oltfslql1.bkt.clouddn.com/gong.jpg" alt></p>
+<h4 id="3-4-1-建立工程，导入sklearn相关包"><a href="#3-4-1-建立工程，导入sklearn相关包" class="headerlink" title="3.4.1 建立工程，导入sklearn相关包"></a>3.4.1 建立工程，导入sklearn相关包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import sklearn.cluster as skc</span><br><span class="line">from sklearn import metrics</span><br><span class="line">import matplotlib.pyplot as plt</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-2-读入数据并进行处理"><a href="#3-4-2-读入数据并进行处理" class="headerlink" title="3.4.2 读入数据并进行处理"></a>3.4.2 读入数据并进行处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mac2id=dict()</span><br><span class="line">onlinetimes=[]</span><br><span class="line">f=open(&apos;TestData.txt&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">for line in f:</span><br><span class="line">    mac=line.split(&apos;,&apos;)[2]</span><br><span class="line">    onlinetime=int(line.split(&apos;,&apos;)[6])</span><br><span class="line">    starttime=int(line.split(&apos;,&apos;)[4].split(&apos; &apos;)[1].split(&apos;:&apos;)[0])</span><br><span class="line">    if mac not in mac2id:</span><br><span class="line">        mac2id[mac]=len(onlinetimes)</span><br><span class="line">        onlinetimes.append((starttime,onlinetime))</span><br><span class="line">    else:</span><br><span class="line">        onlinetimes[mac2id[mac]]=[(starttime,onlinetime)]</span><br><span class="line">real_X=np.array(onlinetimes).reshape((-1,2))</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-3-上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签"><a href="#3-4-3-上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签" class="headerlink" title="3.4.3 上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签"></a>3.4.3 上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X=real_X[:,0:1]</span><br><span class="line"> </span><br><span class="line">db=skc.DBSCAN(eps=0.01,min_samples=20).fit(X)</span><br><span class="line">labels = db.labels_</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-4-输出标签，查看结果"><a href="#3-4-4-输出标签，查看结果" class="headerlink" title="3.4.4 输出标签，查看结果"></a>3.4.4 输出标签，查看结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;Labels:&apos;)</span><br><span class="line">print(labels)</span><br><span class="line">raito=len(labels[labels[:] == -1]) / len(labels)</span><br><span class="line">print(&apos;Noise raito:&apos;,format(raito, &apos;.2%&apos;))</span><br><span class="line"> </span><br><span class="line">n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)</span><br><span class="line"> </span><br><span class="line">print(&apos;Estimated number of clusters: %d&apos; % n_clusters_)</span><br><span class="line">print(&quot;Silhouette Coefficient: %0.3f&quot;% metrics.silhouette_score(X, labels))</span><br><span class="line"> </span><br><span class="line">for i in range(n_clusters_):</span><br><span class="line">    print(&apos;Cluster &apos;,i,&apos;:&apos;)</span><br><span class="line">    print(list(X[labels == i].flatten()))</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="http://oltfslql1.bkt.clouddn.com/ans.jpg" alt></p>
+<h4 id="3-4-5-画直方图，分析实验结果"><a href="#3-4-5-画直方图，分析实验结果" class="headerlink" title="3.4.5 画直方图，分析实验结果"></a>3.4.5 画直方图，分析实验结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(X,24)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://oltfslql1.bkt.clouddn.com/figure_1.jpeg" alt><br>上网时间大多聚集在22：00和23：00</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/机器学习/Python机器学习应用-聚类——K-means方法及应用.html" rel="next" title="Python机器学习应用 | 聚类——K-means方法及应用">
+                <i class="fa fa-chevron-left"></i> Python机器学习应用 | 聚类——K-means方法及应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/机器学习/Python机器学习应用-降维——PCA方法及其应用.html" rel="prev" title="Python机器学习应用 | 降维——PCA方法及其应用">
+                Python机器学习应用 | 降维——PCA方法及其应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DBSCAN密度聚类"><span class="nav-number">1.</span> <span class="nav-text">1 DBSCAN密度聚类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DBSCAN算法流程"><span class="nav-number">2.</span> <span class="nav-text">2 DBSCAN算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DBSCAN的应用实例"><span class="nav-number">3.</span> <span class="nav-text">3 DBSCAN的应用实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-数据介绍"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 数据介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-实验目的"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-数据实例"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 数据实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-实验过程"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-建立工程，导入sklearn相关包"><span class="nav-number">3.4.1.</span> <span class="nav-text">3.4.1 建立工程，导入sklearn相关包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-读入数据并进行处理"><span class="nav-number">3.4.2.</span> <span class="nav-text">3.4.2 读入数据并进行处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签"><span class="nav-number">3.4.3.</span> <span class="nav-text">3.4.3 上网时间聚类，创建DBSCAN算法实例，并进行训练，获得标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-4-输出标签，查看结果"><span class="nav-number">3.4.4.</span> <span class="nav-text">3.4.4 输出标签，查看结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-5-画直方图，分析实验结果"><span class="nav-number">3.4.5.</span> <span class="nav-text">3.4.5 画直方图，分析实验结果</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

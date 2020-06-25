@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 题目本次实验为分类任务，实验数据在附件中，共有2个文件，data_train.txt、data_test.txt，分别用于训练和测试，在训练文件中数据有55列，前54列是样本的特征（输入数据），最后一列是样本的类别（label），类别共有7种，对应为1~7。测试数据中没有类别（label），需要根据模型预测相应的类别（label），这些预测结果需要上传，并根据预测结果给出相应的分数。 作业要求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python机器学习应用 | 期末大作业1（程序设计）">
+<meta property="og:url" content="www.dongjinbao.com/机器学习/Python机器学习应用-期末大作业1（程序设计）.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="1 题目本次实验为分类任务，实验数据在附件中，共有2个文件，data_train.txt、data_test.txt，分别用于训练和测试，在训练文件中数据有55列，前54列是样本的特征（输入数据），最后一列是样本的类别（label），类别共有7种，对应为1~7。测试数据中没有类别（label），需要根据模型预测相应的类别（label），这些预测结果需要上传，并根据预测结果给出相应的分数。 作业要求">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/20150128033221168.png">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python机器学习应用 | 期末大作业1（程序设计）">
+<meta name="twitter:description" content="1 题目本次实验为分类任务，实验数据在附件中，共有2个文件，data_train.txt、data_test.txt，分别用于训练和测试，在训练文件中数据有55列，前54列是样本的特征（输入数据），最后一列是样本的类别（label），类别共有7种，对应为1~7。测试数据中没有类别（label），需要根据模型预测相应的类别（label），这些预测结果需要上传，并根据预测结果给出相应的分数。 作业要求">
+<meta name="twitter:image" content="http://oltfslql1.bkt.clouddn.com/20150128033221168.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/机器学习/Python机器学习应用-期末大作业1（程序设计）.html">
+
+
+
+
+
+  <title>Python机器学习应用 | 期末大作业1（程序设计） | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/机器学习/Python机器学习应用-期末大作业1（程序设计）.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python机器学习应用 | 期末大作业1（程序设计）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T13:09:27+08:00">
+                2017-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1 题目"></a>1 题目</h2><p>本次实验为分类任务，实验数据在附件中，共有2个文件，data_train.txt、data_test.txt，分别用于训练和测试，在训练文件中数据有55列，前54列是样本的特征（输入数据），最后一列是样本的类别（label），类别共有7种，对应为1~7。测试数据中没有类别（label），需要根据模型预测相应的类别（label），这些预测结果需要上传，并根据预测结果给出相应的分数。</p>
+<p>作业要求：<br>使用三种模型进行预测。<br>提交预测结果，每个模型一个文件，命名为model_1.txt、model_2.txt、model_3.txt，文件中每行一个数字（1~7）表示预测结果，行数与data_test.txt的行数相同。<br>撰写实验报告，包含模型介绍，数据处理，结果展示与分析。<br>提交预测结果、实验报告、代码。</p>
+<p>数据下载：链接：<a href="http://pan.baidu.com/s/1crQFH8" target="_blank" rel="noopener">http://pan.baidu.com/s/1crQFH8</a> 密码：tj2p</p>
+<h2 id="2-数据读取"><a href="#2-数据读取" class="headerlink" title="2 数据读取"></a>2 数据读取</h2><p>直接读取data_train.txt文件，先读取全部数据，然后再一行一行读取，这里设置90%用于训练，10%用于验证。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取train_data,val_data</span></span><br><span class="line">f = open(<span class="string">'data_train.txt'</span>)</span><br><span class="line">lines = f.readlines()</span><br><span class="line"></span><br><span class="line"><span class="comment">#90%用于训练，10%用于验证</span></span><br><span class="line">train_len = int(<span class="number">0.9</span>*len(lines))</span><br><span class="line">val_len = len(lines) - train_len</span><br><span class="line"></span><br><span class="line">train_dataSet = np.zeros([train_len,<span class="number">54</span>],int)</span><br><span class="line">train_label = np.zeros([train_len,<span class="number">7</span>],int)</span><br><span class="line">val_dataSet = np.zeros([val_len,<span class="number">54</span>],int)</span><br><span class="line">val_label = np.zeros([val_len,<span class="number">7</span>],int)</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练数据集</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(train_len):</span><br><span class="line">	line = lines[i]</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">53</span>):</span><br><span class="line">		train_dataSet[i][j] = line.split(<span class="string">' '</span>)[j]</span><br><span class="line">	digit = int(line.split(<span class="string">' '</span>)[<span class="number">54</span>])</span><br><span class="line">	train_label[i][digit<span class="number">-1</span>] = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#验证数据集</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(val_len):</span><br><span class="line">	line = lines[i+train_len]</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">53</span>):</span><br><span class="line">		val_dataSet[i][j] = line.split(<span class="string">' '</span>)[j]</span><br><span class="line">	digit = int(line.split(<span class="string">' '</span>)[<span class="number">54</span>])</span><br><span class="line">	val_label[i][digit<span class="number">-1</span>] = <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<p>对于测试文件，也是直接读取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取test_data.txt</span></span><br><span class="line">f = open(<span class="string">'test_data.txt'</span>)</span><br><span class="line">lines = f.readlines()</span><br><span class="line"></span><br><span class="line">test_len = len(lines)</span><br><span class="line">test_dataSet = np.zeros([test_len,<span class="number">54</span>],int)</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试数据集</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(test_len):</span><br><span class="line">	line = lines[i]</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">53</span>):</span><br><span class="line">		test_dataSet[i][j] = line.split(<span class="string">' '</span>)[j]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-MLPClassifier"><a href="#2-MLPClassifier" class="headerlink" title="2 MLPClassifier"></a>2 MLPClassifier</h2><h3 id="3-1-MLP简介"><a href="#3-1-MLP简介" class="headerlink" title="3.1 MLP简介"></a>3.1 MLP简介</h3><p>多层感知机（MLP）是一种全连接神经网络，它包含输入层，隐藏层，输出层。<br><img src="http://oltfslql1.bkt.clouddn.com/20150128033221168.png" alt></p>
+<h3 id="3-2-MLP训练和验证"><a href="#3-2-MLP训练和验证" class="headerlink" title="3.2 MLP训练和验证"></a>3.2 MLP训练和验证</h3><p>构建神经网络，设置隐藏层神经元个数、激活函数、优化方法、学习率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf = MLPClassifier(hidden_layer_sizes=(200,),activation=&apos;logistic&apos;, solver=&apos;adam&apos;,learning_rate_init = 0.0001, max_iter=2000)</span><br></pre></td></tr></table></figure>
+
+<p>训练神经网络</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.fit(train_dataSet,train_label)</span><br></pre></td></tr></table></figure>
+
+<p>获得训练准确率和验证准确率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">res = clf.predict(val_dataSet)</span><br><span class="line">cnt = 0</span><br><span class="line">for i in range(val_len):</span><br><span class="line">	if np.sum(res[i]==val_label[i]) == 7:</span><br><span class="line">		cnt += 1</span><br><span class="line"></span><br><span class="line">res2 = clf.predict(train_dataSet)</span><br><span class="line">cnt2 = 0</span><br><span class="line">for i in range(train_len):</span><br><span class="line">	if np.sum(res[i]==train_label[i]) == 7:</span><br><span class="line">		cnt2 += 1</span><br><span class="line"></span><br><span class="line">print(&apos;train accuracy = %.1f,validation accuracy = %.1f (%.1f sec)&apos; %(1.0*cnt2/train_len,1.0*cnt/val_len,time.time()-start_time))</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-结果分析"><a href="#3-3-结果分析" class="headerlink" title="3.3 结果分析"></a>3.3 结果分析</h3><h4 id="3-3-1-隐藏层的数目"><a href="#3-3-1-隐藏层的数目" class="headerlink" title="3.3.1 隐藏层的数目"></a>3.3.1 隐藏层的数目</h4><p>对隐藏层参数hidden_layer_sizes，分别设置50，100，150，200，250，300进行实验</p>
+<table>
+<thead>
+<tr>
+<th align="center">hidden_layer_sizes</th>
+<th align="center">50</th>
+<th align="center">100</th>
+<th align="center">150</th>
+<th align="center">200</th>
+<th align="center">250</th>
+<th align="center">300</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">73.39%</td>
+<td align="center">76.14%</td>
+<td align="center">77.07%</td>
+<td align="center">78.48%</td>
+<td align="center">79.06%</td>
+<td align="center">79.46%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">73.19%</td>
+<td align="center">75.52%</td>
+<td align="center">76.64%</td>
+<td align="center">77.87%</td>
+<td align="center">78.5%</td>
+<td align="center">78.86%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">372.5</td>
+<td align="center">537.4</td>
+<td align="center">609.9</td>
+<td align="center">794.1</td>
+<td align="center">798.9</td>
+<td align="center">877.2</td>
+</tr>
+</tbody></table>
+<p>可以看出，随着隐藏层参数hidden_layer_sizes的增大，train accuracy和validation accuracy都随之增大，但是增长的幅度逐渐降低，训练所花费的时间虽然也在增多，不过后面增长幅度也降低了。所以，这里我们选取200作为合适的隐藏层参数值。</p>
+<h4 id="3-3-2-激活函数"><a href="#3-3-2-激活函数" class="headerlink" title="3.3.2 激活函数"></a>3.3.2 激活函数</h4><p>激活函数有logistic、identity、tanh、relu，分别设置并进行实验</p>
+<table>
+<thead>
+<tr>
+<th align="center">activation</th>
+<th align="center">‘logistic’</th>
+<th align="center">‘identity’</th>
+<th align="center">‘tanh’</th>
+<th align="center">‘relu’</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">78.18%</td>
+<td align="center">50.27%</td>
+<td align="center">74.11%</td>
+<td align="center">56.48%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">77.63%</td>
+<td align="center">50.02%</td>
+<td align="center">73.82%</td>
+<td align="center">56.07%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">739.8</td>
+<td align="center">48.3</td>
+<td align="center">706.5</td>
+<td align="center">121.5</td>
+</tr>
+</tbody></table>
+<p>可以看出选择logistic效果最好</p>
+<h4 id="3-3-3-优化器"><a href="#3-3-3-优化器" class="headerlink" title="3.3.3 优化器"></a>3.3.3 优化器</h4><p>优化器有sgd、adam，分别设置进行实验</p>
+<table>
+<thead>
+<tr>
+<th align="center">solver</th>
+<th align="center">‘sgd’</th>
+<th align="center">‘adam’</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">25.69%</td>
+<td align="center">79.20%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">25.46%</td>
+<td align="center">78.61%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">67.7</td>
+<td align="center">904.0</td>
+</tr>
+</tbody></table>
+<p>很明显，adam优化器效果更好</p>
+<h4 id="3-3-4-学习率设置"><a href="#3-3-4-学习率设置" class="headerlink" title="3.3.4 学习率设置"></a>3.3.4 学习率设置</h4><p>设置学习率0.1,0.01,0.001,0.0001,0.00001，实验结果如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">learning_rate_init</th>
+<th align="center">0.1</th>
+<th align="center">0.01</th>
+<th align="center">0.001</th>
+<th align="center">0.0001</th>
+<th align="center">0.00001</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">48.71%</td>
+<td align="center">0</td>
+<td align="center">65.94%</td>
+<td align="center">79.59%</td>
+<td align="center">78.11%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">48.52%</td>
+<td align="center">0</td>
+<td align="center">65.59%</td>
+<td align="center">78.88%</td>
+<td align="center">77.80%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">51.7</td>
+<td align="center">50.2</td>
+<td align="center">117.6</td>
+<td align="center">965.4</td>
+<td align="center">3048.1</td>
+</tr>
+</tbody></table>
+<p>所以设置学习率learning_rate_init=0.0001</p>
+<h3 id="3-4-获取预测结果"><a href="#3-4-获取预测结果" class="headerlink" title="3.4 获取预测结果"></a>3.4 获取预测结果</h3><p>设置隐藏层hidden_layer_sizes=200，激活函数activation=’logistic’，优化器为adam，学习率learning_rate_init=0.0001，将所有数据用于训练集（不再设置验证集），并将预测结果输出至文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ans = clf.predict(test_dataSet)</span><br><span class="line">f = open(&apos;model_1.txt&apos;,&apos;w&apos;)</span><br><span class="line">for i in range(test_len):</span><br><span class="line">	for j in range(7):</span><br><span class="line">		if ans[i][j] != 0:</span><br><span class="line">			f.write(str(j+1) + &apos;\n&apos;)</span><br><span class="line">			break</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-KNN"><a href="#4-KNN" class="headerlink" title="4 KNN"></a>4 KNN</h2><h3 id="4-1-KNN简介"><a href="#4-1-KNN简介" class="headerlink" title="4.1 KNN简介"></a>4.1 KNN简介</h3><p>KNN：通过计算待分类数据点与已有数据集中的所有数据点的距离，取距离最小的前K个点，根据“少数服从多数”的原则，将这个数据点划分为出现次数最多的那个类别。</p>
+<h3 id="4-2-KNN训练和验证"><a href="#4-2-KNN训练和验证" class="headerlink" title="4.2 KNN训练和验证"></a>4.2 KNN训练和验证</h3><p>构建KNN分类器：设置查找算法以及邻居点数量(k)值。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn = neighbors.KNeighborsClassifier(algorithm=&apos;kd_tree&apos;,n_neighbors=nei)</span><br></pre></td></tr></table></figure>
+
+<p>训练神经网络</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn.fit(train_dataSet,train_label)</span><br></pre></td></tr></table></figure>
+
+<p>获得训练准确率和验证准确率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">res = knn.predict(val_dataSet)</span><br><span class="line">cnt = 0</span><br><span class="line">for i in range(val_len):</span><br><span class="line">	if np.sum(res[i]==val_label[i]) == 7:</span><br><span class="line">		cnt += 1</span><br><span class="line">res2 = knn.predict(train_dataSet)</span><br><span class="line">cnt2 = 0</span><br><span class="line">for i in range(train_len):</span><br><span class="line">	if np.sum(res2[i]==train_label[i]) == 7:</span><br><span class="line">		cnt2 += 1</span><br><span class="line">print(&apos;train accuracy = %.4f,validation accuracy = %.4f (%.1f sec)&apos; %(1.0*cnt2/train_len,1.0*cnt/val_len,time.time()-start_time))</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-结果分析"><a href="#4-3-结果分析" class="headerlink" title="4.3 结果分析"></a>4.3 结果分析</h3><h4 id="4-3-1-邻居数量K"><a href="#4-3-1-邻居数量K" class="headerlink" title="4.3.1 邻居数量K"></a>4.3.1 邻居数量K</h4><p>设置K=1,2,3,4,5,6,7，实验结果如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">n_neighbors</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">100%</td>
+<td align="center">96.28%</td>
+<td align="center">98.71%</td>
+<td align="center">96.49%</td>
+<td align="center">98.12%</td>
+<td align="center">96.29%</td>
+<td align="center">97.55%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">96.14%</td>
+<td align="center">92.57%</td>
+<td align="center">96.31%</td>
+<td align="center">93.71%</td>
+<td align="center">96.12%</td>
+<td align="center">93.90%</td>
+<td align="center">95.71%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">20.1</td>
+<td align="center">32.2</td>
+<td align="center">35.9</td>
+<td align="center">42.1</td>
+<td align="center">45.5</td>
+<td align="center">48.3</td>
+<td align="center">49.2</td>
+</tr>
+</tbody></table>
+<p>虽然K=1时，训练集准确度最高，但是在验证集中相对更低，所以K=1使得分类器过拟合了，在这里选择K=3作为合适的值。</p>
+<h4 id="4-3-2-查找算法"><a href="#4-3-2-查找算法" class="headerlink" title="4.3.2 查找算法"></a>4.3.2 查找算法</h4><p>查找算法有：ball_tree、kd_tree、brute，实验结果如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">algorithm</th>
+<th align="center">ball_tree</th>
+<th align="center">kd_tree</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">98.71%</td>
+<td align="center">96.31%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">98.71%</td>
+<td align="center">96.31%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">394.2</td>
+<td align="center">36.9</td>
+</tr>
+</tbody></table>
+<p>查找算法ball_tree与kd_tree效果一样，但是ball_tree花费时间是kd_tree的10倍，所以选择kd_tree。</p>
+<h3 id="4-4-获取预测结果"><a href="#4-4-获取预测结果" class="headerlink" title="4.4 获取预测结果"></a>4.4 获取预测结果</h3><p>KNN设置K=3，使用查找算法kd_tree，将全部数据集用于训练，并将预测结果输出至文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ans = knn.predict(test_dataSet)</span><br><span class="line">f = open(<span class="string">'model_2.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(test_len):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">7</span>):</span><br><span class="line">		<span class="keyword">if</span> ans[i][j] != <span class="number">0</span>:</span><br><span class="line">			f.write(str(j+<span class="number">1</span>) + <span class="string">'\n'</span>)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-决策树"><a href="#5-决策树" class="headerlink" title="5 决策树"></a>5 决策树</h2><h3 id="5-1-决策树简介"><a href="#5-1-决策树简介" class="headerlink" title="5.1 决策树简介"></a>5.1 决策树简介</h3><p>决策树是一种树形结构的分类器，通过顺序询问分类点的属性决定分类点最终的类别。通常根据特征的信息增益或其他指标，构建一颗决策树。在分类时，只需要按照决策树中的结点依次进行判断，即可得到样本所属类别。</p>
+<h3 id="5-2-决策树训练和验证"><a href="#5-2-决策树训练和验证" class="headerlink" title="5.2 决策树训练和验证"></a>5.2 决策树训练和验证</h3><p>构建决策树训练器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf = DecisionTreeClassifier()</span><br></pre></td></tr></table></figure>
+
+<p>决策树训练</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf.fit(train_dataSet,train_label)</span><br></pre></td></tr></table></figure>
+
+<p>获得训练准确率和验证准确率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">res = clf.predict(val_dataSet)</span><br><span class="line">cnt = 0</span><br><span class="line">for i in range(val_len):</span><br><span class="line">	if np.sum(res[i]==val_label[i]) == 7:</span><br><span class="line">		cnt += 1</span><br><span class="line">res2 = clf.predict(train_dataSet)</span><br><span class="line">cnt2 = 0</span><br><span class="line">for i in range(train_len):</span><br><span class="line">	if np.sum(res2[i]==train_label[i]) == 7:</span><br><span class="line">		cnt2 += 1</span><br><span class="line">print(&apos;train accuracy = %.4f,validation accuracy = %.4f (%.1f sec)&apos; %(1.0*cnt2/train_len,1.0*cnt/val_len,time.time()-start_time))</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-结果分析"><a href="#5-3-结果分析" class="headerlink" title="5.3 结果分析"></a>5.3 结果分析</h3><table>
+<thead>
+<tr>
+<th align="center">1</th>
+<th align="center">2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">100%</td>
+</tr>
+<tr>
+<td align="center">validation accuracy</td>
+<td align="center">92.93%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">20.7</td>
+</tr>
+</tbody></table>
+<p>可以发现决策树存在很明显的过拟合。</p>
+<h3 id="5-4-获取预测结果"><a href="#5-4-获取预测结果" class="headerlink" title="5.4 获取预测结果"></a>5.4 获取预测结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ans = clf.predict(test_dataSet)</span><br><span class="line">f = open(&apos;model_3.txt&apos;,&apos;w&apos;)</span><br><span class="line">for i in range(test_len):</span><br><span class="line">	for j in range(7):</span><br><span class="line">		if ans[i][j] != 0:</span><br><span class="line">			f.write(str(j+1) + &apos;\n&apos;)</span><br><span class="line">			break</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-结果展示与分析"><a href="#5-结果展示与分析" class="headerlink" title="5 结果展示与分析"></a>5 结果展示与分析</h2><table>
+<thead>
+<tr>
+<th align="center">分类器</th>
+<th align="center">MLP</th>
+<th align="center">KNN</th>
+<th align="center">决策树</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">train accuracy</td>
+<td align="center">78.80%</td>
+<td align="center">98.79%</td>
+<td align="center">100%</td>
+</tr>
+<tr>
+<td align="center">time (sec)</td>
+<td align="center">1039.8</td>
+<td align="center">37.6</td>
+<td align="center">22.5</td>
+</tr>
+</tbody></table>
+<p>决策树虽然训练集准确率达到了100%，但是它存在着严重的过拟合，并不是最好的，KNN相对于MLP来说，训练集准确度高，花费时间短，所以，相比之下，KNN的结果应该是最好的。</p>
+<h2 id="6-代码和数据"><a href="#6-代码和数据" class="headerlink" title="6 代码和数据"></a>6 代码和数据</h2><p>链接：<a href="http://pan.baidu.com/s/1nv0rLyx" target="_blank" rel="noopener">http://pan.baidu.com/s/1nv0rLyx</a> 密码：cy8l</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/机器学习/Python机器学习应用-强化学习.html" rel="next" title="Python机器学习应用 | 强化学习">
+                <i class="fa fa-chevron-left"></i> Python机器学习应用 | 强化学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/CodeChef/July-Challenge-2017-Chef-and-Sign-Sequences.html" rel="prev" title="July Challenge 2017 | Chef and Sign Sequences">
+                July Challenge 2017 | Chef and Sign Sequences <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-题目"><span class="nav-number">1.</span> <span class="nav-text">1 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据读取"><span class="nav-number">2.</span> <span class="nav-text">2 数据读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MLPClassifier"><span class="nav-number">3.</span> <span class="nav-text">2 MLPClassifier</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-MLP简介"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 MLP简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-MLP训练和验证"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 MLP训练和验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-结果分析"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-隐藏层的数目"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 隐藏层的数目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-激活函数"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 激活函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-优化器"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 优化器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-学习率设置"><span class="nav-number">3.3.4.</span> <span class="nav-text">3.3.4 学习率设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-获取预测结果"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 获取预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-KNN"><span class="nav-number">4.</span> <span class="nav-text">4 KNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-KNN简介"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 KNN简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-KNN训练和验证"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 KNN训练和验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-结果分析"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-邻居数量K"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 邻居数量K</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-查找算法"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 查找算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-获取预测结果"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 获取预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-决策树"><span class="nav-number">5.</span> <span class="nav-text">5 决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-决策树简介"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 决策树简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-决策树训练和验证"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 决策树训练和验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-结果分析"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 结果分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-获取预测结果"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 获取预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-结果展示与分析"><span class="nav-number">6.</span> <span class="nav-text">5 结果展示与分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-代码和数据"><span class="nav-number">7.</span> <span class="nav-text">6 代码和数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

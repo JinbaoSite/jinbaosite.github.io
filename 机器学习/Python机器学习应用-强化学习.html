@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 强化学习1、强化学习就是程序或智能体（agent）通过与环境不断地进行交互学习一个从环境到动作的映射，学习的目标就是使累计回报最大化。2、强化学习是一种试错学习，因其在各种状态（环境）下需要尽量尝试所有可以选择的动作，通过环境给出的反馈（即奖励）来判断动作的优劣，最终获得环境和最优动作的映射关系（即策略）。 2 马尔可夫决策过程（MDP）马尔可夫决策过程（Markov Decision Pro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python机器学习应用 | 强化学习">
+<meta property="og:url" content="www.dongjinbao.com/机器学习/Python机器学习应用-强化学习.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="1 强化学习1、强化学习就是程序或智能体（agent）通过与环境不断地进行交互学习一个从环境到动作的映射，学习的目标就是使累计回报最大化。2、强化学习是一种试错学习，因其在各种状态（环境）下需要尽量尝试所有可以选择的动作，通过环境给出的反馈（即奖励）来判断动作的优劣，最终获得环境和最优动作的映射关系（即策略）。 2 马尔可夫决策过程（MDP）马尔可夫决策过程（Markov Decision Pro">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/mdp.jpg">
+<meta property="og:image" content="http://oltfslql1.bkt.clouddn.com/dqn.jpg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python机器学习应用 | 强化学习">
+<meta name="twitter:description" content="1 强化学习1、强化学习就是程序或智能体（agent）通过与环境不断地进行交互学习一个从环境到动作的映射，学习的目标就是使累计回报最大化。2、强化学习是一种试错学习，因其在各种状态（环境）下需要尽量尝试所有可以选择的动作，通过环境给出的反馈（即奖励）来判断动作的优劣，最终获得环境和最优动作的映射关系（即策略）。 2 马尔可夫决策过程（MDP）马尔可夫决策过程（Markov Decision Pro">
+<meta name="twitter:image" content="http://oltfslql1.bkt.clouddn.com/mdp.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/机器学习/Python机器学习应用-强化学习.html">
+
+
+
+
+
+  <title>Python机器学习应用 | 强化学习 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/机器学习/Python机器学习应用-强化学习.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python机器学习应用 | 强化学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-02T17:56:21+08:00">
+                2017-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-强化学习"><a href="#1-强化学习" class="headerlink" title="1 强化学习"></a>1 强化学习</h2><p>1、强化学习就是程序或智能体（agent）通过与环境不断地进行交互学习一个从环境到动作的映射，学习的目标就是使累计回报最大化。<br>2、强化学习是一种试错学习，因其在各种状态（环境）下需要尽量尝试所有可以选择的动作，通过环境给出的反馈（即奖励）来判断动作的优劣，最终获得环境和最优动作的映射关系（即策略）。</p>
+<h2 id="2-马尔可夫决策过程（MDP）"><a href="#2-马尔可夫决策过程（MDP）" class="headerlink" title="2 马尔可夫决策过程（MDP）"></a>2 马尔可夫决策过程（MDP）</h2><p>马尔可夫决策过程（Markov Decision Process）通常用来描述一个强化学习问题，智能体agent根据当前环境的观察采取动作获得环境的反馈，并使环境发生改变的循环过程。<br><img src="http://oltfslql1.bkt.clouddn.com/mdp.jpg" alt></p>
+<h2 id="3-MDP基本元素"><a href="#3-MDP基本元素" class="headerlink" title="3 MDP基本元素"></a>3 MDP基本元素</h2><p>1、$s \in S$：有限状态state集合，s表示某个特定状态；<br>2、$a \in A$：有限动作action集合，a表示某个特定动作；<br>3、$T(S,a,S’)~P_r(s’|s,a)$：状态转移模型，根据当前状态s和动作a预测下一个状态s，这里的$P_r$表示从s采取行动a转移到$s’$的概率；<br>4、$R(s,a)$：表示agent采取某个动作后的即时奖励，它还有$R(s,a,s’),R(s)$等表现形式；<br>5、Policy $\pi (s) \rightarrow a$：根据当前state来产生action，可表现为$a= \pi (s)$或$\pi (a|s) = P (a|s)$，后者表示某种状态下执行某个动作的概率。</p>
+<h2 id="4-值函数"><a href="#4-值函数" class="headerlink" title="4 值函数"></a>4 值函数</h2><p>状态值函数V表示执行策略$\pi$能得到的累计折扣奖励：</p>
+<p>$$V^{\pi}(s) = E[R(s_0,a_0)+\gamma R(s_1,a_1) + \gamma ^2 R(s_2,a_2)+… | s=s_0]$$</p>
+<p>即：</p>
+<p>$$V^{\pi}(s) = R(s,a) + \gamma \sum_{s’ \in S} p(s’|s,\pi (s)) V^{\pi} (s’)$$</p>
+<p>状态动作值函数$Q(s,a)$表示在状态s下执行动作a能得到的累计折扣奖励：</p>
+<p>$$Q^{\pi}(s,a)= E[R(s_0,a_0)+\gamma R(s_1,a_1) + \gamma ^2 R(s_2,a_2)+… | s=s_0,a=a_0]$$</p>
+<p>即：</p>
+<p>$$Q^{\pi}(s,a) = R(s,a) + \gamma \sum_{s’ \in S} p(s’|s,\pi (s)) Q^{\pi} (s’,\pi (s’))$$</p>
+<h2 id="5-最优值函数"><a href="#5-最优值函数" class="headerlink" title="5 最优值函数"></a>5 最优值函数</h2><p>$$V^{<em>}(s)=max_{a \in A} R(s,a) + \gamma \sum_{s’ \in S} p(s’ | s,a) V^</em>(s’) \<br>Q^<em>(s,a) = R(s,a) + \gamma ( \sum_{s’ \in S} p(s’|s,a)) max_{b \in A}Q^</em> (s’,a)$$</p>
+<h2 id="6-最优控制"><a href="#6-最优控制" class="headerlink" title="6 最优控制"></a>6 最优控制</h2><p>在得到最优值函数之后，可以通过值函数的值得到状态s时应该采取的动作a：</p>
+<p>$$\pi (s) = argmax_{a \in A} [R(s,a) + \gamma \sum_{s’ \in S} p(s’|s,a)V^<em>(s’)] \<br>\pi (s) = argmax_{a \in A} Q^</em>(s,a) \<br>V^<em>(s) = max_{a \in A} Q^</em>(s,a)$$</p>
+<h2 id="7-蒙特卡洛强化学习"><a href="#7-蒙特卡洛强化学习" class="headerlink" title="7 蒙特卡洛强化学习"></a>7 蒙特卡洛强化学习</h2><p>1、在现实的强化学习任务中，环境的转移概率、奖励函数往往很难得知，甚至很难得知环境中有多少状态。若学习算法不再依赖于环境建模，则称为免模型学习，蒙特卡洛强化学习就是其中的一种。<br>2、蒙特卡洛强化学习使用多次采样，然后求取平均累计奖赏作为期望累计奖赏的近似。<br>3、蒙特卡洛强化学习：直接对状态动作值函数Q(s,a)进行估计，每采样一条轨迹，就根据轨迹中的所有“状态-动作”利用下面的公式对来对值函数进行更新。</p>
+<p>$$<br>Q(s,a) = \frac{Q(s,a)*count(s,a)+R}{count(s,a)+1}<br>$$</p>
+<p>4、每次采样更新完所有的“状态-动作”对所对应的Q(s,a)，就需要更新采样策略$\pi$。但由于策略可能是确定性的，即一个状态对应一个动作，多次采样可能获得相同的采样轨迹，因此需要借助$\epsilon$贪心策略：</p>
+<p>$$\pi (s,a)=<br>\begin{cases}<br>argmax_a Q(s,a) &amp; \text{以概率1-$\epsilon$} \newline<br>随机从A中选取动作&amp; \text{以概率$\epsilon$}<br>\end{cases}$$</p>
+<p>5、蒙特卡洛强化学习算法需要采样一个完整的轨迹来更新值函数，效率较低，此外该算法没有充分利用强化学习任务的序贯决策结构。</p>
+<h2 id="8-Q-learning算法"><a href="#8-Q-learning算法" class="headerlink" title="8 Q-learning算法"></a>8 Q-learning算法</h2><p>1、Q-learning算法结合了动态规划与蒙特卡洛方法的思想，使得学习更加高效。<br>2、假设对于状态动作对(s,a)基于t次采样估算出其值函数为：</p>
+<p>$$<br>Q^{\pi}<em>t(s,a) = \frac{1}{t} \sum</em>{i=1}^{t} r_i<br>$$</p>
+<p>在进行t+1次采样后，依据增量更新得到：</p>
+<p>$$<br>Q^{\pi}<em>{t+1}(s,a) = Q^{\pi}_t(s,a) + \frac{1}{t+1} (r</em>{t+1} - Q^{\pi}_t(s,a))<br>$$</p>
+<p>然后，将$\frac{1}{t+1}$替换成系数$\alpha$（步长），得到：</p>
+<p>$$<br>Q^{\pi}<em>{t+1}(s,a) = Q^{\pi}_t(s,a) + \alpha (r</em>{t+1} - Q^{\pi}_t(s,a))<br>$$</p>
+<p>3、以$\gamma$折扣累计奖赏为例：</p>
+<p>$$<br>r_{t+1} = R_s^a + \gamma Q^{\pi}_t(s’,a’)<br>$$</p>
+<p>则值函数的更新方式如下：</p>
+<p>$$<br>Q^{\pi}_{t+1}(s,a) = Q^{\pi}_t(s,a) + \alpha (R^a_s + \gamma Q^{\pi}_t(s’,a’) - Q^{\pi}_t(s,a))<br>$$</p>
+<h2 id="9-Q-learning算法流程"><a href="#9-Q-learning算法流程" class="headerlink" title="9 Q-learning算法流程"></a>9 Q-learning算法流程</h2><p>输入：环境$E$；动作空间$A$；起始状态$s_0$；奖励折扣$\gamma$；更新步长$\alpha$；<br>过程：<br>1:$Q(s,a)=0,\pi (s,a) = \frac{1}{|A|}$;<br>2:$s=s_0$;<br>3:$for t=1,2,…do$<br>4:&nbsp;&nbsp;&nbsp;&nbsp;$r,s’=$在E中执行动作$\pi ^{\epsilon} (s)$产生的奖赏和转移的状态;<br>5:&nbsp;&nbsp;&nbsp;&nbsp;$a=\pi(s’)$;<br>6:&nbsp;&nbsp;&nbsp;&nbsp;$Q(s,a)=Q(s,a)+\alpha (r+\gamma Q(s’,a’)-Q(s,a))$;<br>7:&nbsp;&nbsp;&nbsp;&nbsp;$\pi(s)=argmax_{a”} Q(s,a”)$;<br>8:&nbsp;&nbsp;&nbsp;&nbsp;$s=s’,a=a’$;<br>9:$end$ $for$<br>输出：策略$\pi$</p>
+<h2 id="10-Deep-Q-Network（DQN）"><a href="#10-Deep-Q-Network（DQN）" class="headerlink" title="10 Deep Q Network（DQN）"></a>10 Deep Q Network（DQN）</h2><p>1、Deep Q Network（DQN）：是将神经网络(neural network) 和Qlearning结合，利用神经网络近似模拟函数Q(s,a)，输入是问题的状态（e.g.,图形），输出是每个动作a对应的Q值，然后依据Q值大小选择对应状态执行的动作，以完成控制。<br>2、神经网络的参数：应用监督学习完成</p>
+<h2 id="11-DQN学习过程"><a href="#11-DQN学习过程" class="headerlink" title="11 DQN学习过程"></a>11 DQN学习过程</h2><p><img src="http://oltfslql1.bkt.clouddn.com/dqn.jpg" alt><br>1.状态$s$输入，获得所有动作对应的$Q$值$Q(s,a)$；<br>2.选择对应$Q$值最大的动作$a′$并执行；<br>3.执行后环境发生改变，并能够获得环境的奖励$\gamma$；<br>4.利用奖励$\gamma$更新$Q(s,a′)$–强化学习利用新的$Q(s,a′)$更新网络参数—监督学习</p>
+<h2 id="12-DQN算法流程"><a href="#12-DQN算法流程" class="headerlink" title="12 DQN算法流程"></a>12 DQN算法流程</h2><p>Algorithm 1 Deep Q-learning with Experience Replay<br>&nbsp;&nbsp;&nbsp;&nbsp;Initialilze replay memory D to capacity N<br>&nbsp;&nbsp;&nbsp;&nbsp;Initialize action-value function Q with random weights<br>&nbsp;&nbsp;&nbsp;&nbsp;for episode = 1,M do<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialise sequence $s_1$={$x_1$} and preporcessed sequeced $\phi_1 = \phi(s_1)$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for t=1,T do<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With probability $\epsilon$ select a random action $a_t$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise select $a_t = max_a Q^*(\phi(s_t),a;\theta)$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Execute action $a_t$ in emulator and observe reward $r_t$ and image $x_{t+1}$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $s_{t+1} = s_t,a_t,x_{t+1}$ and preprocess $\phi_{t+1}=\phi(s_t+1)$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store transition ($\phi_t,a_t,r_t,\phi_{t+1}$) in D<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample random minibatch of transitions ($\phi_j,a_j,r_j,\phi_{j+1}$) from D<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $y_j=<br>\begin{cases}<br>r_j&amp; \text{for terminal $\phi_{j+1}$}\<br>r_j + \gamma max_{a’} Q( \phi_{j+1},a’;\theta )&amp; \text{for non-terminal $\phi_{j+1}$}<br>\end{cases}$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform a gradient descent step on $(y_i - Q(\phi_j,a_j;\theta))^2$ according to equation 3<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end for<br>&nbsp;&nbsp;&nbsp;&nbsp;end for</p>
+<p>部分流程解释：<br>1、Initialilze replay memory D to capacity N：初始化D：用于存放采集($S_t,a_t,r_t,S_{t+1}$)的状态转移过程，用于网络参数的训练<br>2、Initialize action-value function Q with random weights：随机初始化神经网络的参数<br>3、Initialise sequence $s_1$={$x_1$} and preporcessed sequeced $\phi_1 = \phi(s_1)$：获取环境的初始状态（x是采集的图像，使用图像作为agent的状态；预处理过程是说，使用4张图像代表当前状态，这里可以先忽略掉）<br>4、otherwise select $a_t = max_a Q^*(\phi(s_t),a;\theta)$：$epsilon$贪心策略：使用$epsilon$概率随机选取动作或1- $epsilon$的概率根据神经网络的输出选择动作<br>5、Execute action $a_t$ in emulator and observe reward $r_t$ and image $x_{t+1}$：在模拟器中执行选定的动作，获得奖励$\gamma_t$和一个观察$x_{t+1}$<br>6、Store transition ($\phi_t,a_t,r_t,\phi_{t+1}$) in D：设置$S_{t+1}$，并将状态($S_t,a_t,r_t,S_{t+1}$)转移过程存放在D中<br>7、Sample random minibatch of transitions ($\phi_j,a_j,r_j,\phi_{j+1}$) from D：从D中进行随机采样，获得一部分状态转移过程历史信息<br>8、Set $y_j=<br>\begin{cases}<br>r_j&amp; \text{for terminal $\phi_{j+1}$}\<br>r_j + \gamma max_{a’} Q( \phi_{j+1},a’;\theta )&amp; \text{for non-terminal $\phi_{j+1}$}<br>\end{cases}$：使用Q-learning方法更新状态值函数的值（终止与非终止状态的更新不同）<br>9、Perform a gradient descent step on $(y_i - Q(\phi_j,a_j;\theta))^2$ according to equation 3：使用监督学习方法更新网络的参数</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/机器学习/Python机器学习应用-基于聚类的“图像分割”.html" rel="next" title="Python机器学习应用 | 基于聚类的“图像分割”">
+                <i class="fa fa-chevron-left"></i> Python机器学习应用 | 基于聚类的“图像分割”
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/机器学习/Python机器学习应用-期末大作业1（程序设计）.html" rel="prev" title="Python机器学习应用 | 期末大作业1（程序设计）">
+                Python机器学习应用 | 期末大作业1（程序设计） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-强化学习"><span class="nav-number">1.</span> <span class="nav-text">1 强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-马尔可夫决策过程（MDP）"><span class="nav-number">2.</span> <span class="nav-text">2 马尔可夫决策过程（MDP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-MDP基本元素"><span class="nav-number">3.</span> <span class="nav-text">3 MDP基本元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-值函数"><span class="nav-number">4.</span> <span class="nav-text">4 值函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-最优值函数"><span class="nav-number">5.</span> <span class="nav-text">5 最优值函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-最优控制"><span class="nav-number">6.</span> <span class="nav-text">6 最优控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-蒙特卡洛强化学习"><span class="nav-number">7.</span> <span class="nav-text">7 蒙特卡洛强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Q-learning算法"><span class="nav-number">8.</span> <span class="nav-text">8 Q-learning算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Q-learning算法流程"><span class="nav-number">9.</span> <span class="nav-text">9 Q-learning算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Deep-Q-Network（DQN）"><span class="nav-number">10.</span> <span class="nav-text">10 Deep Q Network（DQN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-DQN学习过程"><span class="nav-number">11.</span> <span class="nav-text">11 DQN学习过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-DQN算法流程"><span class="nav-number">12.</span> <span class="nav-text">12 DQN算法流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

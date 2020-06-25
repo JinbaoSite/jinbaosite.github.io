@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、死锁的概念1.1 死锁的定义死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。 1.2 死锁产生的原因1、系统资源的争夺通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。 2、进程推进顺序非法进程在运行过程中，请">
+<meta property="og:type" content="article">
+<meta property="og:title" content="死锁">
+<meta property="og:url" content="www.dongjinbao.com/操作系统/死锁.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="一、死锁的概念1.1 死锁的定义死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。 1.2 死锁产生的原因1、系统资源的争夺通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。 2、进程推进顺序非法进程在运行过程中，请">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="死锁">
+<meta name="twitter:description" content="一、死锁的概念1.1 死锁的定义死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。 1.2 死锁产生的原因1、系统资源的争夺通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。 2、进程推进顺序非法进程在运行过程中，请">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/操作系统/死锁.html">
+
+
+
+
+
+  <title>死锁 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/操作系统/死锁.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">死锁</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-09T10:45:39+08:00">
+                2016-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、死锁的概念"><a href="#一、死锁的概念" class="headerlink" title="一、死锁的概念"></a>一、死锁的概念</h1><h2 id="1-1-死锁的定义"><a href="#1-1-死锁的定义" class="headerlink" title="1.1 死锁的定义"></a>1.1 死锁的定义</h2><p>死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。</p>
+<h2 id="1-2-死锁产生的原因"><a href="#1-2-死锁产生的原因" class="headerlink" title="1.2 死锁产生的原因"></a>1.2 死锁产生的原因</h2><p>1、系统资源的争夺<br>通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。</p>
+<p>2、进程推进顺序非法<br>进程在运行过程中，请求和释放资源的顺序不当，也同样会导致死锁。例如，并发进程$P_1$、$P_2$分别保持资源$R_1$、$R_2$，而进程$P_1$申请资源$R_2$，进程$P_2$申请资源$R_1$时，两者都会因为需要资源被占用而阻塞。<br>信号量使用不当也会造成死锁。进程间彼此相互等待对方发来的消息，结果也会使得这些进程间无法继续向前推进。例如，进程$A$等待进程$B$发的消息，进程$B$又在等待进程$A$发的消息，可以看出进程$A$和$B$不是因为竞争同一资源，而是在等待对方的资源导致死锁。</p>
+<a id="more"></a>
+<p>3、死锁产生的条件<br>产生死锁必须同时满足以下四个条件，只要其中任一条件不成立，死锁就不会发生。<br>（1）<strong>互斥条件</strong>：进程要求对所分配的资源进行排他性控制，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。<br>（2）<strong>不剥夺条件</strong>：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放（只能是主动释放）。<br>（3）<strong>请求和保持条件</strong>：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。<br>（4）<strong>循环等待条件</strong>：存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被链中下一个进程所请求。即存在一个处于等待状态的进程集合{$P_1,P_2,…,P_n$}，其中$P_i$等待的资源被$P_{i+1}$占有，$P_n$等待的资源被$P_0$占有。</p>
+<h1 id="二、死锁的处理策略"><a href="#二、死锁的处理策略" class="headerlink" title="二、死锁的处理策略"></a>二、死锁的处理策略</h1><p>1、预防死锁<br>设置某些限制条件，破坏产生死锁的四个必要条件中的一个或几个，以防止发生死锁。<br>2、避免死锁<br>在资源的动态分配过程中，用某种方法预防系统进入不安全状态，从而避免死锁。<br>3、死锁的检测及解除<br>无需采取任何限制性措施，允许进程在运行过程中发生死锁。通过系统的检测机构及时地检测出死锁的产生，然后采取某种措施解除死锁。</p>
+<h1 id="三、死锁预防"><a href="#三、死锁预防" class="headerlink" title="三、死锁预防"></a>三、死锁预防</h1><p>1、破坏互斥条件<br>如果允许系统资源都能共享使用，则系统不会进入死锁状态。但有些资源根本不能同时访问，所以，破坏互斥条件而预防死锁的方法不太可行，而且在有些时候应该保护这种互斥性。<br>2、破坏不可剥夺条件<br>当一个已保持了某些不可剥夺资源的过程，请求新的资源而得不到满足时，它必须释放已经保持的所有资源，待以后需要时再重新申请。这意味着，一个进程已占有的资源会被暂时释放，或者说是被剥夺了，或从而破坏了不可剥夺条件。<br>3、破坏请求和保持条件<br>采用预先静态分配方法，即进程在运行前一次申请完它所需要的全部资源，在它的资源未满足前，不把它投入运行，一旦投入运行后，这些资源就一直归它所有，也不再提出其他资源请求，这样就额可以保证系统不会发生死锁。<br>4、破坏循环等待条件<br>为了破坏循环等待条件，可采用顺序资源分配法。首先给系统中的资源编号，规定每个进程，必须按编号递增的顺序请求资源，同类资源一次申请完。也就是说，只要进程提出申请分配资源$R_i$，则该进程在以后的资源申请中，只能申请编号大于$R_i$的资源。</p>
+<h1 id="四、死锁避免"><a href="#四、死锁避免" class="headerlink" title="四、死锁避免"></a>四、死锁避免</h1><h2 id="4-1-系统安全状态"><a href="#4-1-系统安全状态" class="headerlink" title="4.1 系统安全状态"></a>4.1 系统安全状态</h2><p>避免死锁的方法中，允许进程动态地申请资源，但系统在进行资源分配之前，应先计算此次资源分配的安全性。若此次分配不会导致系统进入不安全状态，则将资源分配给进程；否则，让进程等待。</p>
+<p><strong>安全状态</strong>：系统能按照某种进程推进顺序{$P_1,P_2,…,P_n$}，为每个进程$P_i$分配其所需资源，直至满足每个进程对资源的最大需求，使每个进程都可顺序地完成。此时称{$P_1,P_2,…,P_n$}为安全序列。</p>
+<h2 id="4-2-银行家算法"><a href="#4-2-银行家算法" class="headerlink" title="4.2 银行家算法"></a>4.2 银行家算法</h2><p>银行家算法是最著名的死锁避免算法。它提出的思想是：把操作系统看做是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。操作系统安装银行家制定的规则为进程分配资源，当进程首次申请资源时，要测试该进程对资源的最大需求量，如果系统现存的资源可以满足它的最大需求量则按当前的申请量分配资源，否则就推迟分配。当进程在执行中继续申请资源时，先测试该进程已占用的资源数与本次申请的资源数之和是否超过该进程对资源的最大需求量，若超过则拒绝分配资源，若没有超过则再测试系统现存的资源能否满足该进程尚需的最大资源量，若能满足则按当前的申请量分配资源，否则也要推迟分配。</p>
+<p>1、数据结构描述：<br>（1）<strong>可利用资源矢量</strong>（Available）<br>含有$m$个元素的数组，其中的每一个元素代表一类可用的资源数目。$Available[j]=K$，则表示系统中现有$R_j$类资源$K$个。<br>（2）<strong>最大需求矩阵</strong>（Max）<br>为$n \times m$矩阵，定义了系统中$n$个进程中的每一个进程对$m$类资源的最大需求，简单来说，一行代表一个进程，一列代表一类资源。$Max[i,j]=K$，则表示进程$i$需要$R_j$类资源的最大数目是$K$。<br>（3）<strong>分配矩阵</strong>（Allocation）<br>为$n \times m$矩阵，定义了系统中每一类资源当前分配给每一进程的资源数。$Allocation[i,j]=K$，则表示进程$i$当前已分得$R_j$类资源的数目为$K$。<br>（4）<strong>需求矩阵</strong>（Need）<br>为$n \times m$矩阵，表示每个进程尚需的各类资源数。$Need[i,j]=K$，则表示进程$i$还需$R_j$类资源的数目为$K$。</p>
+<p>上述三个矩阵间存在下列关系<br>$$Need=Max-Allocation$$<br>一般情况下，在银行家算法的题目中，$Max$和$Allocation$矩阵式已知条件，而求$Need$矩阵式解题的第一步。</p>
+<p>2、算法描述<br>设$Request_i$是进程$P_i$的请求矢量，如果$Request_i[j]=K$，表示进程$P_i$需要$j$类资源$K$个。当$P_i$发出资源请求后，系统安装下述步骤进行检查<br>（1）如果$Request_i[j] \leq Need[i,j]$,便转向步骤（2），否则认为出错，因为它所需要的资源数已经超过它所宣布的最大值。<br>（2）如果$Request_i[j] \leq Available[j]$，便转向步骤（3）；否则表示无足够资源，$P_i$必须等待。<br>（3）系统试探着把资源分配给进程$P_i$，并修改下面数据结构中的数值：<br>$Available=Available-Request_i$<br>$Allocation[i,j]=Allocation[i.j]+Request_i[j]$<br>$Need[i,j]=Need[i,j]-Request_i[j]$<br>（4）系统执行安全性算法，检查此次资源分配后，系统是否处于安全状态。若安全，才正式将资源分配给进程$P_i$，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程$P_i$等待。</p>
+<p>3、安全性算法<br>（1）初始安全序列为空。<br>（2）从$Need$矩阵中找出符合下面条件的行：该行对应的进程不在安全序列中而且该行小于$Avaliable$向量，找到后，把对应的进程加入安全序列中，如果找不到，执行步骤（4）；<br>（3）当进程$P_i$进入安全序列后，可顺序执行，直至完成，并释放分配给它的资源，故应执行：$Avaliable=Available+Allocation[i]$，其中$Allocation[i]$表示进程$P_i$代表的在$Allocation$矩阵中对应的行，返回步骤（2）。<br>（4）如果此时安全序列中已经有所有的进程，则系统处于安全状态，否则，系统处于不安全状态。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/操作系统/处理机调度.html" rel="next" title="处理机调度">
+                <i class="fa fa-chevron-left"></i> 处理机调度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/反思与总结/研究生复试面试.html" rel="prev" title="研究生复试面试">
+                研究生复试面试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、死锁的概念"><span class="nav-number">1.</span> <span class="nav-text">一、死锁的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-死锁的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 死锁的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-死锁产生的原因"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 死锁产生的原因</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、死锁的处理策略"><span class="nav-number">2.</span> <span class="nav-text">二、死锁的处理策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、死锁预防"><span class="nav-number">3.</span> <span class="nav-text">三、死锁预防</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、死锁避免"><span class="nav-number">4.</span> <span class="nav-text">四、死锁避免</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-系统安全状态"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 系统安全状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-银行家算法"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 银行家算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 安装Hive安装Hive之前必须先安装Hadoop1、CentOS安装Hadoop2、CentOS中Hadoop单机伪分布式配置 1.1 下载Hive这里提供清华大学镜像下载链接hive-1.2.2将其通过Xftp工具上传到云主机上，执行下面的命令解压 12tar -zxvf apache-hive-1.2.2-bin.tar.gzmv apache-hive-1.2.2-bin.tar.gz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS中Hive1.2安装">
+<meta property="og:url" content="www.dongjinbao.com/大数据/CentOS中Hive1.2安装.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="1 安装Hive安装Hive之前必须先安装Hadoop1、CentOS安装Hadoop2、CentOS中Hadoop单机伪分布式配置 1.1 下载Hive这里提供清华大学镜像下载链接hive-1.2.2将其通过Xftp工具上传到云主机上，执行下面的命令解压 12tar -zxvf apache-hive-1.2.2-bin.tar.gzmv apache-hive-1.2.2-bin.tar.gz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xwian.com1.z0.glb.clouddn.com/hive-conf.png">
+<meta property="og:image" content="http://7xwian.com1.z0.glb.clouddn.com/hive.png">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.716Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS中Hive1.2安装">
+<meta name="twitter:description" content="1 安装Hive安装Hive之前必须先安装Hadoop1、CentOS安装Hadoop2、CentOS中Hadoop单机伪分布式配置 1.1 下载Hive这里提供清华大学镜像下载链接hive-1.2.2将其通过Xftp工具上传到云主机上，执行下面的命令解压 12tar -zxvf apache-hive-1.2.2-bin.tar.gzmv apache-hive-1.2.2-bin.tar.gz">
+<meta name="twitter:image" content="http://7xwian.com1.z0.glb.clouddn.com/hive-conf.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/大数据/CentOS中Hive1.2安装.html">
+
+
+
+
+
+  <title>CentOS中Hive1.2安装 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/大数据/CentOS中Hive1.2安装.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS中Hive1.2安装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-06T15:54:23+08:00">
+                2018-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-安装Hive"><a href="#1-安装Hive" class="headerlink" title="1 安装Hive"></a>1 安装Hive</h2><p>安装Hive之前必须先安装Hadoop<br>1、<a href="https://www.dongjinbao.com/%E5%A4%A7%E6%95%B0%E6%8D%AE/CentOS%E5%AE%89%E8%A3%85Hadoop.html">CentOS安装Hadoop</a><br>2、<a href="https://www.dongjinbao.com/%E5%A4%A7%E6%95%B0%E6%8D%AE/CentOS%E4%B8%ADHadoop%E5%8D%95%E6%9C%BA%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE.html">CentOS中Hadoop单机伪分布式配置</a></p>
+<h3 id="1-1-下载Hive"><a href="#1-1-下载Hive" class="headerlink" title="1.1 下载Hive"></a>1.1 下载Hive</h3><p>这里提供清华大学镜像下载链接<a href="https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-1.2.2/" target="_blank" rel="noopener">hive-1.2.2</a><br>将其通过Xftp工具上传到云主机上，执行下面的命令解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-hive-1.2.2-bin.tar.gz</span><br><span class="line">mv apache-hive-1.2.2-bin.tar.gz hive</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-配置环境变量"><a href="#1-2-配置环境变量" class="headerlink" title="1.2 配置环境变量"></a>1.2 配置环境变量</h3><p>我们将环境变量配置到<code>~/.bashrc</code>文件中去，先对文件进行编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>然后添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HIVE_HOME=/home/dongjinbao/bigdata/hive</span><br><span class="line">export PATH=$PATH:$HIVE_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>HIVE_HOME</code>就是你下载解压<code>apache-hive-1.2.2-bin.tar.gz</code>的目录<br><img src="http://7xwian.com1.z0.glb.clouddn.com/hive-conf.png" alt="配置Hive环境变量"></p>
+<h3 id="1-4-配置Hive配置文件"><a href="#1-4-配置Hive配置文件" class="headerlink" title="1.4 配置Hive配置文件"></a>1.4 配置Hive配置文件</h3><h4 id="1-4-1-配置hive-default-xml"><a href="#1-4-1-配置hive-default-xml" class="headerlink" title="1.4.1 配置hive-default.xml"></a>1.4.1 配置<code>hive-default.xml</code></h4><p>在<code>hive</code>文件夹下，找到<code>conf</code>目录，将其中的<code>hive-default.xml.template</code>重命名为<code>hive-default.xml</code>即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp hive-default.xml.template hive-default.xml</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-2-配置hive-site-xml"><a href="#1-4-2-配置hive-site-xml" class="headerlink" title="1.4.2 配置hive-site.xml"></a>1.4.2 配置<code>hive-site.xml</code></h4><p>在<code>hive\conf</code>目录下创建<code>hive-site.xml</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch hive-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>并对这个文件进行编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi hive-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>添加下面内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;jdbc:mysql://localhost:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;hive&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;username to use against metastore database&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;hive&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;password to use against metastore database&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们采用mysql元数据库，所以接下来我们需要安装mysql。</p>
+<h2 id="2-安装mysql"><a href="#2-安装mysql" class="headerlink" title="2 安装mysql"></a>2 安装mysql</h2><h3 id="2-1-mysql安装"><a href="#2-1-mysql安装" class="headerlink" title="2.1 mysql安装"></a>2.1 mysql安装</h3><p>使用yum安装MySQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y mysql-server mysql mysql-devel</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，启动MySQL服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<p>设置MySQL账户root密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/mysqladmin -u root password &apos;RUqkYc3y&apos;</span><br></pre></td></tr></table></figure>
+
+<p>最后我们登录一下MySQL服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>输入root用户密码后，如果成功进入mysql，则说明安装成功。</p>
+<h3 id="2-2-为Hive配置MySQL"><a href="#2-2-为Hive配置MySQL" class="headerlink" title="2.2 为Hive配置MySQL"></a>2.2 为Hive配置MySQL</h3><p>新建hive数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database hive;</span><br></pre></td></tr></table></figure>
+
+<p>配置mysql允许hive接入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all on *.* to hive@localhost identified by &apos;hive&apos;;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>下载<a href="http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar" target="_blank" rel="noopener">mysql-connector-java-5.1.40-bin.jar</a>，并放入<code>hive/lib</code>目录下</p>
+<h2 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3 验证安装"></a>3 验证安装</h2><p>执行<code>hive</code>命令启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive</span><br></pre></td></tr></table></figure>
+
+<p>在hive中执行sql语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show databases;</span><br></pre></td></tr></table></figure>
+
+<p>无报错，则说明Hive安装成功！<br><img src="http://7xwian.com1.z0.glb.clouddn.com/hive.png" alt="Hive执行sql语句"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/LeetCode/LeetCode-6-Z字形变换.html" rel="next" title="LeetCode 6.Z字形变换">
+                <i class="fa fa-chevron-left"></i> LeetCode 6.Z字形变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/大数据/Hive数据类型和文件格式.html" rel="prev" title="Hive数据类型和文件格式">
+                Hive数据类型和文件格式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Hive"><span class="nav-number">1.</span> <span class="nav-text">1 安装Hive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-下载Hive"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 下载Hive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-配置环境变量"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 配置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-配置Hive配置文件"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 配置Hive配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-配置hive-default-xml"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.4.1 配置hive-default.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-配置hive-site-xml"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.4.2 配置hive-site.xml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装mysql"><span class="nav-number">2.</span> <span class="nav-text">2 安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-mysql安装"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 mysql安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-为Hive配置MySQL"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 为Hive配置MySQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-验证安装"><span class="nav-number">3.</span> <span class="nav-text">3 验证安装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

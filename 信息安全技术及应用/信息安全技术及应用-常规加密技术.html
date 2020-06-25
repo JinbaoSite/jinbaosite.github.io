@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、密码技术与常规加密概述1.1 密码系统 密码学：包含密码编码学和密码分析学两部分内容。前者是研究如何通过编码来保证信息的机密性，后者则研究如何破译密码。  一般加密模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全技术及应用|常规加密技术">
+<meta property="og:url" content="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-常规加密技术.html">
+<meta property="og:site_name" content="JinbaoSite">
+<meta property="og:description" content="一、密码技术与常规加密概述1.1 密码系统 密码学：包含密码编码学和密码分析学两部分内容。前者是研究如何通过编码来保证信息的机密性，后者则研究如何破译密码。  一般加密模型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614102017.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614104509.jpg">
+<meta property="og:image" content="http://www.dongjinbao.com/img/Network/2.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614152934.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160615220147.jpg">
+<meta property="og:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160615220555.jpg">
+<meta property="og:updated_time" content="2019-07-12T15:59:33.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息安全技术及应用|常规加密技术">
+<meta name="twitter:description" content="一、密码技术与常规加密概述1.1 密码系统 密码学：包含密码编码学和密码分析学两部分内容。前者是研究如何通过编码来保证信息的机密性，后者则研究如何破译密码。  一般加密模型">
+<meta name="twitter:image" content="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614102017.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-常规加密技术.html">
+
+
+
+
+
+  <title>信息安全技术及应用|常规加密技术 | JinbaoSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JinbaoSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天努力一点点！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.dongjinbao.com/信息安全技术及应用/信息安全技术及应用-常规加密技术.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinbaoSite">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinbaoSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息安全技术及应用|常规加密技术</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-25T11:36:58+08:00">
+                2016-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/信息安全技术及应用/" itemprop="url" rel="index">
+                    <span itemprop="name">信息安全技术及应用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、密码技术与常规加密概述"><a href="#一、密码技术与常规加密概述" class="headerlink" title="一、密码技术与常规加密概述"></a>一、密码技术与常规加密概述</h1><h2 id="1-1-密码系统"><a href="#1-1-密码系统" class="headerlink" title="1.1 密码系统"></a>1.1 密码系统</h2><blockquote>
+<p>密码学：包含密码编码学和密码分析学两部分内容。前者是研究如何通过编码来保证信息的机密性，后者则研究如何破译密码。</p>
+</blockquote>
+<p>一般加密模型<br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614102017.jpg" alt="一般加密模型"></p>
+<a id="more"></a>
+
+<p><strong>密码系统</strong>的主要功能：完成信息的加密变换和解密变换。<br><strong>明文</strong>：加密变换前的原始信息。<br><strong>加密算法</strong>：加密变换时使用的算法。<br><strong>密文</strong>：经过加密变换后的信息。<br><strong>解密算法</strong>：解密变换时使用的算法，是加密算法的逆过程。加密和解密算法是相关的。</p>
+<blockquote>
+<p>密钥(Key)：在加密和解密变换过程中引入一个相同或两个不同但相关的参数，该参数称为密钥。分为<strong>加密密钥</strong>和<strong>解密密钥</strong>。</p>
+</blockquote>
+<p>主要取决于密钥的安全性。要经常更换密钥。密码系统的安全性<br>密码系统的描述：(P，C，E，D，$K_e$，$K_d$) (明文(P)、密文(C)、加密算法(E)、解密算法(D)、加密密钥($K_e$)和解密密钥($K_d$))</p>
+<hr>
+
+<p>密码系统的使用：</p>
+<ul>
+<li>加密过程和解密过程位于同一系统中。信息的<strong>存储加密</strong>。</li>
+<li>加密过程和解密过程位于不同系统中。信息的<strong>传输加密</strong>。</li>
+</ul>
+<h2 id="1-2-密码体制"><a href="#1-2-密码体制" class="headerlink" title="1.2 密码体制"></a>1.2 密码体制</h2><p>根据加密和解密过程中使用的<span style="color:red">密钥是否相同</span>进行分类：对称密码体制和非对称密码体制。</p>
+<blockquote>
+<p><strong>对称密码体制</strong>：加密和解密算法使用相同的密钥。也称为<strong>常规密钥密码体制</strong>、<strong>单密钥密码体制</strong>、<strong>秘密密钥密码体制</strong>。<br><strong>非对称密码体制</strong>：加密和解密算法使用不同但相关的一对密钥。也称为<strong>公开密钥密码体制</strong>、<strong>双密钥密码体制</strong>。</p>
+</blockquote>
+<p>根据密文数据段是否与<span style="color:red">明文数据段在整个明文中的位置相关，可将密码系统分为分组密码体制和序列密码体制。</span></p>
+<blockquote>
+<p><strong>分组密码体制</strong>：密文仅与加密算法和密钥有关。(常用)<br><strong>序列密码体制</strong>：密文除了与加密算法和密钥有关外，还与被加密明文部分在整个明文中的位置有关。</p>
+</blockquote>
+<p>根据<span style="color:red">加密变换是否可逆</span>，可将密码系统分为单向函数密码体制和双向变换密码体制。</p>
+<blockquote>
+<p><strong>单向函数密码体制</strong>：将明文加密成密文，但却不能将密文转换成明文。用于不需要解密的场合，如报文鉴别。<br><strong>双向变换密码体制</strong>：如：现在常用的加密算法。</p>
+</blockquote>
+<p>根据在加密过程中<span style="color:red">是否引入客观随机因素</span>，可将密码系统分为确定型密码体制和随机密码体制。 </p>
+<blockquote>
+<p><strong>确定型密码体制</strong>：一旦明文和密钥确定后，密文也就唯一地确定了。(常用)<br><strong>随机密码体制</strong>：对于给定的明文和密钥，总存在一个较大的密文集合与之对应，最终的密文是根据客观随机因素在密文集中随机选取的。</p>
+</blockquote>
+<h2 id="1-3-常规加密模型"><a href="#1-3-常规加密模型" class="headerlink" title="1.3 常规加密模型"></a>1.3 常规加密模型</h2><p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614104509.jpg" alt="常规加密模型"></p>
+<p>常规加密：又称为对称加密或单密钥加密，是在公钥加密研制以前使用的惟一加密类型，仍广泛使用。<br>在使用常规加密的通信系统中，安全通信的双方共享同一个密钥K。<br>加密和解密算法公开，密钥保密。因此，常规加密密钥也称为秘密密钥(Secret Key)。</p>
+<hr>
+决定常规加密安全性的主要因素：
+- 加密算法必须足够强大，使得仅根据密文就能破译出消息是不切实际的。
+- 在算法一定和公开的前提下，常规加密的安全性取决于密钥的安全性。在密钥不泄露的前提下，其安全性与密钥长度和更新频度有关。
+
+<hr>
+保证常规加密算法强度的方法：扩散和扰乱。
+- **扩散**：让明文和密钥的每个字符影响尽可能多的密文字符，从而使明文和密钥的统计特征被扩散。
+- **扰乱**：使密文的统计特征与明文和密钥的关系尽可能复杂化，这样，即使攻击者掌握了密文的某些统计特征，也无法从中推测出密钥和明文。
+
+<blockquote>
+<p><strong>密码分析</strong>：由密文试图获得明文、密钥或这两者的过程称为密码分析。</p>
+</blockquote>
+<p>常见的密码分析方法：强行攻击、统计分析、差分密码分析、线性密码分析和代数攻击等。<br>密码破译者所使用的策略取决于加密方案的性质以及可供密码破译者使用的信息。 </p>
+<hr>
+对加密消息进行攻击的类型：
+- 仅有密文：可用的信息仅有密文和加密算法。方法一：对所有可能的密钥进行尝试(强行攻击)。方法二：对密文本身进行统计分析。
+- 已知明文：除密文和加密算法外，分析员还能够获取一段或多段明文- 密文对，或者分析员可能知道某种明文模式将出现在一个消息中。
+如果攻击者能够设法在源系统插入由该攻击者所选择的信息，则可进行选择明文攻击。 
+
+<p>如果一个加密算法满足下述两个条件之一，就称此算法在计算上是安全的。</p>
+<ul>
+<li>(1)破译该密码的成本超过被加密信息的价值。</li>
+<li>(2)破译该密码的时间超过该信息有用的生命周期。</li>
+</ul>
+<h2 id="1-4-经典加密技术"><a href="#1-4-经典加密技术" class="headerlink" title="1.4 经典加密技术"></a>1.4 经典加密技术</h2><blockquote>
+<p><strong>替代技术</strong>：将明文中的每个元素(字母、比特、比特组合或字母组合)映射为另一种元素的技术。明文的元素被其他元素所代替而形成密文。<br><strong>置换技术</strong>：置换是在不丢失信息的前提下对明文中的元素进行重新排列。</p>
+</blockquote>
+<h1 id="二、现代常规加密技术"><a href="#二、现代常规加密技术" class="headerlink" title="二、现代常规加密技术"></a>二、现代常规加密技术</h1><h2 id="2-1-序列密码和分组密码"><a href="#2-1-序列密码和分组密码" class="headerlink" title="2.1 序列密码和分组密码"></a>2.1 序列密码和分组密码</h2><p><strong>序列密码</strong>(流密码)：<br>在该密码体制中,将明文P看成连续的比特流(或字符流)$p_1$ $p_2$…，用密钥序列K=$k_1$ $k_2$…中的第i个元素$k_i$对明文中的第i个元素$p_i$进行加密。<br>即：$E_K$(P)=$E_{K_1}$($p_1$) $E_{K_2}$($p_2$) …</p>
+<p><img src="http://www.dongjinbao.com/img/Network/2.jpg" alt="序列密码工作过程"></p>
+<p>这种体制的保密性完全在于密钥的随机性。如果密钥是真正的随机数，则这种体制就是理论上不可破的。这也称为一次一密乱码本体制。<br>该体制所需的密钥量很大，目前常用伪随机序列的密钥序列，序列周期一般为$10_{50}$。</p>
+<hr>
+**分组密码**(block cipher)：
+将明文划分成固定的n比特的数据组，然后以组为单位，在密钥的控制下进行一系列的线性或非线性的变换而得到密文。
+<hr>
+分组密码的主要特点：
+- 一次变换一组数据，不需要同步。适合分组交换网传输。
+- 给定密钥后，明文分组相同，密文分组也相同。
+
+<hr>
+分组密码的操作模式：
+(1)电子密码本(ECB)：最基本的操作模式。
+将明文P划分为长度为$w$比特的明文分组($P_1$, $P_2$, … , $P_n$ ) 最后一个分组通常需要填空。
+每个明文分组使用同样的密钥K进行加密。
+每个明文分组在加密时独立处理。
+$w$比特的明文分组与$w$比特的密文分组一一对应。类似密码本。
+
+<hr>
+电子密码本模式特点：
+- 相同的明文分组产生相同的密文分组。
+- 易受统计分析攻击。
+- 可并行处理，加、解密速度快，应用广泛。
+
+<p>(2)密码分组链接模式(CBC)：<br>将明文P分组($P_1$, $P_2$,    … , $P_n$ ) 。<br>每个明文分组使用同样的密钥K进行加密。<br>每个明文分组在加密前，先与上一次加密输出的密文分组进行按位异或，而后再进行加密处理。<br>对第一个明文分组进行处理时，还没有密文分组可用，需要引入一个初始向量IV与该分组异或。</p>
+<hr>
+密码分组链接模式特点：
+- 通过将明文分组与前一个密文分组异或，实现了明文模式的隐藏，抗统计分析攻击。
+- 不能并行加密，加密速度较慢。
+- 适用于高结构化信息的加密传输。
+
+<h2 id="2-2-数据加密标准DES"><a href="#2-2-数据加密标准DES" class="headerlink" title="2.2 数据加密标准DES"></a>2.2 数据加密标准DES</h2><p>DES加密原理:<br>加密前对整个明文进行分组，每组长64位，然后对每个64位二进制数据块分别进行加密，产生一组64位密文数据。最后将各组密文串接起来，即得出整个密文。使用的密钥为64位，实际密钥长度为56位（有8位用于其他目的）。</p>
+<hr>
+DES加密算法特点：是一种分组密码。
+
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160614152934.jpg" alt="DES加密算法流程图"></p>
+<p>DES加密过程分为两条主线：明文的加密处理和子密钥的产生。</p>
+<hr>
+明文加密处理由三个阶段构成：
+第一阶段：初始置换
+第二阶段：标准的Feistel结构，循环次数16次。
+第三阶段：完成初始置换的逆置换。
+<hr>
+加密方程：$R_i=L_{i-1}$$\oplus$$f(R_{i-1},K_i$)
+<hr>
+DES算法的缺点：
+- 相同的明文产生相同的密文。
+- 密钥太短，分组太短。
+- 密文仅与明文分组和密钥相关(电子密码本模式)
+
+<hr>
+DES的保密性：仅取决于对密钥的保密，而算法是公开的。
+
+<h1 id="三、常用常规加密算法介绍"><a href="#三、常用常规加密算法介绍" class="headerlink" title="三、常用常规加密算法介绍"></a>三、常用常规加密算法介绍</h1><h2 id="3-1-国际数据加密算法IDEA"><a href="#3-1-国际数据加密算法IDEA" class="headerlink" title="3.1 国际数据加密算法IDEA"></a>3.1 国际数据加密算法IDEA</h2><p>IDEA每次加密的明文分组长度为64比特，加密时将这64比特分为4个16比特的子分组。<br>IDEA的密钥长度为128比特，加密时将密钥生成52个16比特的子密钥。<br>IDEA使用了8轮循环，8轮循环后再经过一个输出变换形成密文。<br>每轮循环使用6个16位的子密钥，最后的输出变换使用4个16位的子密钥。<br>IDEA的解密算法与加密算法相同，解密算法的52个子密钥由加密子密钥导出。</p>
+<h2 id="3-2-RC5数据加密算法"><a href="#3-2-RC5数据加密算法" class="headerlink" title="3.2 RC5数据加密算法"></a>3.2 RC5数据加密算法</h2><p>RC5的参数包括字长w、循环轮数r和密钥长度b。<br>字长w的单位为比特，允许取值为16、32或64。<br>分组长度为2w，允许取值32、64或128比特。<br>循环轮数r允许的取值为0，1，2，…，255。循环轮数越多安全性越好。<br>密钥长度b的单位为字节，允许取值为0, 1, 2, …, 255，对应的二进制位是0, 8, 16, …, 2040。选择合适的密钥长度可以在速度和安全性之间进行折衷。</p>
+<hr>
+RC5算法由三部分组成：密钥扩展算法、加密算法和解密算法。
+<hr>
+RC5的主要特点：
+(1)适合于硬件和软件实现：RC5只使用了微处理器上常见的初等计算操作，加法/减法操作、按位异或操作、循环移位操作。
+(2)快速：RC5算法结构简单，且面机器字，基本操作每次对数据的整个字进向行。
+(3)对不同字长的处理器有适应性：字中的比特数是RC5中的一个参数。
+(4)可变的循环次数
+(5)可变长度的密钥
+(6)较低的内存需要使得RC5适合于智能卡和其他具有有限内存的设备。
+(7)高安全性：RC5可通过选择合适的参数提供高安全性。
+
+<p><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160615220147.jpg" alt="RC5算法流程图"><br><img src="http://7xvce6.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160615220555.jpg" alt="RC5算法流程图"></p>
+<h2 id="3-3-高级加密标准AES"><a href="#3-3-高级加密标准AES" class="headerlink" title="3.3 高级加密标准AES"></a>3.3 高级加密标准AES</h2><p>Rijndael算法的主要优点是：<br>(1)设计简单。无论采用硬件还是软件形式，无论是否采用反馈模式，算法都显示出非常好的性能。<br>(2)内存需求非常低，很适合用于受限环境中。<br>(3)操作简单，在所有平台上运行良好，支持并行处理，并可抵御时间和空间上的攻击。<br>(4)在分组和密钥大小方面具有一定的灵活性。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/信息安全技术及应用/信息安全技术及应用-公开密钥加密技术.html" rel="next" title="信息安全技术及应用|公开密钥加密技术">
+                <i class="fa fa-chevron-left"></i> 信息安全技术及应用|公开密钥加密技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Codeforces/Codeforces-Round-375-Div-2.html" rel="prev" title="Codeforces Round #375 (Div. 2)">
+                Codeforces Round #375 (Div. 2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JinbaoSite</p>
+              <p class="site-description motion-element" itemprop="description">趣头条广告算法工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、密码技术与常规加密概述"><span class="nav-number">1.</span> <span class="nav-text">一、密码技术与常规加密概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-密码系统"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 密码系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-密码体制"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 密码体制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-常规加密模型"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 常规加密模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-经典加密技术"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 经典加密技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、现代常规加密技术"><span class="nav-number">2.</span> <span class="nav-text">二、现代常规加密技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-序列密码和分组密码"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 序列密码和分组密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-数据加密标准DES"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据加密标准DES</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、常用常规加密算法介绍"><span class="nav-number">3.</span> <span class="nav-text">三、常用常规加密算法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-国际数据加密算法IDEA"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 国际数据加密算法IDEA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-RC5数据加密算法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 RC5数据加密算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-高级加密标准AES"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 高级加密标准AES</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinbaoSite</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
