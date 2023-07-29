@@ -1,0 +1,49 @@
+.container-header {
+  margin:0 auto;
+  width: 100%;
+  padding: 10px 0 0 0;
+  border-bottom: solid 1px #aaa;
+  overflow: hidden;
+  max-width: 840px;
+}
+
+.header-info {
+  display: block;
+  position: relative;
+  margin: 10px;
+}
+
+.header-info-name {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.header-info-desc {
+  font-size: 0.9em;
+}
+
+.header-main-nav {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.header-main-nav-item {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 0;
+}
+
+.header-main-nav-item a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.header-main-nav-item a:hover {
+    background-color: #F5F5F5;
+}
