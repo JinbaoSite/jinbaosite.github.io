@@ -1,0 +1,17 @@
+- title: "Recsys"
+  url: "/recsys"
+  
+- title: "NLP"
+  url: "/nlp"
+
+- title: "CV"
+  url: "/cv"
+
+- title: "Algorithm"
+  url: "/algorithm"
+
+- title: "Competition"
+  url: "/competition"
+  
+- title: "About"
+  url: "/about"

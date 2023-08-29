@@ -12,3 +12,15 @@
     </li>
   </ul>
 </nav>
+
+
+    <header class="home-header" role="banner">
+      <div class="home-header-info"><a href="/">{{ site.title }}</a></div>
+      <nav class="header-nav">
+        <ul class="header-main-nav">
+          {% for menus in site.data.menus %}
+          <li class="header-main-nav-item"><a href="/{{ menus.url }}">{{ menus.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
