@@ -1,10 +1,25 @@
+<div class="header-info">
+  <span class="header-info-name">{{ site.title }}</span>
+  <span class="header-info-desc">{{ site.description }}</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+    <li class="header-main-nav-item">
+      <a href="/"><span class="fa fa-home" style="font-size:24px"></span> Home</a>
+    </li>
+    <li class="header-main-nav-item">
+      <a href="/about"><span class="fa fa-user" style="font-size:24px"></span> About</a>
+    </li>
+  </ul>
+</nav>
+
 
     <header class="home-header" role="banner">
       <div class="home-header-info"><a href="/">{{ site.title }}</a></div>
       <nav class="header-nav">
         <ul class="header-main-nav">
           {% for menus in site.data.menus %}
-          <li class="header-main-nav-item"><a href="/{{ menus.url }}">{{ menus.title }}</a></li>
+          <li class="header-main-nav-item"><a href="{{ menus.url }}">{{ menus.title }}</a></li>
           {% endfor %}
         </ul>
       </nav>
