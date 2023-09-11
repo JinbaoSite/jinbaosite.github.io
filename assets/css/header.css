@@ -1,12 +1,10 @@
 .container-header {
-  margin:0 auto;
-  width: 100%;
-  overflow: hidden;
-  max-width: 840px;
+  
   background-color: rgb(53, 171, 165);
   border-color: #43CAC3;
 }
 .navbar-default {
-    background-color: rgb(53, 171, 165);
-    border-color: #43CAC3;
+  margin:0 auto;
+  max-width: 840px;
+  color: white;
 }
