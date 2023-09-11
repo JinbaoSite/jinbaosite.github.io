@@ -9,6 +9,7 @@
   max-width: 840px;
   color: white;
   background-color: rgb(53, 171, 165);
+  border-color: rgb(53, 171, 165);
 }
 
 .navbar-default .navbar-brand {
