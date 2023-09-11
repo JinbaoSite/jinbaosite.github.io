@@ -7,11 +7,24 @@
 .navbar-default {
   margin:0 auto;
   max-width: 840px;
-  color: white;
+  color: #ecf0f1;
   background-color: rgb(53, 171, 165);
   border-color: rgb(53, 171, 165);
 }
 
 .navbar-default .navbar-brand {
     font-weight: bold;
+    color: #ecf0f1;
+}
+
+.navbar-nav {
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ecf0f1;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ecf0f1;
 }
