@@ -1,0 +1,19 @@
+- title: FM因子分解
+  url: /recsys/fm.html
+  date: 2022-12-03
+
+- title: 推荐系统的矩阵分解
+  url: /recsys/mf.html
+  date: 2022-12-16
+
+- title: 协调过滤算法
+  url: /recsys/cf.html
+  date: 2023-01-05
+
+- title: 深度模型DeepFM模型
+  url: /recsys/deepfm.html
+  date: 2023-02-06
+
+- title: 深度模型Wide&Deep模型
+  url: /recsys/wdl.html
+  date: 2023-03-09
