@@ -28,3 +28,10 @@
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #ecf0f1;
 }
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: right;
+    margin: 0;
+  }
+}
