@@ -2,16 +2,15 @@
   
   background-color: rgb(53, 171, 165);
   border-color: #43CAC3;
+  color: #ecf0f1;
 }
 .navbar-default {
   margin:0 auto;
   max-width: 840px;
   color: white;
   background-color: rgb(53, 171, 165);
-  border-color: #43CAC3;
 }
 
 .navbar-default .navbar-brand {
-    color: #ecf0f1;
     font-weight: bold;
 }

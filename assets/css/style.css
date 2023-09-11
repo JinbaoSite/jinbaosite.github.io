@@ -622,6 +622,7 @@ a:hover {
 .main-content {
     word-wrap: break-word;
     font-size: 16px;
+    padding-top: 20px;
 }
 
 .main-content :first-child {
