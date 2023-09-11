@@ -1,11 +1,25 @@
 
-    <header class="home-header" role="banner">
-      <div class="home-header-info"><a href="/">{{ site.title }}</a></div>
-      <nav class="header-nav">
-        <ul class="header-main-nav">
-          {% for menus in site.data.menus %}
-          <li class="header-main-nav-item"><a href="{{ menus.url }}">{{ menus.title }}</a></li>
-          {% endfor %}
-        </ul>
+    <header class="container-header" role="banner">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid"> 
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">{{ site.title }}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+          <ul class="nav navbar-nav">
+            {% for menus in site.data.menus %}
+              <li><a href="{{ menus.url }}">{{ menus.title }}</a></li>
+              {% endfor %}
+          </ul>
+        </div>
+        </div>
       </nav>
+      
     </header>
