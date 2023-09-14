@@ -20,10 +20,6 @@
 	width: 60%;
 	float: left;
 	line-height: 50px;
-}
-
-.article-title:before {
-  content: "|";
-  float: left;
-  color: #94959E;
+	padding: 0px 50px;
+	background-color: rgba(133, 144, 166, 0.05);
 }
