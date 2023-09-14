@@ -13,15 +13,17 @@
 	line-height: 50px;
 }
 
-.article-date:before {
-  content: "|";
-  float: left;
-  color: #94959E;
-}
+
 
 .article-title {
 	margin: 0 auto;
 	width: 60%;
 	float: left;
 	line-height: 50px;
+}
+
+.article-title:before {
+  content: "|";
+  float: left;
+  color: #94959E;
 }
