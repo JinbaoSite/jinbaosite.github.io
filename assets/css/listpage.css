@@ -10,9 +10,11 @@
 	margin: 0 auto;
 	width: 30%;
 	text-align: center;
+	float: left;
 }
 
 .article-title {
 	margin: 0 auto;
 	width: 60%;
+	float: left;
 }
