@@ -105,6 +105,9 @@ def create_wide_and_deep_model():
 ## 04 参考资料
 
  - [原论文：Wide & Deep Learning for Recommender Systems](https://arxiv.org/pdf/1606.07792.pdf)
+
  - [CTR预估经典论文详解（一）——Wide&Deep模型](https://zhuanlan.zhihu.com/p/94614455)
+
  - [见微知著，你真的搞懂Google的Wide&Deep模型了吗？](https://zhuanlan.zhihu.com/p/142958834)
+ 
  - [Wide&Deep模型——记忆能力和泛化能力的综合](https://zhuanlan.zhihu.com/p/433881277)

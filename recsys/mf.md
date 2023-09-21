@@ -59,7 +59,10 @@ User和Item隐向量的生成过程其实是对共线矩阵进行全局拟合的
 
 ## 4 参考文献
 
-[1] [Matrix factorization techniques for recommender systems](https://datajobs.com/data-science-repo/Recommender-Systems-\[Netflix].pdf)
+[1] [Matrix factorization techniques for recommender systems](https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf)
+
 [2] [Netflix Update: Try This at Home](https://sifter.org/~simon/journal/20061211.html)
+
 [3] [推荐系统中的矩阵分解技术](https://zhuanlan.zhihu.com/p/34497989)
+
 [4] [论文篇：Matrix Factorization Techniques for RS](https://zhuanlan.zhihu.com/p/28577447?group_id=881547532893851649)

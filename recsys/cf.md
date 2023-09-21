@@ -135,6 +135,7 @@ $$
 ## 05 参考资料
 
 [1] [协同过滤推荐算法总结](https://zhuanlan.zhihu.com/p/25069367)
+
  [2] [最小推荐系统：协同过滤（Collaborative Filtering)](https://zhuanlan.zhihu.com/p/149152447)
 
  

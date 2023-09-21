@@ -63,6 +63,9 @@ class FM_Layer(Layer):
 ## 3 参考资料
 
 [1] 《深度学习推荐系统》
+
 [2] [FM因子分解机的原理、公式推导、Python实现和应用](https://zhuanlan.zhihu.com/p/145436595)
+
 [3] [因子分解机（Factorization Machine）详解（一）](https://blog.csdn.net/lijingru1/article/details/88623136)
+
 [4] [【推荐系统】Factorization Machine](https://zhuanlan.zhihu.com/p/80726100)
