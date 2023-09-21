@@ -1,3 +1,7 @@
+.article-listpage {
+	min-height: 800px;
+}
+
 .article-container {
 	margin: 10px auto;
 	min-height: 50px;
