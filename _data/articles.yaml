@@ -51,3 +51,12 @@
   category-herf: /recsys
   article-href: /recsys/wdl
   article-img: /img/wdl.png
+
+- title: Kaggle比赛 - Kannada MNIST
+  authors: projects
+  abstract: 一个MNIST扩展的比赛，识别的不再是阿拉伯数字，而是Kannada数字
+  publishedDate: 2019/12/17
+  category: projects
+  category-herf: /projects
+  article-href: /projects/kannada-mnist
+  article-img: /img/kannada-mnist/thumb.png
