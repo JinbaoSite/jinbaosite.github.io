@@ -53,7 +53,7 @@
   article-img: /img/wdl.png
 
 - title: Kaggle比赛 - Kannada MNIST
-  authors: projects
+  authors: kaggle
   abstract: 一个MNIST扩展的比赛，识别的不再是阿拉伯数字，而是Kannada数字
   publishedDate: 2019/12/17
   category: projects

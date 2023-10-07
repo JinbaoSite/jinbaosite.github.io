@@ -84,11 +84,6 @@ h2.post-tag {
     display: none;
 }
 
-.posts-list .post-preview img {
-    width: 100%;
-    display: block;
-}
-
 .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
