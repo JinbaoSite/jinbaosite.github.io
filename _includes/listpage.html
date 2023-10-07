@@ -1,7 +1,6 @@
 <div class="dt-article">
 	<div class="posts-list l-page">
 		{% for article in site.data.aritcles %}
-		{% if article.category == 'recsys' %}
 		<div class="post-preview peer-reviewed">
 			<div class="metadata">
 				<div class="publishedDate">{{ article.publishedDate }}</div>
@@ -16,7 +15,6 @@
 				</div>
 			</a>
 		</div>
-		{% endif %}
 		{% endfor %}
 	</div>
 </div>
