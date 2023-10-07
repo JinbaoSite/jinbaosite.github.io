@@ -1,0 +1,53 @@
+- title: FM因子分解
+  authors: Rank
+  abstract: 将用户和物品的特征进行线性组合，并引入二次项来捕捉特征之间的交互关系
+  publishedDate: 2023/9/23
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/fm
+  article-img: /img/fm.png
+
+- title: 推荐系统的矩阵分解
+  authors: Recall
+  abstract: 将用户行为矩阵分解为两个矩阵的乘积，通过用户向量和物品向量的内积来表示用户对物品的偏好
+  publishedDate: 2023/9/24
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/mf
+  article-img: /img/mf.png
+
+- title: 协调过滤算法
+  authors: Recall
+  abstract: 基于用户的协同过滤算法根据用户对物品的偏好，计算用户与其他用户的相似度，根据用户的相似度，推荐与用户兴趣相似的物品。基于物品的协同过滤算法根据物品之间的相似度，推荐与用户之前喜欢的物品相似的物品
+  publishedDate: 2023/9/25
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/cf
+  article-img: /img/cf.png
+
+- title: 返乡发展人群预测
+  authors: datafountain
+  abstract: 基于中国联通的大数据能力，通过使用对联通的信令数据、通话数据、互联网行为等数据进行建模，对个人是否会返乡工作进行判断
+  publishedDate: 2023/9/26
+  category: projects
+  category-herf: /projects
+  article-href: /projects/581
+  article-img: /img/返乡发展人群预测.jpg
+
+- title: 深度模型DeepFM模型
+  authors: recsys
+  abstract: 将FM算法和深度学习结合，捕捉特征之间的交互关系和高阶特征
+  publishedDate: 2023/9/27
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/deepfm
+  article-img: /img/deepfm.png
+
+- title: 深度模型Wide&Deep模型
+  authors: recsys
+  abstract: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征
+  publishedDate: 2023/9/28
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/wdl
+  article-img: /img/wdl.png

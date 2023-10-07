@@ -1,28 +1,162 @@
-.article-listpage {
-	min-height: 500px;
+.dt-article {
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+  font: 17px/1.55em -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  background: white;
 }
 
-.article-container {
-	margin: 10px auto;
-	min-height: 50px;
-	width: 100%;
-	background-color: rgba(133, 144, 166, 0.05);
+.dt-article img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
-.article-date {
-	margin: 0 auto;
-	width: 30%;
-	text-align: center;
-	float: left;
-	line-height: 50px;
+.posts-list .post-preview img {
+    width: 100%;
+    display: block;
 }
 
+.description h2, .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
 
+.description h2 {
+    font-weight: 700;
+}
 
-.article-title {
-	margin: 0 auto;
-	width: 60%;
-	float: left;
-	line-height: 50px;
+.posts-list .post-preview .description p.authors {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 1em;
+    color: rgba(0, 0, 0, 0.67);
+}
+
+.posts-list .post-preview .description p.abstract {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1em;
+    color: rgba(0, 0, 0, 0.67);
+}
+
+h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+}
+
+.posts-list {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+}
+
+.posts-list .post-preview:last-of-type {
+    border-bottom: none;
+}
+
+.posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+    border: None;
+}
+
+.posts-list .post-preview.editorial .thumbnail {
+    display: none;
+}
+
+.posts-list .post-preview img {
+    width: 100%;
+    display: block;
+}
+
+.posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+}
+
+.metadata>* {
+    display: inline-block;
+}
+
+.metadata .publishedDate {
+    margin-right: 1em;
+}
+
+.metadata .tags {
+    margin-top: 1em;
+}
+
+.tags .tag {
+    display: inline;
+    color: rgba(0, 0, 0, 0.67);
+    padding: 0.3em 0.5em;
+    margin: 0;
+    font-size: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.tag.peer-reviewed {
+    background-color: #0F2E3DE0;
+    color: white;
+    border-color: #0F2E3D;
+}
+
+@media(min-width: 768px) {
+    .metadata>* {
+         display: block;
+    }
+    .posts-list .post-preview h2 {
+        font-size: 26px;
+    }
+    .posts-list {
+        margin-top: 60px;
+    }
+
+    .posts-list .post-preview .thumbnail {
+        float: right;
+        width: 35%;
+        margin-bottom: 0;
+    }
+
+    .posts-list .post-preview .description {
+        float: left;
+        width: 40%;
+    }
+
+    .posts-list .post-preview .metadata {
+        float: left;
+        width: 15%;
+        margin-top: 8px;
+    }
+
+    .posts-list .post-preview p {
+        margin: 0 0 12px 0;
+        line-height: 1.5em;
+        font-size: 16px;
+    }
 
 }

@@ -1,10 +1,20 @@
-<div class="article-listpage">
-    {% for article in site.data.recsys %}
-    <a href="{{ article.url }}">
-    <div class="article-container">
-        <div class="article-date">{{ article.date }}</div>
-        <div class="article-title">{{ article.title }}</div>
-    </div>
-    </a>
-    {% endfor %}
+<div class="dt-article">
+	<div class="posts-list l-page">
+		{% for article in site.data.aritcles %}
+		<div class="post-preview peer-reviewed">
+			<div class="metadata">
+				<div class="publishedDate">{{ article.publishedDate }}</div>
+				<div class="tags"><a class="tag peer-reviewed" href="{{ article.category-herf }}"><span>{{ article.category }}</span></a></div>
+			</div>
+			<a href="{{ article.article-href }}">
+				<div class="thumbnail"><img src="{{ article.article-img }}"></div>
+				<div class="description">
+					<h2 class="title">{{ article.title }}</h2>
+					<p class="authors">{{ article.authors }}</p>
+					<p class="abstract">{{ article.abstract }}</p>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
 </div>
