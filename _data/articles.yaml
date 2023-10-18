@@ -60,3 +60,21 @@
   category-herf: /projects
   article-href: /projects/kannada-mnist
   article-img: /img/kannada-mnist/thumb.png
+
+- title: 多任务模型MMoE
+  authors: recsys
+  abstract: 通过门控网络来学习多个专家模型的权重，提高模型的多任务学习能力
+  publishedDate: 2020/12/13
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/mmoe
+  article-img: /img/mmoe.png
+
+- title: CVR预估模型ESMM
+  authors: recsys
+  abstract: 通过多任务学习，同时学习ctr和cvr，在完整样本空间上进行训练，避免了传统CVR模型经常遭遇的样本选择偏差和训练数据稀疏的问题
+  publishedDate: 2020/08/24
+  category: recsys
+  category-herf: /recsys
+  article-href: /recsys/esmm
+  article-img: /img/esmm.png
