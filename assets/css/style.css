@@ -99,7 +99,7 @@ pre {
 }
 
 code,kbd,pre,samp {
-    font-family: Georgia, serif;
+    font-size: 1em
 }
 
 button,input,optgroup,select,textarea {
@@ -463,8 +463,7 @@ td,th {
 body {
     padding: 0;
     margin: 0;
-    font-family: Georgia, serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -618,9 +617,9 @@ a:hover {
 }
 
 .main-content {
+    font-family: Georgia, serif;
     word-wrap: break-word;
     font-size: 16px;
-    padding-top: 20px;
 }
 
 .main-content :first-child {
@@ -629,20 +628,23 @@ a:hover {
 
 @media screen and (min-width: 64em) {
     .main-content {
+        font-family: Georgia, serif;
         max-width: 840px;
         margin: 0 auto;
-
+        padding:2rem 1rem;
     }
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
     .main-content {
-  
+        font-family: Georgia, serif;
+        padding:2rem 1rem;
     }
 }
 
 @media screen and (max-width: 42em) {
     .main-content {
+        font-family: Georgia, serif;
         padding:2rem 1rem;
     }
 }
@@ -701,7 +703,6 @@ a:hover {
 
 .main-content code {
     padding: 2px 4px;
-    font-family: Georgia, serif;
     color: #567482;
     background-color: #f3f6fa;
     border-radius: 0.3rem
@@ -722,7 +723,7 @@ a:hover {
 .main-content pre>code {
     padding: 0;
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     color: #567482;
     word-break: normal;
     white-space: pre;
@@ -828,20 +829,19 @@ a:hover {
 .site-footer {
     padding-top: 2rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
     border-top: solid 1px #eff0f1;
     text-align: center;
 }
 
 @media screen and (min-width: 64em) {
     .site-footer {
-        font-size:1em
+        font-size:1rem
     }
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
     .site-footer {
-        font-size:1em
+        font-size:1rem
     }
 }
 
