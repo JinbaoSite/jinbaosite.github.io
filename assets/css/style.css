@@ -711,7 +711,7 @@ a:hover {
     padding: 0.8rem;
     margin-top: 0;
     margin-bottom: 1rem;
-    font-family: Georgia, serif;
+    font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
     color: #567482;
     word-wrap: normal;
     background-color: #f3f6fa;
