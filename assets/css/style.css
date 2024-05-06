@@ -1,6 +1,6 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");html {
-    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: Georgia, serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -99,8 +99,7 @@ pre {
 }
 
 code,kbd,pre,samp {
-    font-family: monospace, monospace;
-    font-size: 1em
+    font-family: Georgia, serif;
 }
 
 button,input,optgroup,select,textarea {
@@ -464,8 +463,7 @@ td,th {
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-/*     font-family:"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-family: Georgia, serif;
     font-size: 16px;
     line-height: 1.5;
 }
@@ -703,7 +701,7 @@ a:hover {
 
 .main-content code {
     padding: 2px 4px;
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: Georgia, serif;
     color: #567482;
     background-color: #f3f6fa;
     border-radius: 0.3rem
@@ -713,7 +711,7 @@ a:hover {
     padding: 0.8rem;
     margin-top: 0;
     margin-bottom: 1rem;
-    font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: Georgia, serif;
     color: #567482;
     word-wrap: normal;
     background-color: #f3f6fa;
