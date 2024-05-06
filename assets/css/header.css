@@ -1,5 +1,4 @@
 .container-header {
-  
   background-color: rgb(53, 171, 165);
   border-color: #43CAC3;
   color: #ecf0f1;
@@ -10,6 +9,13 @@
   color: #ecf0f1;
   background-color: rgb(53, 171, 165);
   border-color: rgb(53, 171, 165);
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
 }
 
 .navbar-default .navbar-brand {
