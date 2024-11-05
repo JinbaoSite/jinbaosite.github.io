@@ -11,8 +11,34 @@
       <footer class="site-footer">
         {% include footer.html %}
       </footer>
-      
+      <button onclick="topFunction()" id="myBtn" title="回顶部" class="fa fa-arrow-up" style="font-size:36px"></button>
     </main>
   </body>
+<script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 
+document.querySelector('.burger').addEventListener('click', () => {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks.style.display === 'block' || navLinks.style.display === '') {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.display = 'block';
+  }
+});
+</script>
 </html>
