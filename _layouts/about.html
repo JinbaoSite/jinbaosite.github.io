@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  {% include head.html %}
+  <body>
+    <header class="container-header" role="banner">
+      {% include header.html %}
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <div class="resume">
+        <div class="header">
+            <h1>Jinbao</h1>
+            <div class="concat">
+                <div class="box">(+86)13255292272</div>
+                <div class="box">jinbaosite@163.com</div>
+                <div class="box">微信号：JinbaoSite</div>
+            </div>
+        </div>
+        <div class="section education">
+            <h2>教育背景</h2>
+            <div class="education-item">
+                <div class="grid-item education-time">2013.9 - 2017.6</div> 
+                <div class="grid-item education-school">南京理工大学</div>
+                <div class="grid-item education-pro">软件工程 - 学士</div>
+            </div>
+        </div>
+        <div class="section internship">
+            <h2>工作经历</h2>
+            <div class="internship-item">
+                <div class="work">
+                    <div class="grid-item work-company">同程旅行</div>
+                    <div class="grid-item work-job">算法工程师</div>
+                    <div class="grid-item work-time">2022.05-至今</div>
+                </div>
+                <div>工作内容：负责度假产品推荐、景区猜你喜欢、周边游主页推荐、智能营销</div>
+                
+                <ul>
+                    <li>度假产品推荐、景区猜你喜欢、周边游主页推荐，召回采用双塔召回和ItemCF以及POI召回，开发ESMM多目标精排模型，特征开发用户实时访问序列，对序列特征采用self-attention</li>
+                    <li>智能营销，针对用户的浏览轨迹，按照时间+点位+动作+资源的序列构建用户的访问序列，采用Transformer自回归的方式预测用户下一个访问资源序列的方式训练推荐生成大模型，以Transformer的最后一层作为用户的表征向量应用于下游任务。在lookalike环节上通过种子用户的表征向量去拓展相似人群；在下游排序任务中，把用户的表征向量作为特征直接输入模型中训练排序模型</li>
+                </ul>
+            </div>
+            <div class="internship-item">
+                <div class="work">
+                    <div class="grid-item work-company">腾讯</div>
+                    <div class="grid-item work-job">高级算法工程师</div>
+                    <div class="grid-item work-time">2020.10-2022.05</div>
+                </div>
+                <div>工作内容：负责腾讯应用宝的oCPD项目，从0到1搭建oCPC和oCPD</div>
+                
+                <ul>
+                    <li>优化cvr模型，首先使用MMoE和STAR模型实现多场景模型融合优化，然后ESMM模型实现多任务模型融合优化，最后将MMoE/STAR+ESMM实现多任务多场景模型融合优化</li>
+                    <li>oCPD项目模型校准，开发实现保序回归平滑校准算法，优化模型从广告主的角度上观察PCOC由0.8-1.2的范围提升至0.9-1.1，提升了oCPD项目的成本达成率，降低赔付比例</li>
+                    <li>应用宝cvr模型特征开发，依据用户历史行为（点/下/搜/安/转）开发用户全生命周期(7天/30天/180天/365天)特征和Match类特征，以及用户实时统计特征</li>
+                </ul>
+            </div>
+            <div class="internship-item">
+                <div class="work">
+                    <div class="grid-item work-company">趣头条</div>
+                    <div class="grid-item work-job">广告算法工程师</div>
+                    <div class="grid-item work-time">2018.10-2020.10</div>
+                </div>
+                
+                <ul>
+                    <li>负责米读小说和球球视频的广告算法CTR和CVR模型，在现有模型平台框架上调研DCN、DeepFM、PNN等模型；针对广告深度oCPC开发ESMM模型和ESMM2模型；开发多任务学习模型，并应用到多转换目标CVR模型</li>
+                    <li>2.负责球球视频小视频算法推荐，开发小视频内外流策略；负责挖掘用户在球球视频中用户在小视频的长短期兴趣，制定不同的召回策略，优化用户使用体验</li>
+                </ul>
+            </div>
+            <div class="internship-item">
+                <div class="work">
+                    <div class="grid-item work-company">华为技术有限公司</div>
+                    <div class="grid-item work-job">大数据开发工程师</div>
+                    <div class="grid-item work-time">2017.7-2018.10</div>
+                </div>
+                
+                <ul>
+                    <li>负责实时日志数据流的采集，针对采集的日志进行数据清晰加工，并对相应的指标进行计算，汇总送入mysql/redis，提供给报表看板使用参与产品线的数据仓库建设，使用内部ETL工具进行数据库迁移基于universe系统内嵌开发在线数据库查询系统，独立开发前端页面和后端系统</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section internship">
+            <h2>证书</h2>
+        </div>
+    </div>
+      <footer class="site-footer">
+        {% include footer.html %}
+      </footer>
+      <button onclick="topFunction()" id="myBtn" title="回顶部" class="fa fa-arrow-up" style="font-size:36px"></button>
+    </main>
+  </body>
+  <script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+</html>
