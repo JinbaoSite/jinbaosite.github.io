@@ -15,11 +15,11 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-document.querySelector('.burger').addEventListener('click', () => {
-  const navLinks = document.querySelector('.nav-links');
-  if (navLinks.style.display === 'block' || navLinks.style.display === '') {
-    navLinks.style.display = 'none';
-  } else {
-    navLinks.style.display = 'block';
-  }
-});
+<script>
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+        });
+    </script>
