@@ -3,65 +3,80 @@
   border-color: #333;
   color: #333;
 }
-/* Navbar Styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: white;
-  padding: 0px 20px;
-  margin:0 auto;
-  max-width: 840px;
-}
+/* 导航栏容器 */
+        .nav-header {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+            max-width: 840px;
+            margin: 0 auto;
+        }
 
-.logo {
-  font-size: 24px;
-}
+        /* 网站 logo */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-}
+        /* 导航链接列表 */
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-.nav-links li {
-  padding: 0 15px;
-}
+        .nav-links li {
+            margin-right: 20px;
+        }
 
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-}
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+        }
 
-.burger {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+        /* 汉堡菜单按钮 */
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    width: 100%;
-    position: absolute;
-    background-color: #333;
-    top: 60px;
-    left: 0;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-  }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+        }
 
-  .nav-links li {
-    padding: 10px 0;
-  }
+        /* 小屏幕样式 */
+        @media screen and (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
 
-  .burger {
-    display: block;
-  }
-}
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                background-color: #333;
+                margin-top: 15px;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            /* 菜单展开时的样式 */
+            .nav-active {
+                display: flex;
+            }
+        }
