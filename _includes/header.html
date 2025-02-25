@@ -1,10 +1,14 @@
-    <nav class="navbar">
+    <nav class="nav-header">
         <div class="logo">{{ site.title }}</div>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
         <ul class="nav-links">
             {% for menus in site.data.menus %}
             <li><a href="{{ menus.url }}">{{ menus.title }}</a></li>
             {% endfor %}
         </ul>
-        <button class="burger">☰</button>
     </nav>
       
