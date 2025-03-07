@@ -1,9 +1,9 @@
-.container-header {
-  background-color: #333;
-  border-color: #333;
-  color: #333;
-}
-/* 导航栏容器 */
+        .container-header {
+          background-color: #333;
+          border-color: #333;
+          color: #333;
+        }
+        /* 导航栏容器 */
         .nav-header {
             background-color: #333;
             color: white;
@@ -20,6 +20,10 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+        }
+        .logo a {
+            color: white;
+            text-decoration: none;
         }
 
         /* 导航链接列表 */
