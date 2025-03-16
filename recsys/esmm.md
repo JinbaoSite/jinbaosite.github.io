@@ -12,7 +12,7 @@
 
 ## 1 ESMM网络结构
 
-![ESMM模型结构](https://s3.bmp.ovh/imgs/2022/03/f9636c0d4bd3c6ce.png)
+![ESMM模型结构](/img/esmm.png)
 
 ESMM模型结构如上图所示，属于MTL的模型结构，CVR模型作为主任务模型，CTR模型作为辅助任务模型，底部的Embedding层进行参数共享，每个任务又独享自己的网络结构和网络参数；
 在辅助任务CTR模型($y$表示click)中
