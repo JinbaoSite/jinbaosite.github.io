@@ -7,7 +7,7 @@
 ## 1 矩阵分解基本原理
 
 矩阵分解基本原理：将$m \times n$的User-Item矩阵$D$分解为一个$m \times k$用户隐向量矩阵$U$和一个$n \times k$物品隐向量矩阵$V$相乘的形式，即$D_{m \times n} \approx V_{k \times n}^T U_{k \times m}$；其中，$m$为用户的数量，$n$为物品的数量，$k$为隐向量的维度。（如下图）
-![在这里插入图片描述](/img/mf.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/JinbaoSite/jinbaosite.github.io@master/img/mf.png)
 
 
 通过矩阵分解可以得到用户和物品都用$k$维隐向量的表达，每个商品可以用$1 \times k$向量$q_i$表示，即$V = [q_0, q_1, ..., q_n]^T$，每个用户可以用$1 \times k$向量$p_u$表示，即$U = [p_0, p_1, ..., p_m]^T$，则用户$u$与物品$i$的反馈得分为
