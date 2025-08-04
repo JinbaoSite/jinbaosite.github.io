@@ -8,7 +8,7 @@
 
 ## 1 MMoE模型
 
-![MMoE](/img/mmoe.png)
+![MMoE](https://cdn.jsdelivr.net/gh/JinbaoSite/jinbaosite.github.io@master/img/mmoe.png)
 
 #### 1.1 `Shared-Bottom Model`
 
