@@ -1,86 +1,140 @@
-        .container-header {
-          background-color: #333;
-          border-color: #333;
-          color: #333;
-        }
-        /* 导航栏容器 */
-        .nav-header {
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            position: relative;
-            max-width: 840px;
-            margin: 0 auto;
-        }
+:root {
+  --brand-primary: #2563eb;
+  --brand-accent: #f43f5e;
+  --brand-warm: #fb7185;
+  --surface-header: linear-gradient(120deg, #2563eb 0%, #7c3aed 45%, #f43f5e 100%);
+}
 
-        /* 网站 logo */
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .logo a {
-            color: white;
-            text-decoration: none;
-        }
+.container-header {
+  background: var(--surface-header);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-        /* 导航链接列表 */
-        .nav-links {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+.nav-header {
+  max-width: min(72rem, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-        .nav-links li {
-            margin-right: 20px;
-        }
+.logo a {
+  color: #fff;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
 
-        .nav-links li a {
-            color: white;
-            text-decoration: none;
-        }
+.burger {
+  appearance: none;
+  border: 0;
+  border-radius: 0.6rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  cursor: pointer;
+}
 
-        /* 汉堡菜单按钮 */
-        .burger {
-            display: none;
-            cursor: pointer;
-        }
+.burger span {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  margin: 0.14rem 0;
+  background: #fff;
+  transition: transform .25s ease, opacity .25s ease;
+}
 
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-        }
+.nav-links {
+  list-style: none;
+  padding: .25rem;
+  margin: 0;
+  position: absolute;
+  right: 1rem;
+  top: calc(100% + .35rem);
+  min-width: 12rem;
+  border-radius: 0.8rem;
+  background: #ffffff;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.35rem);
+  transition: all .2s ease;
+}
 
-        /* 小屏幕样式 */
-        @media screen and (max-width: 768px) {
-            nav {
-                flex-wrap: wrap;
-            }
+.nav-links li + li {
+  border-top: 1px solid #e5e7eb;
+}
 
-            .nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                background-color: #333;
-                margin-top: 15px;
-            }
+.nav-links a {
+  display: block;
+  padding: .75rem .95rem;
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-            .nav-links li {
-                margin: 15px 0;
-            }
+.nav-links a:hover {
+  color: var(--brand-accent);
+  background: #fff1f4;
+  border-radius: .45rem;
+}
 
-            .burger {
-                display: block;
-            }
+.nav-header.nav-open .nav-links {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
-            /* 菜单展开时的样式 */
-            .nav-active {
-                display: flex;
-            }
-        }
+.nav-header.nav-open .burger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-header.nav-open .burger span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-header.nav-open .burger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+  .burger {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    min-width: auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .nav-links li + li {
+    border-top: 0;
+  }
+
+  .nav-links a {
+    color: #fff;
+    border-radius: .45rem;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}

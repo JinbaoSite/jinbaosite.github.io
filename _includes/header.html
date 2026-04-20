@@ -1,14 +1,13 @@
-    <nav class="nav-header">
-        <div class="logo"><a href="/">{{ site.title }}</a></div>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-        <ul class="nav-links">
-            {% for menus in site.data.menus %}
-            <li><a href="{{ menus.url }}">{{ menus.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </nav>
-      
+<nav class="nav-header" aria-label="主导航">
+  <div class="logo"><a href="/">{{ site.title }}</a></div>
+  <button class="burger" type="button" aria-label="切换导航菜单" aria-expanded="false" aria-controls="site-nav-links">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="site-nav-links">
+    {% for menus in site.data.menus %}
+    <li><a href="{{ menus.url }}">{{ menus.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
