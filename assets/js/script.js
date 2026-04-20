@@ -1,25 +1,36 @@
-// 当网页向下滑动 20px 出现"返回顶部" 按钮
-window.onscroll = function() {scrollFunction()};
- 
-function scrollFunction() {console.log(121);
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
- 
-// 点击按钮，返回顶部
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+(() => {
+  const navHeader = document.querySelector('.nav-header');
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
 
-<script>
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.nav-links');
+  if (navHeader && burger && navLinks) {
+    burger.addEventListener('click', () => {
+      const isOpen = navHeader.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
 
-        burger.addEventListener('click', () => {
-            nav.classList.toggle('nav-active');
-        });
-    </script>
+    navLinks.addEventListener('click', (event) => {
+      if (event.target.tagName === 'A' && window.innerWidth < 768) {
+        navHeader.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  const backTopButton = document.getElementById('myBtn');
+  if (!backTopButton) {
+    return;
+  }
+
+  const handleScroll = () => {
+    const top = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    backTopButton.style.display = top > 160 ? 'block' : 'none';
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  backTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
