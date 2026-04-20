@@ -3,17 +3,21 @@
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    color: #333;
+    color: #d7e1ff;
+    background: linear-gradient(140deg, rgba(17, 25, 50, 0.75), rgba(12, 19, 38, 0.78));
+    border: 1px solid rgba(145, 171, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(3, 6, 18, 0.35);
 }
 
 .header h1 {
     font-size: 24px;
-    color: #333;
+    color: #eef3ff;
 }
 
 .header p {
     font-size: 16px;
-    color: #555;
+    color: #a9b8dc;
 }
 
 .section {
@@ -22,15 +26,15 @@
 
 .section h2 {
     font-size: 20px;
-    color: #333;
-    border-bottom: 2px solid #333;
+    color: #bfd2ff;
+    border-bottom: 2px solid rgba(110, 243, 255, 0.45);
     padding-bottom: 5px;
 }
 .education-item, .work {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 创建三列，每列等宽 */
     width: 100%;
-    color: #333;
+    color: #dbe6ff;
     font-weight: bold;
 }
 

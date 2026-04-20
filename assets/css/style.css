@@ -1,5 +1,5 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");html {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap");html {
     font-family: PingFang SC,Hiragino Sans GB,Helvetica Neue,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
@@ -872,18 +872,26 @@ a:hover {
   padding: 15px;
   border-radius: 10px;
 }
-/* ===== 2026 responsive/theme refresh ===== */
+/* ===== 2026 minimaxi-inspired typography/theme refresh ===== */
 :root {
-  --page-bg: linear-gradient(180deg, #eff6ff 0%, #ffffff 20rem);
-  --brand-primary: #2563eb;
-  --brand-accent: #f43f5e;
-  --text-main: #0f172a;
-  --text-secondary: #475569;
+  --page-bg:
+    radial-gradient(circle at 12% -10%, rgba(95, 84, 255, 0.24), transparent 40%),
+    radial-gradient(circle at 88% -15%, rgba(0, 229, 255, 0.2), transparent 34%),
+    linear-gradient(180deg, #090b16 0%, #0c1022 48%, #0b0f1d 100%);
+  --surface-strong: rgba(18, 26, 51, 0.82);
+  --surface-soft: rgba(14, 20, 40, 0.72);
+  --border-subtle: rgba(145, 171, 255, 0.24);
+  --brand-primary: #7aa2ff;
+  --brand-accent: #6ef3ff;
+  --text-main: #e8ecff;
+  --text-secondary: #a7b3d9;
+  --text-muted: #8d9ac4;
 }
 
 body {
   background: var(--page-bg);
   color: var(--text-main);
+  font-family: "Inter", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 a {
@@ -892,25 +900,72 @@ a {
 
 a:hover {
   color: var(--brand-accent);
+  text-decoration: none;
 }
 
 .main-content {
   width: min(72rem, calc(100% - 2rem));
   margin: 0 auto;
   padding: clamp(1rem, 3vw, 2rem) 0;
+  color: var(--text-main);
+  font-family: "Inter", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 .main-content h1,
 .main-content h2 {
   color: var(--brand-primary);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: #c6d5ff;
+}
+
+.main-content p,
+.main-content li {
+  color: var(--text-secondary);
+}
+
+.main-content blockquote {
+  color: var(--text-secondary);
+  border-left-color: rgba(110, 243, 255, 0.45);
+  background: rgba(27, 38, 72, 0.35);
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+}
+
+.main-content code {
+  color: #dff4ff;
+  background-color: rgba(61, 95, 168, 0.28);
+}
+
+.main-content pre {
+  color: #dff4ff;
+  background-color: rgba(15, 23, 44, 0.88);
+  border-color: var(--border-subtle);
+}
+
+.main-content table th,
+.main-content table td {
+  border-color: rgba(145, 171, 255, 0.2);
 }
 
 .site-footer {
-  border-top: 1px solid #dbeafe;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(8, 11, 24, 0.72);
+  backdrop-filter: blur(10px);
 }
 
 .site-footer-credits {
   color: var(--text-secondary);
+}
+
+.site-footer a {
+  color: var(--brand-accent);
 }
 
 #myBtn {
@@ -919,8 +974,8 @@ a:hover {
   padding: .75rem .9rem;
   border-radius: 999px;
   color: #fff;
-  background: linear-gradient(120deg, #2563eb, #7c3aed, #f43f5e);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+  background: linear-gradient(120deg, #4f63ff, #7aa2ff, #6ef3ff);
+  box-shadow: 0 10px 24px rgba(67, 112, 255, 0.4);
 }
 
 @media (max-width: 767px) {
