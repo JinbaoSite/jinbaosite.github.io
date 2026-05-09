@@ -8,7 +8,7 @@
 				<div class="tags"><a class="tag peer-reviewed" href="{{ article.category-herf }}"><span>{{ article.category }}</span></a></div>
 			</div>
 			<a href="{{ article.article-href }}">
-				<div class="thumbnail"><img src="{{ article.article-img }}"></div>
+				<div class="thumbnail"><img src="{{ article.article-img }}" loading="lazy" decoding="async" fetchpriority="low" alt="{{ article.title }}"></div>
 				<div class="description">
 					<h2 class="title">{{ article.title }}</h2>
 					<p class="authors">{{ article.authors }}</p>
