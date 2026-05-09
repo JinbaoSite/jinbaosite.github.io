@@ -862,15 +862,15 @@ a:hover {
 
 /* ===== 2026 minimaxi-inspired typography/theme refresh ===== */
 :root {
-  --page-bg: #0a0f1a;
-  --surface-strong: #111827;
-  --surface-soft: #0f172a;
-  --border-subtle: #24324f;
-  --brand-primary: #3b82f6;
-  --brand-accent: #22d3ee;
-  --text-main: #e8ecff;
-  --text-secondary: #a7b3d9;
-  --text-muted: #8d9ac4;
+  --page-bg: #f8fafc;
+  --surface-strong: #ffffff;
+  --surface-soft: #f1f5f9;
+  --border-subtle: #cbd5e1;
+  --brand-primary: #2563eb;
+  --brand-accent: #0ea5e9;
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
 }
 
 body {
@@ -907,7 +907,7 @@ a:hover {
 .main-content h4,
 .main-content h5,
 .main-content h6 {
-  color: #c6d5ff;
+  color: #1e293b;
 }
 
 .main-content p,
@@ -917,31 +917,31 @@ a:hover {
 
 .main-content blockquote {
   color: var(--text-secondary);
-  border-left-color: rgba(110, 243, 255, 0.45);
-  background: #111a2e;
+  border-left-color: rgba(14, 165, 233, 0.45);
+  background: #eef6ff;
   border-radius: 0.5rem;
   padding: 0.7rem 1rem;
 }
 
 .main-content code {
-  color: #dff4ff;
-  background-color: rgba(61, 95, 168, 0.28);
+  color: #0f172a;
+  background-color: #e2e8f0;
 }
 
 .main-content pre {
-  color: #dff4ff;
-  background-color: rgba(15, 23, 44, 0.88);
+  color: #0f172a;
+  background-color: #f1f5f9;
   border-color: var(--border-subtle);
 }
 
 .main-content table th,
 .main-content table td {
-  border-color: rgba(145, 171, 255, 0.2);
+  border-color: #cbd5e1;
 }
 
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  background: #0b1220;
+  background: #ffffff;
 }
 
 .site-footer-credits {
@@ -951,5 +951,4 @@ a:hover {
 .site-footer a {
   color: var(--brand-accent);
 }
-
 
