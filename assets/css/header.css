@@ -2,14 +2,13 @@
   --brand-primary: #7aa2ff;
   --brand-accent: #6ef3ff;
   --brand-warm: #b08cff;
-  --surface-header: linear-gradient(115deg, rgba(18, 26, 52, 0.9) 0%, rgba(45, 58, 108, 0.82) 54%, rgba(26, 63, 95, 0.84) 100%);
+  --surface-header: #0f172a;
 }
 
 .container-header {
   background: var(--surface-header);
-  box-shadow: 0 10px 28px rgba(7, 12, 34, 0.5);
-  border-bottom: 1px solid rgba(138, 167, 255, 0.24);
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  border-bottom: 1px solid #23314f;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -23,6 +22,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .logo a {
@@ -57,29 +57,23 @@
 
 .nav-links {
   list-style: none;
-  padding: .25rem;
+  width: 100%;
   margin: 0;
-  position: absolute;
-  right: 1rem;
-  top: calc(100% + .35rem);
-  min-width: 12rem;
-  border-radius: 0.8rem;
-  background: rgba(11, 17, 36, 0.96);
-  border: 1px solid rgba(145, 171, 255, 0.28);
-  box-shadow: 0 14px 28px rgba(2, 4, 12, 0.6);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-0.35rem);
-  transition: all .2s ease;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #0b1220;
+  border-top: 1px solid #23314f;
+  transition: max-height .25s ease;
 }
 
 .nav-links li + li {
-  border-top: 1px solid rgba(145, 171, 255, 0.2);
+  border-top: 1px solid #23314f;
 }
 
 .nav-links a {
   display: block;
-  padding: .75rem .95rem;
+  padding: .85rem 1rem;
   color: #dce5ff;
   text-decoration: none;
   font-weight: 600;
@@ -92,9 +86,7 @@
 }
 
 .nav-header.nav-open .nav-links {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  max-height: 18rem;
 }
 
 .nav-header.nav-open .burger span:nth-child(1) {
@@ -116,15 +108,15 @@
 
   .nav-links {
     position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
+    max-height: none;
+    overflow: visible;
     display: flex;
     align-items: center;
     gap: .25rem;
     min-width: auto;
     background: transparent;
     box-shadow: none;
+    border-top: 0;
     padding: 0;
   }
 
