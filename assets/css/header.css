@@ -1,14 +1,14 @@
 :root {
-  --brand-primary: #7aa2ff;
-  --brand-accent: #6ef3ff;
-  --brand-warm: #b08cff;
-  --surface-header: #0f172a;
+  --brand-primary: #2563eb;
+  --brand-accent: #0ea5e9;
+  --brand-warm: #7c3aed;
+  --surface-header: #ffffff;
 }
 
 .container-header {
   background: var(--surface-header);
-  box-shadow: none;
-  border-bottom: 1px solid #23314f;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid #e2e8f0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -26,7 +26,7 @@
 }
 
 .logo a {
-  color: #f4f7ff;
+  color: #0f172a;
   font-size: clamp(1.1rem, 2.6vw, 1.5rem);
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -41,8 +41,8 @@
   height: 2.6rem;
   display: grid;
   place-items: center;
-  background: rgba(193, 211, 255, 0.15);
-  border: 1px solid rgba(195, 214, 255, 0.28);
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
   cursor: pointer;
 }
 
@@ -51,7 +51,7 @@
   width: 1.25rem;
   height: 2px;
   margin: 0.14rem 0;
-  background: #eef3ff;
+  background: #0f172a;
   transition: transform .25s ease, opacity .25s ease;
 }
 
@@ -62,26 +62,26 @@
   padding: 0;
   max-height: 0;
   overflow: hidden;
-  background: #0b1220;
-  border-top: 1px solid #23314f;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
   transition: max-height .25s ease;
 }
 
 .nav-links li + li {
-  border-top: 1px solid #23314f;
+  border-top: 1px solid #e2e8f0;
 }
 
 .nav-links a {
   display: block;
   padding: .85rem 1rem;
-  color: #dce5ff;
+  color: #1e293b;
   text-decoration: none;
   font-weight: 600;
 }
 
 .nav-links a:hover {
   color: var(--brand-accent);
-  background: rgba(110, 243, 255, 0.16);
+  background: #e0f2fe;
   border-radius: .45rem;
 }
 
@@ -102,6 +102,10 @@
 }
 
 @media (min-width: 768px) {
+  .nav-header {
+    flex-wrap: nowrap;
+  }
+
   .burger {
     display: none;
   }
@@ -114,6 +118,7 @@
     align-items: center;
     gap: .25rem;
     min-width: auto;
+    width: auto;
     background: transparent;
     box-shadow: none;
     border-top: 0;
@@ -125,12 +130,12 @@
   }
 
   .nav-links a {
-    color: #fff;
+    color: #334155;
     border-radius: .45rem;
   }
 
   .nav-links a:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
+    color: #0f172a;
+    background: #dbeafe;
   }
 }
