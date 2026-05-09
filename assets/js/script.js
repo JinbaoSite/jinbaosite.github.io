@@ -17,4 +17,13 @@
     });
   }
 
+  const articleImages = document.querySelectorAll('main img');
+  articleImages.forEach((img, index) => {
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', index === 0 ? 'eager' : 'lazy');
+    }
+    if (!img.hasAttribute('decoding')) {
+      img.setAttribute('decoding', 'async');
+    }
+  });
 })();

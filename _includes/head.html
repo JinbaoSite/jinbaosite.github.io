@@ -4,14 +4,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0A0D1A">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preload" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
+    <link rel="preload" href="{{ '/assets/css/header.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
+    <link rel="preload" href="{{ '/assets/css/listpage.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/header.css?v=' | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/listpage.css?v=' | append: site.github.build_revision | relative_url }}">
-     <link rel="stylesheet" href="{{ '/assets/css/about.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/about.css?v=' | append: site.github.build_revision | relative_url }}">
     <script defer src="{{ '/assets/js/script.js?v=' | append: site.github.build_revision | relative_url }}"></script>
-    <!-- 数学公式 -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]], processEscapes: true }, TeX: { equationNumbers: { autoNumber: "AMS" } }, messageStyle: "none", SVG: { blacker: 1 }});
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true },
+        svg: { fontCache: 'global' }
+      };
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const content = document.querySelector('article, main, .post-content, .markdown-body');
+        const text = content ? content.textContent : '';
+        const hasMath = /\\\(|\\\[|\$\$|(^|[^\\])\$/.test(text || '');
+        if (!hasMath) return;
+
+        const loadMathJax = () => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+          script.async = true;
+          document.head.appendChild(script);
+        };
+
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadMathJax, { timeout: 1500 });
+        } else {
+          setTimeout(loadMathJax, 800);
+        }
+      });
     </script>
   </head>
