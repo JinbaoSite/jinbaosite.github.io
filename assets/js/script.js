@@ -17,20 +17,4 @@
     });
   }
 
-  const backTopButton = document.getElementById('myBtn');
-  if (!backTopButton) {
-    return;
-  }
-
-  const handleScroll = () => {
-    const top = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-    backTopButton.style.display = top > 160 ? 'block' : 'none';
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-
-  backTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
 })();
