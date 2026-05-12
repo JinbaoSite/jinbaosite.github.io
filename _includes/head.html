@@ -1,41 +1,11 @@
 <head>
-    <meta charset="UTF-8">
-    {% seo %}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0A0D1A">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="preload" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
-    <link rel="preload" href="{{ '/assets/css/header.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
-    <link rel="preload" href="{{ '/assets/css/listpage.css?v=' | append: site.github.build_revision | relative_url }}" as="style">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/header.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/listpage.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/about.css?v=' | append: site.github.build_revision | relative_url }}">
-    <script defer src="{{ '/assets/js/script.js?v=' | append: site.github.build_revision | relative_url }}"></script>
-    <script>
-      window.MathJax = {
-        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true },
-        svg: { fontCache: 'global' }
-      };
-
-      window.addEventListener('DOMContentLoaded', () => {
-        const content = document.querySelector('article, main, .post-content, .markdown-body');
-        const text = content ? content.textContent : '';
-        const hasMath = /\\\(|\\\[|\$\$|(^|[^\\])\$/.test(text || '');
-        if (!hasMath) return;
-
-        const loadMathJax = () => {
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-          script.async = true;
-          document.head.appendChild(script);
-        };
-
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadMathJax, { timeout: 1500 });
-        } else {
-          setTimeout(loadMathJax, 800);
-        }
-      });
-    </script>
-  </head>
+  <meta charset="UTF-8">
+  {% seo %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  <script defer src="{{ '/assets/js/script.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+</head>

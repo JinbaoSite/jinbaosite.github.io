@@ -1,20 +1,22 @@
-<div class="dt-article">
-	<div class="posts-list l-page">
-		{% for article in site.data.articles %}
-		<div class="post-preview peer-reviewed">
-			<div class="metadata">
-				<div class="publishedDate">{{ article.publishedDate }}</div>
-				<div class="tags"><a class="tag peer-reviewed" href="{{ article.category-herf }}"><span>{{ article.category }}</span></a></div>
-			</div>
-			<a href="{{ article.article-href }}">
-				<div class="thumbnail"><img src="{{ article.article-img }}"></div>
-				<div class="description">
-					<h2 class="title">{{ article.title }}</h2>
-					<p class="authors">{{ article.authors }}</p>
-					<p class="abstract">{{ article.abstract }}</p>
-				</div>
-			</a>
-		</div>
-		{% endfor %}
-	</div>
-</div>
+<section class="page-hero">
+  <h1>{{ site.title }}</h1>
+  <p>算法、推荐系统与工程实践记录。</p>
+</section>
+<section class="posts-list l-page">
+  {% for article in site.data.articles %}
+  <article class="post-preview card">
+    <div class="metadata">
+      <time class="publishedDate">{{ article.publishedDate }}</time>
+      <a class="tag" href="{{ article.category-herf }}">{{ article.category }}</a>
+    </div>
+    <a class="post-link" href="{{ article.article-href }}">
+      <div class="thumbnail"><img src="{{ article.article-img }}" alt="{{ article.title }}"></div>
+      <div class="description">
+        <h2 class="title">{{ article.title }}</h2>
+        <p class="authors">{{ article.authors }}</p>
+        <p class="abstract">{{ article.abstract }}</p>
+      </div>
+    </a>
+  </article>
+  {% endfor %}
+</section>
