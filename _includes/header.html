@@ -7,7 +7,7 @@
     </div>
     <nav>
       {% for menus in site.data.menus %}
-      <a href="{{ menus.url }}" class="active">{{ menus.title }}</a>
+      <a href="{{ menus.url }}">{{ menus.title }}</a>
       {% endfor %}
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="菜单">
