@@ -4,30 +4,8 @@
 <body>
   {% include header.html %}
   <main>
-    <div class="container">
-      <section class="hero">
-        <h1>{{ page.title }}</h1>
-        <p class="hero-subtitle">{{ page.subtitle }}</p>
-      </section>
-    </div>
     <div class="container" id="articleContainer">
-      <h2 class="section-title">最新文章</h2>
-      <div class="article-list">
-        {% for article in page.article-list %}
-        <a href="{{ article.article-url }}" class="article-card">
-          <div class="article-header">
-            <span class="article-title">{{ article.article-title }}</span>
-            <span class="article-date">{{ article.article-date }}</span>
-          </div>
-          <p class="article-desc">{{ article.article-desc }}</p>
-          <div class="article-tags">
-            {% for article-tag in article.article-tags %}
-            <span class="article-tag">{{ article-tag }}</span>
-            {% endfor %}
-          </div>
-        </a>
-        {% endfor %}
-      </div>
+      {{ content }}
     </div>
 
     {% include footer.html %}
