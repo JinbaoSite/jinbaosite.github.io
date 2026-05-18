@@ -1,5 +1,17 @@
 title: Jinbao
 author: Jinbao
 email: jinbaosite@163.com
+
+
+menus:
+  - title: 首页
+    url: /
+  - title: 推荐算法
+    url: /recsys
+  - title: 项目
+    url: /projects
+  - title: 关于
+    url: /about
+
 theme: jekyll-theme-cayman
 markdown: kramdown
