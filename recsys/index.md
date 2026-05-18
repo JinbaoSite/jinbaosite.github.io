@@ -1,3 +1,3 @@
 ---
-layout: recsys
+layout: listpage
 ---
