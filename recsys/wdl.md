@@ -1,3 +1,6 @@
+---
+layout: article
+---
 # 深度模型Wide&Deep模型
 
 ## 00 序言
