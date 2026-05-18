@@ -34,9 +34,29 @@
   </main>
 
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
-  </script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+
+  // 切换移动端菜单显示
+  menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+
+  // 设置导航高亮（支持子页面高亮）
+  const currentUrl = "{{ page.url }}"; // Jekyll/Liquid 渲染当前页面 URL
+  const navLinks = document.querySelectorAll('header nav a, .mobile-nav a');
+
+  navLinks.forEach(link => {
+    // 移除所有已有 active 类
+    link.classList.remove('active');
+
+    const href = link.getAttribute('href');
+
+    // 如果 href 是 / 开头的路径，并且 currentUrl 以 href 开头，则高亮
+    if (href === "/" && currentUrl === "/") {
+      link.classList.add('active'); // 首页单独处理
+    } else if (href !== "/" && currentUrl.startsWith(href)) {
+      link.classList.add('active');
+    }
+  });
+</script>
 </body>
 </html>
