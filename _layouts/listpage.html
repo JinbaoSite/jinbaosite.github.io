@@ -22,7 +22,8 @@
           <p class="article-desc">{{ article.article-desc }}</p>
           <div class="article-tags">
             {% for article-tag in article.article-tags %}
-            <span class="article-tag">{{ article.article-tag }}</span>
+            <span class="article-tag">{{ article-tag }}</span>
+            {% endfor %}
           </div>
         </a>
         {% endfor %}
