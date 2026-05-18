@@ -1,43 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jinbao - 算法工程与技术笔记</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+{% include head.html %}
 <body>
-  <header>
-    <div class="header-left">
-      <a href="/" class="logo">
-        <div class="logo-icon">J</div>
-        <span>Jinbao</span>
-      </a>
-    </div>
-    <nav>
-      <a href="/" class="active">首页</a>
-      <a href="dl.html">深度学习</a>
-      <a href="recsys.html">推荐算法</a>
-      <a href="llm.html">大模型</a>
-      <a href="agent.html">Agent</a>
-      <a href="about.html">关于</a>
-    </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="菜单">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="active">首页</a>
-    <a href="dl.html">深度学习</a>
-    <a href="recsys.html">推荐算法</a>
-    <a href="llm.html">大模型</a>
-    <a href="agent.html">Agent</a>
-    <a href="about.html">关于</a>
-  </div>
+  {% include header.html %}
 
   <main>
     <div class="container">
@@ -82,13 +47,7 @@
       
     </div>
 
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-copy">© 2025 Jinbao. All rights reserved.</div>
-        </div>
-      </div>
-    </footer>
+    {% include footer.html %}
   </main>
 
   <script>
