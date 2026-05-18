@@ -148,7 +148,11 @@
     }
 
     main { padding-top: 64px; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .container { 
+          max-width: 900px; 
+          margin: 30px auto; 
+          padding: 0 24px; 
+    }
 
     /* Hero - Geek Blog Style */
     .hero {
