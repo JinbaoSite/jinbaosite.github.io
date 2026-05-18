@@ -1,4 +1,103 @@
----
-layout: default
----
-{% include listpage.html %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jinbao - 算法工程与技术笔记</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="/" class="logo">
+        <div class="logo-icon">J</div>
+        <span>Jinbao</span>
+      </a>
+    </div>
+    <nav>
+      <a href="/" class="active">首页</a>
+      <a href="dl.html">深度学习</a>
+      <a href="recsys.html">推荐算法</a>
+      <a href="llm.html">大模型</a>
+      <a href="agent.html">Agent</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/" class="active">首页</a>
+    <a href="dl.html">深度学习</a>
+    <a href="recsys.html">推荐算法</a>
+    <a href="llm.html">大模型</a>
+    <a href="agent.html">Agent</a>
+    <a href="about.html">关于</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-code">
+          <span class="comment"># Welcome to my blog</span><br>
+          <span class="keyword">const</span> engineer = {<br>
+          &nbsp;&nbsp;name: <span class="string">"Jinbao"</span>,<br>
+          &nbsp;&nbsp;focus: [<span class="string">"Deep Learning"</span>, <span class="string">"RecSys"</span>, <span class="string">"LLM"</span>, <span class="string">"Agent"</span>]<br>
+          };
+        </div>
+        <h1>算法工程与技术笔记</h1>
+        <p class="hero-subtitle">记录深度学习、推荐系统、大模型与 AI Agent 的实践与思考</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">技术分类</h2>
+        <div class="category-grid">
+          <a href="/dl.html" class="category-card">
+            <div class="category-icon">🧠</div>
+            <div class="category-name">深度学习</div>
+            <div class="category-desc">神经网络、优化算法</div>
+          </a>
+          <a href="recsys.html" class="category-card">
+            <div class="category-icon">📊</div>
+            <div class="category-name">推荐算法</div>
+            <div class="category-desc">召回、排序、特征工程</div>
+          </a>
+          <a href="llm.html" class="category-card">
+            <div class="category-icon">🤖</div>
+            <div class="category-name">大模型</div>
+            <div class="category-desc">LLM、推理优化、对齐</div>
+          </a>
+          <a href="agent.html" class="category-card">
+            <div class="category-icon">⚡</div>
+            <div class="category-name">Agent</div>
+            <div class="category-desc">工具调用、多智能体</div>
+          </a>
+        </div>
+      </section>
+
+      
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-copy">© 2025 Jinbao. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
