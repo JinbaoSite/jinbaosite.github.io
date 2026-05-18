@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度学习 - Jinbao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="/" class="logo"><div class="logo-icon">J</div><span>Jinbao</span></a>
+    </div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="dl.html" class="active">深度学习</a>
+      <a href="recsys.html">推荐算法</a>
+      <a href="llm.html">大模型</a>
+      <a href="agent.html">Agent</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </header>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">首页</a><a href="dl.html" class="active">深度学习</a><a href="recsys.html">推荐算法</a><a href="llm.html">大模型</a><a href="agent.html">Agent</a><a href="about.html">关于</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <h1>深度学习</h1>
+        <p class="hero-subtitle">神经网络、优化算法、归一化技术等深度学习核心技术的深入探讨</p>
+      </section>
+    </div>
+    <div class="container" id="articleContainer">
+      <h2 class="section-title">最新文章</h2>
+      <div class="article-list">
+        <a href="#" class="article-card">
+          <div class="article-header"><span class="article-title">推荐系统召回策略：双塔模型与向量检索实践</span><span class="article-date">2025-05-08</span></div>
+          <p class="article-desc">详解双塔模型结构、向量索引构建、在线服务部署，以及工业级召回系统的工程实践。</p>
+          <div class="article-tags"><span class="article-tag">推荐算法</span></div>
+        </a>
+        <a href="#" class="article-card">
+          <div class="article-header"><span class="article-title">DeepFM：融合因子分解机与深度学习的排序模型</span><span class="article-date">2025-05-05</span></div>
+          <p class="article-desc">从 FM 到 DeepFM，解析低维特征交互与高维特征交互的联合建模方法。</p>
+          <div class="article-tags"><span class="article-tag">推荐算法</span></div>
+        </a>
+        <a href="#" class="article-card">
+          <div class="article-header"><span class="article-title">YouTube 推荐系统：深度学习落地实践</span><span class="article-date">2025-04-30</span></div>
+          <p class="article-desc">详解 YouTube 推荐系统的召回-排序两阶段架构与工程实现细节。</p>
+          <div class="article-tags"><span class="article-tag">推荐算法</span></div>
+        </a>
+        <a href="#" class="article-card">
+          <div class="article-header"><span class="article-title">图神经网络在推荐系统中的应用</span><span class="article-date">2025-04-25</span></div>
+          <p class="article-desc">GraphSAGE、GAT 等图神经网络如何解决协同过滤的稀疏性问题。</p>
+          <div class="article-tags"><span class="article-tag">推荐算法</span></div>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container"><div class="footer-content"><div class="footer-copy">© 2025 Jinbao. All rights reserved.</div></div></div>
+    </footer>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+  </script>
+</body>
+</html>
