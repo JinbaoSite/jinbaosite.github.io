@@ -1,11 +1,11 @@
-- title: "Home"
+- title: "首页"
   url: "/"
 
-- title: "Recsys"
+- title: "推荐算法"
   url: "/recsys"
   
-- title: "Projects"
+- title: "项目"
   url: "/projects"
   
-- title: "About"
+- title: "关于"
   url: "/about"
