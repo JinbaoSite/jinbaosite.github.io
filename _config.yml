@@ -6,8 +6,12 @@ email: jinbaosite@163.com
 menus:
   - title: 首页
     url: /
+  - title: 深度学习
+    url: /dl
   - title: 推荐算法
     url: /recsys
+  - title: Agent
+    url: /agent
   - title: 项目
     url: /projects
   - title: 关于
