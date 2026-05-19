@@ -451,7 +451,7 @@
     footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border);
-      padding: 40px 0;
+      padding: 10px 0;
       margin-top: 80px;
     }
 
@@ -461,7 +461,7 @@
       align-items: center;
     }
 
-    .footer-copy { font-size: 13px; color: var(--text-muted); text-align: center; }
+    .footer-copy { font-size: 18px; color: var(--text-muted); text-align: center; }
 
     /* Responsive */
     @media (max-width: 768px) {
