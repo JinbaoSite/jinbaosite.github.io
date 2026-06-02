@@ -488,6 +488,59 @@
       background: var(--bg-card-hover);
     }
 
+/* ── 行内代码 ── */
+code {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: rgba(175,184,193,.2);
+  padding: .2em .4em;
+  border-radius: 6px;
+  color: var(--text);
+}
+
+/* ── 代码块 ── */
+.language-python,
+.language-plaintext {
+  margin: 0 0 16px;
+}
+
+.highlight pre, pre.highlight {
+  background: var(--bg-code) !important;
+  border: 1px solid var(--border-code);
+  border-radius: var(--radius);
+  padding: 16px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: .85em;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+/* 代码块内 code 不重复样式 */
+.highlight pre code, pre.highlight code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* 语法高亮 — GitHub Light */
+.highlight .c1  { color: #6e7781; font-style: italic; }
+.highlight .kn,
+.highlight .kc,
+.highlight .k   { color: #cf222e; }
+.highlight .nn  { color: #953800; }
+.highlight .n   { color: var(--text); }
+.highlight .s, .highlight .s1,
+.highlight .s2, .highlight .sa { color: #0a3069; }
+.highlight .mi  { color: #0550ae; }
+.highlight .o   { color: var(--text); }
+.highlight .p   { color: var(--text); }
+.highlight .nb  { color: #8250df; }
+.highlight .si  { color: #0a3069; }
+
+
     /* Footer */
     footer {
       background: var(--bg-secondary);
