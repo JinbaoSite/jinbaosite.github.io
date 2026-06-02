@@ -490,12 +490,12 @@
 
 /* ── 行内代码 ── */
 code {
-  font-family: var(--mono);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   font-size: .85em;
   background: rgba(175,184,193,.2);
   padding: .2em .4em;
   border-radius: 6px;
-  color: var(--text);
+  color: #1f2328;
 }
 
 /* ── 代码块 ── */
@@ -505,15 +505,15 @@ code {
 }
 
 .highlight pre, pre.highlight {
-  background: var(--bg-code) !important;
-  border: 1px solid var(--border-code);
-  border-radius: var(--radius);
+  background: #f6f8fa !important;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
   padding: 16px;
   overflow-x: auto;
-  font-family: var(--mono);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   font-size: .85em;
   line-height: 1.45;
-  color: var(--text);
+  color: #1f2328;
 }
 
 /* 代码块内 code 不重复样式 */
@@ -531,12 +531,12 @@ code {
 .highlight .kc,
 .highlight .k   { color: #cf222e; }
 .highlight .nn  { color: #953800; }
-.highlight .n   { color: var(--text); }
+.highlight .n   { color: #1f2328; }
 .highlight .s, .highlight .s1,
 .highlight .s2, .highlight .sa { color: #0a3069; }
 .highlight .mi  { color: #0550ae; }
-.highlight .o   { color: var(--text); }
-.highlight .p   { color: var(--text); }
+.highlight .o   { color: #1f2328; }
+.highlight .p   { color: #1f2328; }
 .highlight .nb  { color: #8250df; }
 .highlight .si  { color: #0a3069; }
 
