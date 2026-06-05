@@ -3,11 +3,11 @@ layout: listpage
 title: 推荐算法
 subtitle: 召回、排序、生成式推荐核心技术的深入探讨
 article-list:
-  - article-title: 推荐系统召回策略：双塔模型与向量检索实践
-    article-url: #
-    article-date: 2025-05-08
-    article-desc: 详解双塔模型结构、向量索引构建、在线服务部署，以及工业级召回系统的工程实践。
-    article-tags: [召回]
+  - article-title: AutoInt：用自注意力机制自动学习特征交互
+    article-url: /recsys/autoint
+    article-date: 2026-06-05
+    article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。。
+    article-tags: [精排, 特征交叉]
   - article-title: 深度模型Wide&Deep模型
     article-url: /recsys/wdl
     article-date: 2023/9/28
