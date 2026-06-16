@@ -459,8 +459,6 @@
       color: var(--text-secondary);
     }
 
-    blockquote p:last-child { margin-bottom: 0; }
-
     ul,
     ol {
       margin: 12px 0;
