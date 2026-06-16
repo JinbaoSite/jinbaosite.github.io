@@ -12,7 +12,7 @@
     </div>
     <div class="container" id="articleContainer">
       <h2 class="section-title">最新文章</h2>
-      <div class="article-list">
+      <div class="article-list" id="articleList">
         {% for article in page.article-list %}
         <a href="{{ article.article-url }}" class="article-card">
           <div class="article-header">
@@ -28,35 +28,101 @@
         </a>
         {% endfor %}
       </div>
-    </div>
 
+      <!-- 分页组件 -->
+      <nav class="pagination" id="pagination" aria-label="文章分页"></nav>
+    </div>
     {% include footer.html %}
   </main>
 
   <script>
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileNav = document.getElementById('mobileNav');
+    /* ── 导航高亮 ── */
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav  = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
 
-  // 切换移动端菜单显示
-  menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+    const currentUrl = "{{ page.url }}";
+    document.querySelectorAll('header nav a, .mobile-nav a').forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href === '/' && currentUrl === '/') link.classList.add('active');
+      else if (href !== '/' && currentUrl.startsWith(href)) link.classList.add('active');
+    });
 
-  // 设置导航高亮（支持子页面高亮）
-  const currentUrl = "{{ page.url }}"; // Jekyll/Liquid 渲染当前页面 URL
-  const navLinks = document.querySelectorAll('header nav a, .mobile-nav a');
+    /* ── 分页逻辑 ── */
+    (function () {
+      const PER_PAGE   = 10;                     // 每页文章数，可按需调整
+      const SCROLL_TOP = true;                   // 翻页后是否滚动到列表顶部
+      const SIBLING    = 1;                      // 当前页左右各显示几个页码
 
-  navLinks.forEach(link => {
-    // 移除所有已有 active 类
-    link.classList.remove('active');
+      const list        = document.getElementById('articleList');
+      const pagination  = document.getElementById('pagination');
+      const allCards    = Array.from(list.querySelectorAll('.article-card'));
+      const totalPages  = Math.ceil(allCards.length / PER_PAGE);
+      let   currentPage = 1;
 
-    const href = link.getAttribute('href');
+      /* 只显示当前页的卡片 */
+      function renderCards() {
+        const start = (currentPage - 1) * PER_PAGE;
+        allCards.forEach((card, i) => {
+          card.style.display = (i >= start && i < start + PER_PAGE) ? '' : 'none';
+        });
+      }
 
-    // 如果 href 是 / 开头的路径，并且 currentUrl 以 href 开头，则高亮
-    if (href === "/" && currentUrl === "/") {
-      link.classList.add('active'); // 首页单独处理
-    } else if (href !== "/" && currentUrl.startsWith(href)) {
-      link.classList.add('active');
-    }
-  });
-</script>
+      /* 生成省略号安全的页码序列 */
+      function pageRange() {
+        const lo  = Math.max(2, currentPage - SIBLING);
+        const hi  = Math.min(totalPages - 1, currentPage + SIBLING);
+        const nums = [];
+        if (lo > 2) nums.push('…');
+        for (let p = lo; p <= hi; p++) nums.push(p);
+        if (hi < totalPages - 1) nums.push('…');
+        return [1, ...nums, ...(totalPages > 1 ? [totalPages] : [])];
+      }
+
+      /* 渲染分页条 */
+      function renderPagination() {
+        if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+
+        const range = pageRange();
+        const btn = (label, page, cls = '') => {
+          if (label === '…') return `<span class="page-ellipsis" aria-hidden="true">…</span>`;
+          const isCur = page === currentPage;
+          return `<button
+            class="page-btn${cls}${isCur ? ' active' : ''}"
+            data-page="${page}"
+            aria-label="第 ${page} 页"
+            ${isCur ? 'aria-current="page"' : ''}
+            ${(cls.includes('prev') && currentPage === 1) || (cls.includes('next') && currentPage === totalPages) ? 'disabled' : ''}
+          >${label}</button>`;
+        };
+
+        pagination.innerHTML =
+          btn('‹ 上一页', currentPage - 1, ' nav prev') +
+          range.map(p => btn(p === '…' ? '…' : p, p)).join('') +
+          btn('下一页 ›', currentPage + 1, ' nav next') +
+          `<span class="page-info">第 ${currentPage} / ${totalPages} 页 · 共 ${allCards.length} 篇</span>`;
+      }
+
+      /* 跳页入口 */
+      function goTo(page) {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        currentPage = page;
+        renderCards();
+        renderPagination();
+        if (SCROLL_TOP) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      /* 事件委托：点击分页条内任意按钮 */
+      pagination.addEventListener('click', e => {
+        const btn = e.target.closest('[data-page]');
+        if (btn && !btn.disabled) goTo(Number(btn.dataset.page));
+      });
+
+      /* 初始化 */
+      renderCards();
+      renderPagination();
+    })();
+  </script>
 </body>
 </html>
