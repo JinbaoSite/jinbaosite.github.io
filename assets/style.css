@@ -443,10 +443,6 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
     strong { font-weight: 600; }
     em { font-style: italic; }
 
