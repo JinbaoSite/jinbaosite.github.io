@@ -153,9 +153,9 @@ $$
 
 | 概念                | 公式                                  | 单位        |            |
 | ----------------- | ----------------------------------- | --------- | ---------- |
-| **序列概率**          | $P(t_1,...,t_n) = \prod_i P(t_i     | C_i)$     | -          |
-| **对数似然**          | $\log P = \sum_i \log P(t_i         | C_i)$     | nats       |
-| **Cross-Entropy** | $H = -\frac{1}{N} \sum_i \log P(t_i | C_i)$     | nats/token |
+| **序列概率**          | $P(t_1,...,t_n) = \prod_i P(t_i \| C_i)$     | -          |
+| **对数似然**          | $\log P = \sum_i \log P(t_i \| C_i)$     | nats       |
+| **Cross-Entropy** | $H = -\frac{1}{N} \sum_i \log P(t_i \| C_i)$     | nats/token |
 | **Perplexity**    | $\text{PPL} = 2^H$                  | -         |            |
 | **Bits-per-byte** | $H / \ln 2 / \text{bytes}$          | bits/byte |            |
 
