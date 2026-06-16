@@ -599,6 +599,56 @@
 
     .footer-copy { font-size: 16px; color: var(--text-muted); text-align: center; }
 
+    /* ── 分页 ── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2.5rem;
+      padding-bottom: 1rem;
+    }
+    
+    .page-btn {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #333;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .page-btn:hover:not(:disabled) {
+      background: #f5f5f5;
+      border-color: #bbb;
+    }
+    .page-btn.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+      font-weight: 500;
+      cursor: default;
+    }
+    .page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .page-ellipsis {
+      padding: 0 4px;
+      color: #999;
+      font-size: 14px;
+      line-height: 36px;
+    }
+    .page-info {
+      font-size: 13px;
+      color: #888;
+      margin-left: 8px;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 { font-size: 32px; }
