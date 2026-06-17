@@ -11,6 +11,6 @@ article-list:
   - article-title: 字节对编码(BPE):一种简单而高效的开放词表分词方法
     article-url: /dl/bpe
     article-date: 2026-06-17
-    article-desc: BPE 从单个字符出发,反复将语料中最高频的相邻片段对合并为新片段,直到词表达到目标大小,从而自动学出一套子词切分。
+    article-desc: 从最小的符号单元出发,反复将训练语料中共现频率最高的相邻符号对合并为一个新符号,直至词表达到预设规模。
     article-tags: [BPE]
 ---
