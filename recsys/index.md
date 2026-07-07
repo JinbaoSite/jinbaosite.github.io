@@ -1,7 +1,7 @@
 ---
 layout: listpage
 title: 推荐算法
-subtitle: 召回、排序、生成式推荐核心技术的深入探讨
+subtitle: 召回、排序、重排、序列推荐、多目标优化、生成式推荐
 article-list:
   - article-title: AutoInt：用自注意力机制自动学习特征交互
     article-url: /recsys/autoint
