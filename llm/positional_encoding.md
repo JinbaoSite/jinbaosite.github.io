@@ -193,6 +193,8 @@ class SinusoidalPositionalEncoding(torch.nn.Module):
 
 旋转位置编码（Rotary Position Embedding，RoPE）由 Su 等人在论文《RoFormer: Enhanced Transformer with Rotary Position Embedding》（2022）中提出，是目前大语言模型（如 LLaMA、Baichuan、Mistral 等）中最主流的位置编码技术之一。它的核心思想是：通过在复数空间中旋转 Query 和 Key 向量，将绝对位置信息自然地转化为相对位置信息。
 
+![ROPE](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/rope.png)
+
 ### 4.1 核心数学思想
 
 RoPE 的核心目标是：**通过一个变换函数 $f(x, \text{pos})$，将位置信息编码到向量中，使得变换后的向量进行点积运算时，结果只依赖于相对位置。**
@@ -241,7 +243,7 @@ $$\begin{bmatrix} \tilde{q}_{2i} \\ \tilde{q}_{2i+1} \end{bmatrix} = \begin{bmat
 
 展开后的计算结果为：
 
-- $\bar q_{2i} = q_{2i} \text{cos}(m\theta_i) - q_{2i+1} \text{sin}(m\theta_i)$
+- $\bar q_{2i} = q_{2i} \cos(m\theta_i) - q_{2i+1} \sin(m\theta_i)$
 - $\bar q_{2i+1} = q_{2i} \sin(m\theta_i) + q_{2i+1} \cos(m\theta_i)$
 
 将所有子空间旋转后的结果重新拼接，就得到了带有位置 $m$ 信息的全维度向量 $\tilde{q}_m$。
