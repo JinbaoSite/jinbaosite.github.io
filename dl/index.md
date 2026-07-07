@@ -1,7 +1,7 @@
 ---
 layout: listpage
 title: 深度学习
-subtitle: 神经网络、优化算法
+subtitle: CNN、Transformer、训练优化
 article-list:
   - article-title: Measuring a Language Model（Perplexity 详解）
     article-url: /dl/perplexity
