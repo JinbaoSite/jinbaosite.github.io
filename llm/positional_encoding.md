@@ -241,8 +241,8 @@ $$\begin{bmatrix} \tilde{q}_{2i} \\ \tilde{q}_{2i+1} \end{bmatrix} = \begin{bmat
 
 展开后的计算结果为：
 
-* $\tilde{q}_{2i} = q_{2i} \cos(m\theta_i) - q_{2i+1} \sin(m\theta_i)$
-* $\tilde{q}_{2i+1} = q_{2i} \sin(m\theta_i) + q_{2i+1} \cos(m\theta_i)$
+- $\tilde{q}_{2i} = q_{2i} \cos(m\theta_i) - q_{2i+1} \sin(m\theta_i)$
+- $\tilde{q}_{2i+1} = q_{2i} \sin(m\theta_i) + q_{2i+1} \cos(m\theta_i)$
 
 将所有子空间旋转后的结果重新拼接，就得到了带有位置 $m$ 信息的全维度向量 $\tilde{q}_m$。
 
