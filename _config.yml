@@ -8,6 +8,8 @@ menus:
     url: /
   - title: 深度学习
     url: /dl
+  - title: LLM
+    url: /llm
   - title: 推荐算法
     url: /recsys
   - title: Agent
