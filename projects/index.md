@@ -1,7 +1,7 @@
 ---
 layout: listpage
 title: 项目
-subtitle: 神经网络、优化算法、归一化技术等深度学习核心技术的深入探讨
+subtitle: 实战项目、系统设计、工程实践
 article-list:
   - article-title: Kaggle比赛 - Kannada MNIST
     article-url: /projects/kannada-mnist
