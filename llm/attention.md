@@ -1,6 +1,6 @@
-# Transformer 注意力机制研究综述
+# Transformer 注意力机制
 
-注意力机制（Attention）作为 Transformer 架构的核心组件，自提出以来一直是自然语言处理领域的研究热点。本文围绕 Transformer 中的四种注意力机制展开综述：Scaled Dot-Product Attention、Multi-Head Attention、Multi-Query Attention 以及 Grouped-Query Attention。
+注意力机制（Attention）作为 Transformer 架构的核心组件，自提出以来一直是自然语言处理领域的研究热点。本文围绕 Transformer 中的四种注意力机制展开：Scaled Dot-Product Attention、Multi-Head Attention、Multi-Query Attention 以及 Grouped-Query Attention。
 
 ## 1. Scaled Dot-Product Attention
 
