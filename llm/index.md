@@ -1,7 +1,7 @@
 ---
 layout: listpage
 title: LLM
-subtitle: Attention
+subtitle: 大语言模型、RAG、推理优化
 article-list:
   - article-title: Transformer 注意力机制
     article-url: /llm/attention
