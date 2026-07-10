@@ -560,7 +560,8 @@
     }
     .articleContainer table th:first-child,
     .articleContainer table td:first-child{
-        text-align:left;
+        padding:5px 5px;
+        text-align:center;
     }
     .articleContainer table td{
         padding:5px 5px;
