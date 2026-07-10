@@ -689,5 +689,5 @@
       .category-grid { grid-template-columns: repeat(2, 1fr); }
       nav { display: none; }
       .menu-toggle { display: flex; }
-      table{min-width:700px;}
+      table{max-width:700px;}
     }
