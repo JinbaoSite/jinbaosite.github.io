@@ -545,8 +545,41 @@
       object-fit: cover; 
       border-radius: 10px; 
     }
-    
+    /* 表格样式  */
     .articleContainer table {
+        width:100%;
+        border-collapse:collapse;
+        table-layout:fixed;
+        font-size:20px;
+    }
+    .articleContainer table thead{
+        border-top:2px solid #444;
+        border-bottom:2px solid #444;
+    }
+    .articleContainer table th{
+        padding:18px 20px;
+        font-weight:600;
+        text-align:center;
+    }
+    .articleContainer table th:first-child,
+    .articleContainer table td:first-child{
+        text-align:left;
+        width:180px;
+    }
+    .articleContainer table td{
+        padding:18px 20px;
+        text-align:center;
+    }
+    .articleContainer table tbody tr{
+        border-bottom:1px solid #d9d9d9;
+    }
+    .articleContainer table tbody tr:last-child{
+        border-bottom:2px solid #444;
+    }
+    .articleContainer table tbody tr.highlight td{
+        font-weight:bold;
+    }
+    /* .articleContainer table {
       width: 100%;
       border-collapse: collapse;
       background: var(--bg-card);
@@ -578,7 +611,7 @@
     }
     .articleContainer tr:hover td {
       background: var(--bg-card-hover);
-    }
+    } */
     /*  ------ articleContainer ------ */
 
 
@@ -656,4 +689,5 @@
       .category-grid { grid-template-columns: repeat(2, 1fr); }
       nav { display: none; }
       .menu-toggle { display: flex; }
+      table{min-width:700px;}
     }
