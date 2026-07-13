@@ -17,7 +17,7 @@ article-list:
     article-url: /agent/plan_and_solve
     article-date: 2026-04-08
     article-desc: Plan-and-Solve将任务解耦为两个阶段：首先是规划阶段，大模型对复杂问题进行全局分析，拆解并制定出结构化的多步骤行动计划；其次是执行阶段，智能体严格按照计划步骤线性推进，逐一调用工具并管理状态，直至产出最终答案。
-    article-tags: [reflection, agent]
+    article-tags: [Plan-and-Solve, agent]
   - article-title: 深入浅出大模型智能体经典范式：ReAct
     article-url: /agent/react
     article-date: 2026-04-08
