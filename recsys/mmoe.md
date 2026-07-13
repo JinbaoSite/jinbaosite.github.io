@@ -1,16 +1,14 @@
 # 多任务模型MMoE
 
-## 0 序言
+## 1 序言
 
 多任务学习就是通过共享表示信息，同时学习多个相关任务，使得这些任务取得比单独训练一个任务更好的效果，使得模型具有更好的效果。简单来说，就是把多个任务一起训练，共享一些参数，使得模型既能学习好自己的任务，同时又能借助其他任务，学到一些其他信息，使得模型效果更好，所以任务之间相关性越好，模型从其他任务中学到的其他有用的信息就越多，对于模型的提升就越明显。
 
----
-
-## 1 MMoE模型
+## 2 MMoE模型
 
 ![MMoE](https://cdn.jsdelivr.net/gh/JinbaoSite/jinbaosite.github.io@master/img/mmoe.png)
 
-#### 1.1 `Shared-Bottom Model`
+### 2.1 `Shared-Bottom Model`
 
 常见的多任务模型如图a所示，这个模型结构称之为`Shared-Bottom Model`，主要是共享底部参数，然后每个子任务分别对应一个`Tower Network`，最后各个任务输出自己的`Output`。用$f(x)$表示`Shared Bottom`，$h^{k}(x)$表示`Tower Network`,那么整个网络的输出表示为
 $$
@@ -19,7 +17,7 @@ $$
 
 `Shared-Bottom Model`的优点是浅层参数共享，互相补充学习，缺点是如果任务相关性很低，那么效果会负向。
 
-#### 1.2 `OMoE Model`
+### 2.2 `OMoE Model`
 
 `One-gate MoE model`的提出是为了解决`Shared-Bottom Model`不相关任务联合学习效果不佳的问题，结构如图b所示，它用一组`Expert Network`替换`Shared Bottom`结构，并且使用一个`Gate Network`控制一组`Expert Network`中每个`Expert`的概率，这样达到共享的目的，`Gate Network`的概率输出是任务相关性值。用$y_k$表示第$k$个任务的输出，$g(x)$表示`Gate Network`，$f_{i}(x)$表示第$i$个`Expert Network`的输出，那么
 门控网络`Gate Network`表示为
@@ -35,7 +33,7 @@ $$
 y_k = h^{k}(f^k(x))
 $$
 
-#### 1.3 `MMoE Model`
+### 2.3 `MMoE Model`
 
 `Multi-gate MoE`是在`OMoE`的结构上新增了多个`Gate Network`，对于每个任务都有自己独有的门控网络，结构如图c所示，`MoE`都是所有任务共享同一个门控网络，现在优化成每个任务拥有自己的门控网络，这样改进可以针对不同任务得到不同的`Experts`权重，从而实现对`Experts`的选择性利用，不同任务对应的门控网络可以学习到不同的`Experts`组合模式，因此模型更容易捕捉到子任务间的相关性和差异性，所以门控网络`Gate Network`输出表示为
 $$
@@ -46,9 +44,8 @@ $$
 f^k(x) = \sum_{i=1}^{n} g^{k}(x)_{i} f_i(x)
 $$
 
----
 
-## 2 MMoE代码实现
+## 3 MMoE代码实现
 
 官方代码实现地址：[keras-mmoe](https://github.com/drawbridge/keras-mmoe)
 
@@ -159,12 +156,9 @@ class MMoE(Layer):
         return outputs
 ```
 
-## 3 参考资料
+## 4 参考资料
 
-[1] [多任务学习之MMOE模型](https://zhuanlan.zhihu.com/p/145288000)
- 
-[2] [keras-mmoe](https://github.com/drawbridge/keras-mmoe)
- 
-[3] [MMoE视频简介的youtube地址](https://www.youtube.com/watch?v=Dweg47Tswxw)
- 
-[4] [Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts](https://dl.acm.org/doi/pdf/10.1145/3219819.3220007)
+- [1] [多任务学习之MMOE模型](https://zhuanlan.zhihu.com/p/145288000)
+- [2] [keras-mmoe](https://github.com/drawbridge/keras-mmoe)
+- [3] [MMoE视频简介的youtube地址](https://www.youtube.com/watch?v=Dweg47Tswxw)
+- [4] [Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts](https://dl.acm.org/doi/pdf/10.1145/3219819.3220007)
