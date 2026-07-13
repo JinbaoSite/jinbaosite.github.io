@@ -1,6 +1,6 @@
 # CVR预估模型ESMM
 
-## 0 序言
+## 1 序言
 
 广告的链路通常是曝光(impression)->点击(click)->转化(conversion)，所以通常会需要开发两种模型CTR模型和CVR模型，CTR模型是取所有的曝光数据为样本空间进行模型建模，CVR模型是取从所有点击数据为样本空间做模型建模。CVR模型相比CTR模型有两个问题：
 
@@ -8,9 +8,7 @@
 ![](https://s3.bmp.ovh/imgs/2022/03/cd50674a114fc826.png)
 2. `Data Sparsity (DS)`，即数据的稀疏性，CVR模型建模的数据量仅仅可能只占实际预测数据的百分之几，而且CVR模型中的正样本数据数量也很小，存在正样本数据稀疏。
 
----
-
-## 1 ESMM网络结构
+## 2 ESMM网络结构
 
 ![ESMM模型结构](/img/esmm.png)
 
@@ -46,8 +44,7 @@ $$
 loss = loss_{ctr} + \lambda * loss_{ctcvr}
 $$
 
-## 2 参考资料
+## 3 参考资料
 
-[1] [Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate](https://arxiv.org/pdf/1804.07931.pdf)
-
-[2] [阿里CVR预估模型之ESMM](https://zhuanlan.zhihu.com/p/57481330)
+- [1] [Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate](https://arxiv.org/pdf/1804.07931.pdf)
+- [2] [阿里CVR预估模型之ESMM](https://zhuanlan.zhihu.com/p/57481330)
