@@ -571,6 +571,10 @@
     .articleContainer tbody tr:nth-child(even) {
       background: #fafafa;
     }
+    /* 可选:悬停高亮 */
+    .articleContainer tbody tr:hover {
+      background: #f2f4f7;
+    }
     
     /* 移动端横向滚动,避免撑破版面 */
     .articleContainer .table-wrapper {
