@@ -37,7 +37,7 @@ FM算法的缺点也非常明显，只扩展了二阶特征交叉，没办法进
 ## 3 FM实现
 
 基于tensorflow/keras的实现
-```
+```python
 class FM_Layer(Layer):
     def __init__(self, layer_name="fm"):
         self.layer_name = layer_name
