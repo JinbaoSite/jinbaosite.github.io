@@ -46,6 +46,8 @@
 
 ## 📊 GitHub Analytics
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=JinbaoSite)](https://github.com/JinbaoSite/github-readme-stats)
+
 <p align="center">
   <img height="170" src="https://github-readme-stats.vercel.app/api?username=JinbaSite&show_icons=true&hide_border=true&rank_icon=github" alt="Jinbao's GitHub Stats" />
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=JinbaoSite&layout=compact&hide_border=true" alt="Top Languages" />
