@@ -13,7 +13,7 @@ article-list:
     article-date: 2026-04-08
     article-desc: Reflection范式在智能体架构中引入了“事后自我校正循环”。它将流程解耦为执行、反思与优化三阶段：首先由执行器生成初始解答；随后反思器化身评审员，从逻辑、事实等维度批判性地指出缺陷并给出建议；最后执行器结合反馈定向修正，通过迭代循环实现自我进化与结果优化。
     article-tags: [reflection, agent]
-  - article-title: 解锁大模型智能体的高阶范式Plan-and-Solve
+  - article-title: 解锁大模型智能体的高阶范式：Plan-and-Solve
     article-url: /agent/reflection
     article-date: 2026-04-08
     article-desc: Plan-and-Solve将任务解耦为两个阶段：首先是规划阶段，大模型对复杂问题进行全局分析，拆解并制定出结构化的多步骤行动计划；其次是执行阶段，智能体严格按照计划步骤线性推进，逐一调用工具并管理状态，直至产出最终答案。
