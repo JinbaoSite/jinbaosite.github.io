@@ -16,6 +16,7 @@ $$
 ## 2 FM算法原理
 
 因子分解机FM算法的基本原理是**权重系数$w_{ij}$可以分解成一个$k \times 1$向量的转置乘另一个$k \times 1$向量，或者两个$k \times 1$向量的内积**，即$w_{ij}=V_i^T V_j=<v_i , v_j>=\sum_{t=1}^k v_{it} v_{jt}$，分解出来的$k \times 1$向量$v_i$称之为特征$x_i$的**隐向量**，那么
+
 $$
 \begin{aligned}
 \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} w_{ij}x_i x_j &=  \frac{1}{2} (\sum_{i=1}^n \sum_{j=1}^n w_{ij} x_i x_j - \sum_{i=1}^n w_{ii} x_i x_i)  \\
