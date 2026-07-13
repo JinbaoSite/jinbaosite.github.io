@@ -1,6 +1,6 @@
 # Agent Skills 完整指南
 
-## 一、什么是 Agent Skills？
+## 1 Agent Skills定义
 
 **Agent Skills** 是 Anthropic 提出的**开放标准**，用于给 AI Agent 扩展专业化能力和工作流程。
 
@@ -19,7 +19,7 @@ my-skill/
 
 ---
 
-## 二、为什么需要 Agent Skills？
+## 2 Agent Skills作用
 
 Agent 越来越强大，但**缺乏完成真实工作所需的上下文**。Skill 解决这一问题：
 
@@ -31,7 +31,7 @@ Agent 越来越强大，但**缺乏完成真实工作所需的上下文**。Skil
 
 ---
 
-## 三、如何工作：渐进式披露
+## 3 Agent Skill工作：渐进式披露
 
 Agent 通过**三阶段渐进式加载**技能：
 
@@ -45,16 +45,16 @@ Agent 通过**三阶段渐进式加载**技能：
 
 ---
 
-## 四、SKILL.md 格式详解
+## 4 SKILL.md 格式详解
 
-### Frontmatter 必填字段
+### 4.1 Frontmatter 必填字段
 
 | 字段 | 约束 |
 |------|------|
 | **name** | 最多 64 字符，仅小写字母+数字+连字符，不能以连字符开头/结尾，不能有连续 `--` |
 | **description** | 最多 1024 字符，非空，描述技能做什么 + 何时使用 |
 
-### 可选字段
+### 4.2 可选字段
 
 | 字段 | 说明 |
 |------|------|
@@ -63,7 +63,7 @@ Agent 通过**三阶段渐进式加载**技能：
 | `metadata` | 任意 key-value 映射（author、version 等） |
 | `allowed-tools` | 预批准可执行工具列表（实验性） |
 
-### 示例
+### 4.3 示例
 
 ```yaml
 ---
@@ -79,9 +79,8 @@ metadata:
 ---
 ```
 
----
 
-## 五、最佳实践核心原则
+## 5 最佳实践核心原则
 
 ### 5.1 从真实专业知识出发
 
@@ -164,11 +163,9 @@ metadata:
 - 详细参考材料 → 放到 `references/` 目录
 - 告诉 agent **何时**加载哪个文件（"if API returns non-200, read references/api-errors.md"）
 
----
+## 6 技能输出质量评估
 
-## 六、技能输出质量评估
-
-### 测试用例结构
+### 6.1 测试用例结构
 
 ```json
 {
@@ -189,7 +186,7 @@ metadata:
 }
 ```
 
-### 评估流程
+### 6.2 评估流程
 
 1. **运行两次**：一次有 skill，一次无 skill（baseline）
 2. **收集 timing**：token 消耗和耗时
@@ -197,7 +194,7 @@ metadata:
 4. **分级**：PASS/FAIL + 证据
 5. **聚合**：pass rate、delta、stddev
 
-### 断言原则
+### 6.3 断言原则
 
 | ✅ 强断言 | ❌ 弱断言 |
 |-----------|-----------|
@@ -205,7 +202,7 @@ metadata:
 | "Chart has labeled axes" | "Uses exactly phrase 'Total Revenue'" |
 | "Report includes at least 3 recommendations" | - |
 
-### 分析模式
+### 6.4 分析模式
 
 | 信号 | 行动 |
 |------|------|
@@ -214,7 +211,7 @@ metadata:
 | 有 skill 通过 / 无 skill 失败 | 这是技能真正带来的价值 |
 | 时间/token 异常高 | 读执行 transcript 找瓶颈 |
 
-### 迭代循环
+### 6.5 迭代循环
 
 ```
 评估当前描述 → 识别 train 集失败 → 改进 description
@@ -224,22 +221,20 @@ metadata:
 当 pass rate 稳定或无明显改善时停止
 ```
 
----
+## 7. 描述优化详解
 
-## 七、描述优化详解
-
-### 触发原理
+### 7.1 触发原理
 
 description 是 agent **决定是否加载技能的唯一依据**。描述不精确 → 该触发时没触发 / 不该触发时乱触发。
 
-### 写作原则
+### 7.2 写作原则
 
 - **用命令式**："Use this skill when..." 而非 "This skill does..."
 - **聚焦用户意图**，不聚焦实现细节
 - **宁多勿少**：明确列出适用场景（包括用户没有直接提到领域关键词的情况）
 - **保持简洁**：几句话到一段落，< 1024 字符
 
-### 评估查询集
+### 7.3 评估查询集
 
 ```json
 [
@@ -252,12 +247,12 @@ description 是 agent **决定是否加载技能的唯一依据**。描述不精
 - **should-not-trigger**：关键词重叠但任务不同的 near-miss（如"Excel editing" vs "CSV analysis"）
 - 每个 query 运行 3 次，计算触发率
 
-### 训练/验证分离
+### 7.4 训练/验证分离
 
 - **Train set（60%）**：引导改进方向
 - **Validation set（40%）**：检查改进是否泛化（不要用它来调优）
 
-### 常见失败
+### 7.5 常见失败
 
 | 失败类型 | 原因 | 解决方案 |
 |----------|------|----------|
@@ -265,13 +260,11 @@ description 是 agent **决定是否加载技能的唯一依据**。描述不精
 | should-not-trigger 误触发 | 描述太宽 | 增加边界描述 |
 | 过拟合 | 用了 query 中的具体关键词 | 泛化到类别/概念层面 |
 
----
-
-## 八、支持 Agent Skills 的产品
+## 8 支持 Agent Skills 的产品
 
 Agent Skills 已形成**生态**。按类别整理：
 
-### AI Coding Agent / IDE
+### 8.1 AI Coding Agent / IDE
 
 | 产品 | 说明 |
 |------|------|
@@ -284,7 +277,7 @@ Agent Skills 已形成**生态**。按类别整理：
 | TRAE | 自适应 AI IDE |
 | Workshop | 跨平台 coding agent，多 LLM + 子 agent |
 
-### Terminal / CLI Agent
+### 8.2 Terminal / CLI Agent
 
 | 产品 | 说明 |
 |------|------|
@@ -295,7 +288,7 @@ Agent Skills 已形成**生态**。按类别整理：
 | OpenHands | 云端 coding agent，支持扩展到千量级 |
 | nanobot | 轻量跨平台 agent，支持 MCP |
 
-### 专业/垂直 Agent
+### 8.3 专业/垂直 Agent
 
 | 产品 | 说明 |
 |------|------|
@@ -305,7 +298,7 @@ Agent Skills 已形成**生态**。按类别整理：
 | Databricks Cortex Code | 数据工程/ML 专用 |
 | Agentman | 医疗工作流自动化 |
 
-### 框架/平台
+### 8.4 框架/平台
 
 | 产品 | 说明 |
 |------|------|
@@ -317,11 +310,9 @@ Agent Skills 已形成**生态**。按类别整理：
 
 - Kiro（规范驱动开发）、Qodo（代码质量审查）、Firebender（Android 原生 Agent）、Command Code（学习编码风格的个性化 agent）
 
----
+## 9 快速上手示例
 
-## 九、快速上手示例
-
-### 创建 roll-dice 技能
+### 9.1 创建 roll-dice 技能
 
 路径：`.agents/skills/roll-dice/SKILL.md`
 
@@ -344,9 +335,8 @@ echo $((RANDOM % <sides> + 1))
 
 在 VS Code 中开启 Copilot Chat → Agent 模式 → 输入 `/skills` 确认技能已加载 → 输入 "Roll a d20" 即可触发。
 
----
 
-## 十、核心设计哲学
+## 10 核心设计哲学
 
 > **Progressive Disclosure（渐进式披露）**是 Agent Skills 的核心。
 > - 启动时 agent 只知道每个 skill 的 name + description
@@ -354,8 +344,6 @@ echo $((RANDOM % <sides> + 1))
 > - 参考文件仅在需要时读取
 > 这使得 agent 可以管理大量技能而不浪费 context
 
----
-
-## 一句话总结
+## 11 总结
 
 > **Agent Skills 是一个轻量级、开放的 Agent 能力扩展标准，通过 SKILL.md + 可选脚本/资源文件，让 AI Agent 在需要时精确加载领域专业知识和工作流程，解决 agent 缺乏真实工作上下文的根本问题。**
