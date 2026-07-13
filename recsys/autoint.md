@@ -67,7 +67,7 @@ $$
 对某个特征 $m$,在第 $h$ 个注意力头下,它与特征 $k$ 的相关性用 query–key 内积衡量:
 
 $$
-\alpha^{(h)}_{m,k} = \frac{\exp\big(\psi^{(h)}(\mathbf{e}_m, \mathbf{e}_k)\big)}{\sum_{l=1}^{M}\exp\big(\psi^{(h)}(\mathbf{e}_m, \mathbf{e}_l)\big)} \newline
+\alpha^{(h)}_{m,k} = \frac{\exp\big(\psi^{(h)}(\mathbf{e}_m, \mathbf{e}_k)\big)}{\sum_{l=1}^{M}\exp\big(\psi^{(h)}(\mathbf{e}_m, \mathbf{e}_l)\big)} \\
 \qquad
 \psi^{(h)}(\mathbf{e}_m, \mathbf{e}_k) = \langle \mathbf{W}^{(h)}_{Q}\mathbf{e}_m,\; \mathbf{W}^{(h)}_{K}\mathbf{e}_k \rangle
 $$
