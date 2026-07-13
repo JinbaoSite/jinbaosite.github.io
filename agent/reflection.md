@@ -15,6 +15,7 @@ Reflection 机制的核心思想是在智能体架构中引入一个**事后（p
 
 这个循环可以重复进行，直到评审员无法发现新问题，或达到了预设的迭代上限。
 
+![Reflection 机制中的“执行-反思-优化”迭代循环](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/reflection.png)
 
 ## 2 核心架构与编码实现
 
