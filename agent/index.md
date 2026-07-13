@@ -8,6 +8,11 @@ article-list:
     article-date: 2026-04-08
     article-desc: 一个 skill 就是一个文件夹，其中包含 `SKILL.md` 文件。这个文件包含元数据（name、description）和指令，告诉 agent 如何执行特定任务。Skill 还可以捆绑脚本、参考资料、模板等资源。
     article-tags: [skill]
+  - article-title: 构建具备“反思”能力的 Reflection 智能体
+    article-url: /agent/reflection
+    article-date: 2026-04-08
+    article-desc: Reflection范式在智能体架构中引入了“事后自我校正循环”。它将流程解耦为执行、反思与优化三阶段：首先由执行器生成初始解答；随后反思器化身评审员，从逻辑、事实等维度批判性地指出缺陷并给出建议；最后执行器结合反馈定向修正，通过迭代循环实现自我进化与结果优化。
+    article-tags: [reflection, agent]
   - article-title: 解锁大模型智能体的高阶范式: Plan-and-Solve
     article-url: /agent/plan_and_solve
     article-date: 2026-04-08
