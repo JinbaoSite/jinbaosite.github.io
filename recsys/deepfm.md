@@ -21,7 +21,8 @@ $$
 
 ### 2.1 FM结构
 
-![FM结构](https://s1.ax1x.com/2022/04/28/LXue0O.png)
+![FM结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/d2_fn.svg)
+
 FM结构是由一阶的线性部分和二阶的交叉部分组成，一阶线性部分是给与每个特征一个权重，然后进行加权和；二阶交叉部分是对特征进行两两相乘，然后赋予权重加权求和。然后将两部分结果累加在一起即为FM的输出
 $$
 \begin{aligned}
@@ -31,7 +32,8 @@ $$
 
 ### 2.2 Deep结构
 
-![Deep结构](https://s1.ax1x.com/2022/04/28/LXMgfJ.png)
+![Deep结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/d3_deep.svg)
+
 Deep结构是一个DNN模型，主要用来学习高阶隐性特征交互，不同Sparse特征经过Embedding层映射成相同维度的Dense特征，经过多个隐藏层进行特征交互学习，最后经过sigmoid激活函数得到输出。
 
 
