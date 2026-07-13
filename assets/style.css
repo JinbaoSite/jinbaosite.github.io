@@ -547,6 +547,36 @@
     }
     /* 表格样式  */
     .articleContainer table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .articleContainer th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 2px solid #e2e2e2;
+    }
+    
+    .articleContainer td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    /* 数据多时可选:斑马纹 */
+    .articleContainer tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+    
+    /* 移动端横向滚动,避免撑破版面 */
+    .articleContainer .table-wrapper {
+      overflow-x: auto;
+    }
+    /* .articleContainer table {
         width:100%;
         border-collapse:collapse;
         table-layout:fixed;
@@ -575,7 +605,7 @@
     }
     .articleContainer table tbody tr.highlight td{
         font-weight:bold;
-    }
+    } */
     /* .articleContainer table {
       width: 100%;
       border-collapse: collapse;
