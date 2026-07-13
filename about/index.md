@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/badge/Stack-TensorFlow%20%7C%20SQL%20%7C%20Hive-orange" alt="Stack" />
 </p>
 
----
-
 ## 🧠 About Me
 
 - 🎯 Building **large-scale recommender systems** and **LLM-powered applications**
@@ -19,8 +17,6 @@
 - 📈 Exploring the intersection of **Quantitative Trading + AI Engineering**
 
 > Engineering first. Scalability and reliability over flashy prototypes.
-
----
 
 ## 🏗 Core Expertise
 
@@ -42,15 +38,11 @@
 - TensorFlow Serving deployment and performance tuning
 - Checkpoint compatibility during model/vocabulary expansion
 
----
-
 ## 🛠 Tech Stack
 
 - **Languages:** Python, SQL
 - **ML:** TensorFlow, custom training loops, distributed strategy
 - **Data & Infra:** Hive, real-time feature pipelines, high-throughput embedding services
-
----
 
 ## 📊 GitHub Analytics
 
@@ -59,8 +51,6 @@
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=JinbaoSite&layout=compact&hide_border=true" alt="Top Languages" />
 </p>
 
----
-
 ## 🚀 Current Focus
 
 - Real-time attention-based lookalike modeling
@@ -68,15 +58,11 @@
 - Streaming MT system optimization for low-latency inference
 - 0DTE quantitative strategy research with robust risk controls
 
----
-
 ## 📌 Engineering Principles
 
 - Production-grade > demo-grade
 - System design > model stacking
 - Stability and observability > leaderboard overfitting
-
----
 
 ## 📫 Contact
 
