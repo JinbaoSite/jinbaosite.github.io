@@ -1,41 +1,70 @@
 # 深度模型DeepFM模型
 
-## 1 序言
+## 1 背景
 
-Wide&Deep模型中Wide侧是一个广义线性模型，它具备捕获低阶特征交互的能力，通常是在特征向量中手动对低阶特征进行显性特征交互，但是它不能进行一些显性高阶特征交互以及一些很少出现在训练数据中的特征交互；而且Wide侧的输入依赖特征工程，更多需要人工进行设计特征输入，与Deep侧的输入无法进行输入共享。
+在 CTR 预估任务中，特征交叉至关重要。例如，“在下午 5 点”与“下载外卖 App”这两个特征之间存在强关联（高阶交叉）；而“男”和“游戏”也存在天然的弱关联（低阶交叉）。
 
-因子分解机（FM）将成对特征交互建模为特征之间潜在向量的内积，并显示出非常有前景的结果；虽然原则上FM可以模拟高阶特征交互，但在实践中，由于高度复杂，通常只考虑二阶特征交互。
+为了捕获这些交叉特征，业界经历了几代架构演进：
 
-## 2 DeepFM模型
+* **FM (Factorization Machines)**：擅长自动捕获二阶特征交叉，但在表达高阶（三阶及以上）非线性交叉时力不从心。
+* **DNN (Deep Neural Networks)**：理论上可以学习任意高阶特征交叉，但容易忽略低阶的简单关联，且容易对稀疏特征过拟合。
+* **Wide & Deep**：将线性模型（Wide 部分）与深度模型（Deep 部分）并联。然而，其 Wide 部分依然需要**人工构建交叉特征**（Cross-Product Transformations），这不仅耗时耗力，还依赖专家经验。
 
-DeepFM模型是在原有Wide&Deep模型结构上改造而来，将Wide侧的LR模型替换成FM模型结构，从而组成了DeepFM模型，而且FM结构和Deep结构的输入是共享输入，可以在没有任何特征工程的情况下进行端到端的训练。DeepFM模型结构图如下
+为了克服上述限制，华为诺亚方舟实验室于 2017 年提出了 **DeepFM**。其核心设计思想可以概括为两点：
+
+1. **并行双核驱动**：结合 FM（提取低阶特征）与 DNN（提取高阶特征）。
+2. **共享输入表征（Shared Embedding）**：FM 部分与 Deep 部分共享同一套稠密向量（Embedding）输入，无需任何人工特征工程，实现真正的端到端（End-to-End）训练。
+
+## 2 DeepFM模型架构 (Model Architecture)
+
+DeepFM 的整体架构非常优雅。它由 **FM Component** 和 **Deep Component** 两部分并联组成。
+
+对于一个给定的输入特征向量 $x$，DeepFM 的预测输出 $\hat{y} \in (0, 1)$ 计算公式如下：
+
+$$\hat{y} = \sigma(y_{FM} + y_{Deep})$$
+
+其中，$\sigma$ 为 Sigmoid 激活函数，$y_{FM}$ 为 FM 部分的输出，$y_{Deep}$ 为 Deep 部分的输出。
 
 ![DeepFM模型结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/deepfm.svg)
 
-DeepFM模型的输出有FM结构和Deep结构相加得到
-$$
-\begin{aligned}
-y = sigmoid(y_{FM} + y_{Deep})
-\end{aligned}
-$$
+### 2.1 共享 Embedding 机制
 
-### 2.1 FM结构
+DeepFM 的一大精妙之处在于其 **Shared Embedding**。
+
+- 输入数据通常是高维稀疏的一阶特征（One-hot 编码）。
+- 模型通过一个 Embedding 层将这些稀疏特征映射为低维稠密向量。
+- **关键点**：FM 的隐向量 $v_i$ 与 Deep 网络第一层的输入 Embedding 向量是**完全共享且协同训练的**。这保证了模型在梯度反向传播时，低阶和高阶特征的学习能相互促进。
+  
+### 2.2 FM结构
 
 ![FM结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/d2_fm.svg)
 
-FM结构是由一阶的线性部分和二阶的交叉部分组成，一阶线性部分是给与每个特征一个权重，然后进行加权和；二阶交叉部分是对特征进行两两相乘，然后赋予权重加权求和。然后将两部分结果累加在一起即为FM的输出
-$$
-\begin{aligned}
-y_{FM} = w_0 + \sum_{i=0}^n w_i x + \sum_{i=0}^{n} \sum_{j=i+1}^{n} <V_i, V_j> x_i x_j
-\end{aligned}
-$$
+FM 部分负责学习一阶（Linear）特征以及二阶（Pairwise）特征交叉。其表达式为：
 
-### 2.2 Deep结构
+$$y_{FM} = \langle w, x \rangle + \sum_{i=1}^{d} \sum_{j=i+1}^{d} \langle v_i, v_j \rangle x_i x_j$$
+
+- **一阶部分** $\langle w, x \rangle$：反映单一特征对目标的影响。
+- **二阶部分** $\sum \sum \langle v_i, v_j \rangle x_i x_j$：通过隐向量内积 $\langle v_i, v_j \rangle$ 自动计算特征 $i$ 和 $j$ 的二阶交叉强度。
+
+### 2.3 Deep结构
 
 ![Deep结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/d3_deep.svg)
 
-Deep结构是一个DNN模型，主要用来学习高阶隐性特征交互，不同Sparse特征经过Embedding层映射成相同维度的Dense特征，经过多个隐藏层进行特征交互学习，最后经过sigmoid激活函数得到输出。
+1. **输入层**：将所有 Sparse 特征对应的共享 Embedding 向量拼接（Concatenate）在一起，得到：
 
+$$a^{(0)} = [e_1, e_2, \dots, e_M]$$
+
+
+
+其中 $M$ 是特征域（Field）的数量，$e_i$ 是第 $i$ 个域的 Embedding 向量。
+2. **前向传播**：
+
+$$a^{(l+1)} = \text{Activation}(W^{(l)} a^{(l)} + b^{(l)})$$
+
+
+3. **输出层**：
+
+$$y_{Deep} = W^{\vert{}H\vert{}+1} a^{(\vert{}H\vert{})} + b^{(\vert{}H\vert{}+1)}$$
 
 ## 3 DeepFM实现
 
@@ -101,21 +130,13 @@ def DeepFM(linear_feature_num, dnn_feature_num, embedding_size, dnn_hidden_units
     return model
 ```
 
-## 4 DeepFM优缺点
+## 4 优势与创新点
 
-优点：
+| 特性 \ 模型 | LR | FM | Wide & Deep | DeepFM |
+| --- | --- | --- | --- | --- |
+| **低阶特征提取** | 手工构建 | 自动二阶 | 手工构建 | **自动一阶 & 二阶** |
+| **高阶特征提取** | 无法提取 | 无法提取 | 自动高阶 | **自动高阶** |
+| **共享 Embedding** | 无 | 无 | 否（两套输入） | **是（Shared Embedding）** |
+| **端到端训练** | 否 | 是 | 否（需要人工介入） | **是** |
 
- - 可以同时学习低阶和高阶特征交互信息
- - 不需要像Wide&Deep模型那样需要特征工程
-
-缺点：
-
- - 可以学习
-
-
-## 5 参考资料
-
-- [DeepFM: A Factorization-Machine based Nnetwork for CTR Prediction](https://www.ijcai.org/proceedings/2017/0239.pdf)
-- [推荐算法(四)——经典模型 DeepFM 原理详解及代码实践](https://zhuanlan.zhihu.com/p/361451464)
-- [深度推荐模型之DeepFM](https://zhuanlan.zhihu.com/p/57873613)
-- [基于DeepFM模型的Embedding](https://zhuanlan.zhihu.com/p/384156476)
+DeepFM 凭借其**无需人工特征工程**、**低阶与高阶特征兼顾**以及**共享Embedding**的优雅设计，在工业界（尤其是在算力与工程落地受限的中小团队）得到了极广泛的应用。时至今日，它依然是点击率预估及推荐算法工程师面试与实战中必谈的经典模型。
