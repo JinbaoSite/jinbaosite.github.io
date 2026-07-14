@@ -8,16 +8,7 @@ article-list:
     article-date: 2026-06-05
     article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。。
     article-tags: [精排, 特征交叉]
-  - article-title: 深度模型Wide&Deep模型
-    article-url: /recsys/wdl
-    article-date: 2023/9/28
-    article-desc: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征。
     article-tags: [召回]
-  - article-title: 深度模型Wide&Deep模型
-    article-url: /recsys/wdl
-    article-date: 2023/9/28
-    article-desc: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征
-    article-tags: [排序]
   - article-title: 多任务模型MMoE
     article-url: /recsys/mmoe
     article-date: 2020/12/13
@@ -28,6 +19,15 @@ article-list:
     article-date: 2020/08/24
     article-desc: 通过多任务学习，同时学习ctr和cvr，在完整样本空间上进行训练，避免了传统CVR模型经常遭遇的样本选择偏差和训练数据稀疏的问题
     article-tags: [排序]
+  - article-title: 深度模型DeepFM模型
+    article-url: /recsys/deepfm
+    article-date: 2023/2/7
+    article-desc: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征。
+  - article-title: 深度模型Wide&Deep模型
+    article-url: /recsys/wdl
+    article-date: 2023/1/28
+    article-desc: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征
+    article-tags: [Wide&Deep,排序]
   - article-title: YouTube 深度神经网络推荐系统架构
     article-url: /recsys/youtube_dnn
     article-date: 2023/1/21
