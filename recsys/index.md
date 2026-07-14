@@ -28,6 +28,11 @@ article-list:
     article-date: 2020/08/24
     article-desc: 通过多任务学习，同时学习ctr和cvr，在完整样本空间上进行训练，避免了传统CVR模型经常遭遇的样本选择偏差和训练数据稀疏的问题
     article-tags: [排序]
+  - article-title: YouTube 深度神经网络推荐系统架构
+    article-url: /recsys/youtube_dnn
+    article-date: 2023/1/21
+    article-desc: YouTube 深度神经网络推荐系统架构采用“召回+排序”的两阶段推荐：召回阶段将海量视频检索简化为“极端多分类”问题，引入 Example Age 特征消除时间偏置，通过高效近邻检索（ANN）粗滤出候选集；排序阶段则巧妙利用加权逻辑回归，将优化目标从点击率转化为“期望观看时长”，对候选视频进行精准打分。
+    article-tags: [DNN,ANN]
   - article-title: FM因子分解
     article-url: /recsys/fm
     article-date: 2023/1/14
