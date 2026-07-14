@@ -17,6 +17,8 @@ YouTube 拥有数以十亿计的用户和海量的视频资源。在如此庞大
 
 ### 2.1 召回阶段：极端多分类视角 (Candidate Generation as Extreme Multiclass Classification)
 
+![YouTube DNN召回](https://github.com/JinbaoSite/jinbaosite.github.io/blob/master/img/youtube_dnn_recall.png)
+
 YouTube 将召回阶段视作一个**超大规模的多分类问题**。在给定用户历史行为及上下文 $U$ 的情况下，预测用户在时刻 $t$ 观看第 $i$ 个视频（视频库为 $V$）的概率 $P$：
 
 $$P(w_t = i \mid U) = \frac{e^{v_i \cdot u}}{\sum_{j \in V} e^{v_j \cdot u}}$$
@@ -37,6 +39,8 @@ $$P(w_t = i \mid U) = \frac{e^{v_i \cdot u}}{\sum_{j \in V} e^{v_j \cdot u}}$$
 所有特征拼接（Concat）后，喂入多层全连接网络（ReLU 激活），逐层降维，最终输出用户向量 $u$。
 
 ### 2.2 排序阶段：精细化预估 (Ranking Network)
+
+![YouTube DNN召回](https://github.com/JinbaoSite/jinbaosite.github.io/blob/master/img/youtube_dnn_rank.png)
 
 排序阶段的目标是针对召回出的数百个视频进行精准打分。其网络架构与召回网络类似，但在**特征工程**和**目标函数设计**上更为精细。
 
