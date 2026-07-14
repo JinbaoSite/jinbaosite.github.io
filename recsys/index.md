@@ -19,6 +19,11 @@ article-list:
     article-date: 2020/08/24
     article-desc: 通过多任务学习，同时学习ctr和cvr，在完整样本空间上进行训练，避免了传统CVR模型经常遭遇的样本选择偏差和训练数据稀疏的问题
     article-tags: [排序]
+  - article-title: 深度兴趣网络Deep Interest Network (DIN)
+    article-url: /recsys/din
+    article-date: 2023/2/14
+    article-desc: DIN（深度兴趣网络）的核心原理在于引入局部激活机制（Local Activation）。 它改变了传统模型用固定向量粗暴压缩用户历史的行为，而是针对当前具体的候选广告，自适应地计算历史行为的注意力权重。候选广告与某个历史行为越相关，该行为被赋予的权重就越高，从而帮助模型精准提取出与当前广告匹配的局部用户兴趣。
+    article-tags: [DIN,排序]
   - article-title: 深度模型DeepFM模型
     article-url: /recsys/deepfm
     article-date: 2023/2/7
