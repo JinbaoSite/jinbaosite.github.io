@@ -36,12 +36,6 @@ $$\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \sum_{f=1}^k v_{i,f} v_{j,f}$$
 在传统多项式模型中，交叉项参数 $w_{ij}$ 的训练必须依赖特征 $x_i$ 和 $x_j$ 在训练集中同时出现（即 $x_i x_j \neq 0$）。
 而在 FM 模型中，交叉项的参数由 $\langle \mathbf{v}_i, \mathbf{v}_j \rangle$ 决定。即使在训练集中特征 $x_i$ 和 $x_j$ **从未共现过**，只要 $x_i$ 与其他特征共现过（从而训练了 $\mathbf{v}_i$），且 $x_j$ 也与其他特征共现过（从而训练了 $\mathbf{v}_j$），模型依然能够通过内积得出一个合理的、具备泛化性的交叉权重。这从根本上克服了稀疏数据对特征交叉参数训练的限制。
 
-FM算法为每个特征$x_i$学习了一个$k \times 1$的的隐向量，把原本要学习的参数$n^2$减少到了$nk$，极大的降低了训练开销；
-
-同时FM能更好地解决数据稀疏性的问题，假定样本中有两个特征$(X,Y)$，对于训练样本$(x_1, y_1)$，FM算法可以学习到$x_1$的隐向量和$y_1$的隐向量，计算得到权重系数$w_{11}$，对于训练样本$(x_2, y_2)$，FM算法可以学习到$x_2$的隐向量和$y_2$的隐向量，计算得到权重系数$w_{22}$，那么对于没有出现的训练样本$(x_1, y_2), (x_2, y_1)$，可以通过对$x_1$的隐向量和$y_2$的隐向量的内积得到样本$(x_1, y_2)$的权重系数$w_{12}$，以及对$x_2$的隐向量和$y_1$的隐向量的内积得到样本$(x_2, y_1)$的权重系数$w_{21}$，所以FM算法可以学习到训练样本中没有出现组合特征的权重系数，更好地解决了数据稀疏性问题。
-
-FM算法的缺点也非常明显，只扩展了二阶特征交叉，没办法进行更高阶的特征交叉。
-
 ## 3 FM实现
 
 在工程落地中，如何高效计算 FM 模型的二阶交叉项是能否实现工业级在线推断的关键。
@@ -87,24 +81,6 @@ $$\min_{\Theta} \mathcal{L} = \sum_{(\mathbf{x}, y) \in \mathcal{D}} \ln \left(1
 $$\frac{\partial \hat{y}(\mathbf{x})}{\partial \theta} = \begin{cases}  1, & \text{if } \theta = w_0 \\ x_i, & \text{if } \theta = w_i \\ x_i \sum_{j=1}^d v_{j,f} x_j - v_{i,f} x_i^2, & \text{if } \theta = v_{i,f} \end{cases}$$
 
 利用该梯度公式，可通过随机梯度下降法（SGD）、AdaGrad 或 Adam 算法对模型进行高效的参数迭代更新。
-
-基于tensorflow/keras的实现
-```python
-class FM_Layer(Layer):
-    def __init__(self, layer_name="fm"):
-        self.layer_name = layer_name
-        super(FM_Layer, self).__init__()
-
-    def call(self, inputs, training=None, mask=None):
-        summed_features_emb = tf.reduce_sum(inputs, 1)
-        summed_features_emb_square = tf.square(summed_features_emb)
-        squared_features_emb = tf.square(inputs)
-        squared_sum_features_emb = tf.reduce_sum(squared_features_emb, 1)
-        fm_output = 0.5 * (tf.subtract(summed_features_emb_square,
-                                       squared_sum_features_emb))
-        y_fm = tf.reduce_sum(fm_output, axis=-1, keepdims=True)
-        return y_fm
-```
 
 ## 4 总结
 
