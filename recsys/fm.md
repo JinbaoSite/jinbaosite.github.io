@@ -27,7 +27,7 @@ $$\hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^d w_i x_i + \sum_{i=1}^d \sum_{j=i+1}^d
 * $\mathbf{w} \in \mathbb{R}^d$ 为一阶特征权重向量，$w_i$ 刻画了单一特征 $x_i$ 对预测目标的影响。
 * $\mathbf{v}_i \in \mathbb{R}^k$ 为第 $i$ 个特征的**隐向量（Latent Vector）**，用来表征特征 $x_i$ 的语义分布。
 * $k$（且 $k \ll d$）为隐向量的维度，是控制模型表达能力与防过拟合的关键超参数。
-* $\langle \mathbf{v}_i, \mathbf{v}_j \rangle$ 表示两个隐向量的内积（Inner Product），用于代替传统 Poly2 模型中独立的交叉权重 $w_{ij}$：
+* $\mathbf{v}_i, \mathbf{v}_j$ 表示两个隐向量的内积（Inner Product），用于代替传统 Poly2 模型中独立的交叉权重 $w_{ij}$：
 
 $$\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \sum_{f=1}^k v_{i,f} v_{j,f}$$
 
