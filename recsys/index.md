@@ -22,7 +22,8 @@ article-list:
   - article-title: 深度模型DeepFM模型
     article-url: /recsys/deepfm
     article-date: 2023/2/7
-    article-desc: 将协同过滤和深度学习结合，捕捉用户和物品的隐式联系和高阶特征。
+    article-desc: DeepFM融合FM与DNN,采用并行双流架构，能自动捕获低阶与高阶特征交叉,两部分共享底层Embedding，无需人工特征工程，实现了高效、端到端的联合训练。
+    article-tags: [DeepFM,排序]
   - article-title: 深度模型Wide&Deep模型
     article-url: /recsys/wdl
     article-date: 2023/1/28
