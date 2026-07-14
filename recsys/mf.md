@@ -21,11 +21,11 @@ $$R_{m \times n} \approx U_{m \times k} \times V_{n \times k}^T $$
 
 - $m$为用户的数量
 - $n$为物品的数量
-- $U \in \mathbb{R}^{m \times k}$ 为**用户隐类矩阵**，行向量 $u_i \in \mathbb{R}^{1 \times k}$ 表征用户 $u$ 在 $k$ 维隐空间上的兴趣偏好分布
-- $V \in \mathbb{R}^{n \times k}$ 为**物品隐类矩阵**，行向量 $v_i \in \mathbb{R}^{1 \times k}$ 表征物品 $v$ 在 $k$ 维隐空间上的属性映射分布。
+- $U \in \mathbb{R}^{m \times k}$ 为**用户隐类矩阵**，行向量 $U_u \in \mathbb{R}^{1 \times k}$ 表征用户 $u$ 在 $k$ 维隐空间上的兴趣偏好分布
+- $V \in \mathbb{R}^{n \times k}$ 为**物品隐类矩阵**，行向量 $V_i \in \mathbb{R}^{1 \times k}$ 表征物品 $i$ 在 $k$ 维隐空间上的属性映射分布。
 - $k$（且 $k \ll \min(m, n)$）为**隐因子维度（Latent Dimension）**，该超参数的设定直接决定了模型对高维数据特征的压缩与泛化能力。
 
-基于该表征，用户 $U_u$ 对未交互物品 $V_i$ 的预测评分 $\hat{r}_{u,i}$ 可通过两个隐向量的内积（Inner Product）进行线性组合度量：
+基于该表征，用户 $u$ 对未交互物品 $i$ 的预测评分 $\hat{r}_{u,i}$ 可通过两个隐向量的内积（Inner Product）进行线性组合度量：
 
 $$
 \hat{r}_{u,i} = U_u \cdot V_i^T = \sum_{f=1}^k U_{uf} V_{if}
