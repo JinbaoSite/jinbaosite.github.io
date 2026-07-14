@@ -54,46 +54,70 @@ $$P(Y=1\vert{}x) = \sigma(w_{wide}^T [x, \phi(x)] + w_{deep}^T a^{(L)} + b)$$
 ## 4 Wide&Deep模型实现
 
 ```python
-def create_model_inputs():
-    inputs = {}
-    for feature_name in FEATURE_NAMES:
-        inputs[feature_name] = layers.Input(shape=(1,), name=feature_name)
-    return inputs
+import tensorflow as tf
+from tensorflow.keras import layers
 
-def encode_inputs(inputs, use_embedding=False):
-    encoded_features = []
-    for feature_name in inputs:
-        if feature_name in CATEGORICAL_FEATURE_NAMES:
-            vocabulary_size = \
-            len(CATEGORICAL_FEATURES_WITH_VOCABULARY[feature_name]) \+ 1
-            if use_embedding:
-                embedding_dims = int(math.sqrt(vocabulary_size))
-            else:
-                embedding_dims = 1
-            x = layers.Embedding(vocabulary_size,
-                                 embedding_dims)(inputs[feature_name])
-            encoded_features.append(x)
-        if feature_name in NUMERIC_FEATURE_NAMES:
-            encoded_features.append(inputs[feature_name])
-    return layers.Concatenate()(encoded_features)
-    
-def create_wide_and_deep_model():
+class WideAndDeepModel(tf.keras.Model):
+    def __init__(self, user_vocab, item_vocab, embed_dim=8, hidden_units=[64, 32]):
+        super(WideAndDeepModel, self).__init__()
+        
+        # --- Wide 侧组件 ---
+        # 类别特征编码（用于线性部分）
+        self.user_lookup = layers.StringLookup(vocabulary=user_vocab, mask_token=None)
+        self.item_lookup = layers.StringLookup(vocabulary=item_vocab, mask_token=None)
+        # Wide侧的线性映射层
+        self.wide_linear = layers.Dense(1, use_bias=True, name='wide_linear')
 
-    inputs = create_model_inputs()
-    wide = encode_inputs(inputs)
-    wide = layers.BatchNormalization()(wide)
+        # --- Deep 侧组件 ---
+        # 嵌入层
+        self.user_embed = layers.Embedding(input_dim=len(user_vocab) + 1, output_dim=embed_dim)
+        self.item_embed = layers.Embedding(input_dim=len(item_vocab) + 1, output_dim=embed_dim)
+        
+        # 多层感知机 (MLP)
+        self.dnn_layers = []
+        for units in hidden_units:
+            self.dnn_layers.append(layers.Dense(units, activation='relu'))
+        self.deep_linear = layers.Dense(1, use_bias=False, name='deep_linear')
 
-    deep = encode_inputs(inputs, use_embedding=True)
-    for units in hidden_units:
-        deep = layers.Dense(units)(deep)
-        deep = layers.BatchNormalization()(deep)
-        deep = layers.ReLU()(deep)
-        deep = layers.Dropout(dropout_rate)(deep)
+        # --- 最终输出激活层 ---
+        self.prediction_layer = layers.Activation('sigmoid', name='ctr_prediction')
 
-    merged = layers.concatenate([wide, deep])
-    outputs = layers.Dense(units=1, activation="sigmoid")(merged)
-    model = keras.Model(inputs=inputs, outputs=outputs)
-    return model
+    def call(self, inputs):
+        """
+        前向传播逻辑
+        inputs 预期为一个字典，包含: 'dense_features', 'user_id', 'item_id'
+        """
+        dense_inputs = inputs['dense_features']
+        sparse_user = inputs['user_id']
+        sparse_item = inputs['item_id']
+
+        # 1. Wide 侧前向计算
+        user_id_encoded = self.user_lookup(sparse_user)
+        item_id_encoded = self.item_lookup(sparse_item)
+        
+        # 工业界通常在此处对 encoded 特征做 Cross 变换，这里简化为离散特征拼接进入线性层
+        wide_features = layers.Concatenate(axis=-1)([
+            tf.cast(user_id_encoded, tf.float32), 
+            tf.cast(item_id_encoded, tf.float32)
+        ])
+        wide_output = self.wide_linear(wide_features)
+
+        # 2. Deep 侧前向计算
+        user_embedding = layers.Flatten()(self.user_embed(user_id_encoded))
+        item_embedding = layers.Flatten()(self.item_embed(item_id_encoded))
+        
+        # 拼接连续特征与稠密嵌入向量
+        deep_features = layers.Concatenate(axis=-1)([dense_inputs, user_embedding, item_embedding])
+        
+        # 穿过 DNN 隐藏层
+        x = deep_features
+        for layer in self.dnn_layers:
+            x = layer(x)
+        deep_output = self.deep_linear(x)
+
+        # 3. 联合 (Joint) 融合与激活
+        merged_output = layers.Add()([wide_output, deep_output])
+        return self.prediction_layer(merged_output)
 ```
 
 ## 5 总结
