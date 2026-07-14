@@ -1,4 +1,4 @@
-# 深入理解深度兴趣网络Deep Interest Network (DIN)
+# 深度兴趣网络Deep Interest Network (DIN)
 
 ## 1 背景
 
