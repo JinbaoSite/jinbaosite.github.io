@@ -649,6 +649,23 @@
 
     /* Footer */
     footer {
+        margin: 0 auto;
+        background: #e9eaee;
+        border: 1px solid #ececf0;
+        border-radius: 18px;
+        color: #2b2d33;
+    }
+    footer .divider {
+        height: 1px; background: #f0f0f3; margin: 26px 0 20px;
+    }
+    footer .footer-copy { font-size: 13px; color: #a3a5ae; }
+    footer .count {
+        font-size: 13px; color: #6b6d75;
+        display: inline-flex; align-items: center; gap: 7px;
+    }
+    footer .count .dot { width: 6px; height: 6px; border-radius: 50%; background: #5b5fed; }
+    footer .count b { color: #2b2d33; font-weight: 600; font-variant-numeric: tabular-nums; }
+    /* footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border);
       padding: 10px 0;
@@ -661,7 +678,7 @@
       align-items: center;
     }
 
-    .footer-copy { font-size: 16px; color: var(--text-muted); text-align: center; }
+    .footer-copy { font-size: 16px; color: var(--text-muted); text-align: center; } */
 
     /* ── 分页 ── */
     .pagination {
