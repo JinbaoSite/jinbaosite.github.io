@@ -3,12 +3,16 @@ layout: listpage
 title: 推荐算法
 subtitle: 召回、排序、重排、序列推荐、多目标优化、生成式推荐
 article-list:
+  - article-title: RankMixer：工业级推荐排序模型的规模化之路
+    article-url: /recsys/rankmixer
+    article-date: 2026-07-20
+    article-desc: RankMixer 用无参数的 Multi-Head Token Mixing（切分 head 后跨 Token 重组）替代平方复杂度的 Self-Attention 完成全局特征交互，再用 Per-token FFN 让每个特征子空间拥有独立参数、避免高频特征淹没长尾特征，并可扩展为 ReLU Routing + DTSI 的 Sparse-MoE 变体，用可堆叠矩阵乘架构大幅提升 GPU 利用率，实现推荐排序模型的低成本参数扩容。
+    article-tags: [精排, RankMixer]
   - article-title: AutoInt：用自注意力机制自动学习特征交互
     article-url: /recsys/autoint
     article-date: 2026-06-05
-    article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。。
+    article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。
     article-tags: [精排, 特征交叉]
-    article-tags: [召回]
   - article-title: 多任务模型MMoE
     article-url: /recsys/mmoe
     article-date: 2020/12/13
