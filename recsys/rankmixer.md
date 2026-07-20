@@ -43,7 +43,7 @@ $$
 
 整体结构如下图所示（对应论文 Figure 1，图中以 T=4 个 Token、Multi-Head Token Mixing 拆出 3 个 head 为例展示了内部机制）：
 
-![RankMixer架构图](RankMixer.svg)
+![RankMixer架构图](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/RankMixer.svg)
 
 *图1：RankMixer 整体架构。输入特征经 Tokenization 得到 T 个 Token，堆叠 L 层 RankMixer Block（Multi-Head Token Mixing + Per-token FFN/SMoE，均带残差与LayerNorm），最后 mean pooling 输出多任务预测。*
 
