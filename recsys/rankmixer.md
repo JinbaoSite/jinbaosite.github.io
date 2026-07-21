@@ -211,7 +211,7 @@ $$
 \#\mathrm{Param} \approx 2kLTD^2, \qquad \mathrm{FLOPs} \approx 4kLTD^2
 $$
 
-其中 $k$ 是调整 FFN 隐藏维度的缩放比例。而在 Sparse-MoE 版本中，每个 Token 的实际参数量和计算量会进一步被稀疏度 $s = \frac{\#\mathrm{Activated\_Param}}{\#\mathrm{Total\_Param}}$ 缩放。
+其中 $k$ 是调整 FFN 隐藏维度的缩放比例。而在 Sparse-MoE 版本中，每个 Token 的实际参数量和计算量会进一步被稀疏度 $s = \frac{\#\mathrm{Activated_Param}}{\#\mathrm{Total_Param}}$ 缩放。
 
 论文实验发现一个和 LLM Scaling Law 一致的结论：**模型效果主要与总参数量相关，而深度 $L$、宽度 $D$、Token 数 $T$ 这几个不同的扩展方向带来的效果几乎相同**；但从计算效率角度看，增大隐藏维度 $D$ 能产生更大的矩阵乘形状，从而比单纯堆层数获得更高的 MFU。最终线上采用的配置为：
 
