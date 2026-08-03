@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>https://www.dongjinbao.com/</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/ml</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/llm</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/agent</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/projects</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/about</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/lenet_alexnet</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/vgg_googlenet</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/resnet_densenet</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/convolution</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/normalization</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/optimizers</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/lr_schedule</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/mixed_precision_ddp</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/projects/kannada-mnist</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/projects/581</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/llm/attention</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/llm/positional_encoding</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/llm/bpe</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/llm/perplexity</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/agent/agentskills</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/agent/reflection</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/agent/plan_and_solve</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/agent/react</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/rankmixer</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/autoint</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/mmoe</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/esmm</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/din</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/deepfm</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/wdl</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/youtube_dnn</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/fm</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/mf</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/recsys/cf</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/ml/xgboost</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://www.dongjinbao.com/dl/optimizers.html</loc>
+  <lastmod>2026-08-03</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+</urlset>
