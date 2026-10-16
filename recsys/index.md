@@ -36,6 +36,12 @@ article-list:
     article-date: 2018-11-17
     article-desc: SASRec 通过因果自注意力、可学习位置向量和逐位置前馈网络建模用户历史，并以共享物品 Embedding 完成下一物品预测。本文结合 SASRec架构图，讲解序列错位、因果与补零掩码、负采样 BCE，以及可运行的 PyTorch 实现。
     article-tags: [SASRec, 序列推荐, 自注意力]
+  - article-title: xDeepFM：显式与隐式特征交互融合
+    article-url: /recsys/xdeepfm/
+    # 日期依据：KDD 2018；DOI:10.1145/3219819.3220023；正式出版日期
+    article-date: 2018-07-19
+    article-desc: xDeepFM 通过压缩交互网络 CIN 显式建模向量级高阶交互，并融合线性分支与深度网络。本文讲解交互与压缩、阶数推导、多层池化、计算成本，以及完整的 PyTorch 实现。
+    article-tags: [xDeepFM, 特征交叉, 精排]
   - article-title: 多任务模型MMoE
     article-url: /recsys/mmoe
     # 日期依据：KDD 2018；DOI:10.1145/3219819.3220007；正式出版日期
