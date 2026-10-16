@@ -48,11 +48,11 @@ article-list:
     article-date: 2018-07-19
     article-desc: 通过门控网络来学习多个专家模型的权重，提高模型的多任务学习能力
     article-tags: [排序]
-  - article-title: 深度兴趣网络Deep Interest Network (DIN)
+  - article-title: DIN：深度兴趣网络
     article-url: /recsys/din
     # 日期依据：KDD 2018；DOI:10.1145/3219819.3219823；正式出版日期
     article-date: 2018-07-19
-    article-desc: DIN（深度兴趣网络）的核心原理在于引入局部激活机制（Local Activation）。 它改变了传统模型用固定向量粗暴压缩用户历史的行为，而是针对当前具体的候选广告，自适应地计算历史行为的注意力权重。候选广告与某个历史行为越相关，该行为被赋予的权重就越高，从而帮助模型精准提取出与当前广告匹配的局部用户兴趣。
+    article-desc: DIN 根据候选物品激活相关历史行为，通过未归一化加权求和构建目标相关兴趣。本文讲解兴趣激活、Dice、小批量感知正则化及模型边界，并提供支持补零掩码和空历史的 PyTorch 实现。
     article-tags: [DIN,排序]
   - article-title: CVR预估模型ESMM
     article-url: /recsys/esmm
