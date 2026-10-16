@@ -30,6 +30,18 @@ article-list:
     article-date: 2019-11-03
     article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。
     article-tags: [精排, 特征交叉]
+  - article-title: DSIN：深度会话兴趣网络
+    article-url: /recsys/dsin/
+    # 日期依据：IJCAI 2019；DOI:10.24963/ijcai.2019/319；出版记录精确到月，按会议首日排序
+    article-date: 2019-08-10
+    article-desc: DSIN 将用户历史划分为多个会话，通过偏置编码和多头自注意力提取会话兴趣，再使用 Bi-LSTM 建模跨会话关系，并根据候选物品聚合原始与上下文化兴趣。本文包含两级掩码和空历史处理的 PyTorch 实现。
+    article-tags: [DSIN, 会话兴趣, 精排]
+  - article-title: DIEN：深度兴趣演化网络
+    article-url: /recsys/dien/
+    # 日期依据：AAAI 2019；DOI:10.1609/aaai.v33i01.33015941；正式出版日期
+    article-date: 2019-07-17
+    article-desc: DIEN 使用 GRU 提取逐时刻兴趣状态，以辅助损失提供下一行为监督，再通过 AUGRU 根据候选物品控制兴趣演化。本文讲解辅助任务、AIGRU、AGRU、AUGRU 及完整的 PyTorch 实现。
+    article-tags: [DIEN, 兴趣演化, 精排]
   - article-title: SASRec：基于自注意力的序列推荐
     article-url: /recsys/sasrec/
     # 日期依据：ICDM 2018；DOI:10.1109/ICDM.2018.00035；出版记录精确到月，按会议首日排序
