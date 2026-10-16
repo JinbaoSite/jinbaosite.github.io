@@ -17,7 +17,7 @@ VGG 和 GoogLeNet 把网络推到了 20 层左右，**再深就训不动了**—
 
 ---
 
-## 二、ResNet（He et al., 2015）
+## 二、ResNet
 
 ### 2.1 残差学习
 
@@ -162,7 +162,7 @@ ResNet-152 相比 VGG-19 错误率几乎减半，参数量反而更少。
 
 ---
 
-## 三、DenseNet（Huang et al., 2016）
+## 三、DenseNet
 
 ### 3.1 核心思想
 
@@ -273,7 +273,7 @@ def densenet121(num_classes=1000):
 
 ---
 
-## 四、ResNet vs DenseNet 对比
+## 四、ResNet 与 DenseNet 对比
 
 | 维度              | ResNet                | DenseNet                  |
 | ----------------- | --------------------- | ------------------------- |

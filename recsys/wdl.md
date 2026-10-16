@@ -16,7 +16,7 @@ Wide & Deep 的核心架构可以用“双路并行”来概括，其最终输�
 
 ![Wide&Deep模型结构](https://s3.bmp.ovh/imgs/2022/04/27/cfd884b771cd37f7.png)
 
-### 2.1 Wide部分
+### 2.1 宽模型部分
 
 Wide 部分本质上是一个广义线性模型（Generalized Linear Model），其数学形式如下：
 
@@ -28,7 +28,7 @@ $$\phi_k(x) = \prod_{i=1}^d x_i^{c_{ki}}, \quad c_{ki} \in \{0, 1\}$$
 
 > **示例：** 如果条件 $k$ 是“用户安装了 Netflix 且当前展示的是 Hulu”，那么当且仅当这两个原始特征都为 1 时，交叉特征 $\phi_k(x)$ 才为 1，否则为 0。这使得 Wide 部分能够精准捕捉特定组合的强信号。
 
-### 2.2 Deep部分
+### 2.2 深度模型部分
 
 Deep 部分是一个典型的前馈神经网络。对于类别特征（如 User ID、Device Type），首先通过一个嵌入层（Embedding Layer）将其转化为低维稠密向量：
 
@@ -38,7 +38,7 @@ $$a^{(0)} = [\text{embed}_1(x_1), \text{embed}_2(x_2), \dots, \text{embed}_m(x_m
 
 $$a^{(l+1)} = \sigma(W^{(l)} a^{(l)} + b^{(l)})$$
 
-### 2.3 联合训练 (Joint Training)
+### 2.3 联合训练
 
 Wide & Deep 采用的是 **联合训练 (Joint Training)**，而非集成（Ensemble/Stacking）。集成模型中各个子模型是独立训练的，而联合训练是在训练时同时优化 Wide 和 Deep 的参数，共同最小化最终的损失函数。
 
@@ -124,11 +124,11 @@ class WideAndDeepModel(tf.keras.Model):
 
 Wide & Deep 模型的提出，是推荐系统架构演进史上的一个重要里程碑。它用一种极其优雅且符合直觉的“双路结构”，完美回答了工业界如何在“守正（记忆历史）”与“出奇（探索未知）”之间寻找平衡。
 
-### 优点总结 (Strengths)
+### 优点总结
 
 * **两全其美：** 同时兼顾了线性模型的记忆能力和深度模型的泛化能力。
 * **扩展性极佳：** 结构简单清晰，允许工程师根据业务独立调优 Wide 侧的特征工程或 Deep 侧的网络深度。
 
-### 后续演进 (Evolution)
+### 后续演进
 
 尽管 Wide & Deep 表现优异，但它仍留下了一个痛点：**Wide 侧的交叉特征依然需要大量的人工特征工程（Manual Feature Engineering）**。

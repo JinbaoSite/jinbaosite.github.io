@@ -16,7 +16,7 @@ train_data = pd.read_csv('/kaggle/input/Kannada-MNIST/train.csv')
 test_data = pd.read_csv('/kaggle/input/Kannada-MNIST/test.csv')
 ```
 
-### 1.2 查看label分布情况
+### 1.2 查看标签分布情况
 
 ```python
 label_values = train_data['label'].value_counts().sort_index()
@@ -27,7 +27,7 @@ sns.barplot(x=label_values.index, y=label_values)
 ![label分布](/img/kannada-mnist/distributions.png)
 可以看出label分布一致
 
-### 1.3 将csv数据转换成图像
+### 1.3 将 CSV 数据转换成图像
 
 ```python
 img_train = train_data.drop(["label"], axis=1).values.reshape(-1, 28, 28, 1).astype('float32')
@@ -39,7 +39,7 @@ print("img_test.shape = ", img_test.shape)
 ```
 训练集包含60000张图片，测试集包含5000张图片
 
-### 1.4 查看一下样本图片及其对应的label
+### 1.4 查看一下样本图片及其对应的标签
 
 ```python
 fig = plt.figure(figsize=(10, 10))
@@ -146,7 +146,7 @@ train_datagen = ImageDataGenerator(
 train_datagen.fit(x_train)
 ```
 
-### 3.3 ModelCheckpoint和ReduceLROnPlateau设置
+### 3.3 模型检查点与学习率衰减设置
 
 `ModelCheckpoint`可以帮助我们保存在训练过程中模型在测试集上效果最好的模型
 `ReduceLROnPlateau`可以根据模型训练情况自动降低学习率
@@ -156,7 +156,7 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_accuracy', patience=5, 
 checkpoint = ModelCheckpoint("bestmodel.model", monitor='val_accuracy', verbose=1, save_best_only=True)
 ```
 
-### 3.4 optimizer设置
+### 3.4 优化器设置
 
 ```python
 sgd = SGD(lr=0.1, momentum=0.0, decay=0.0, nesterov=False)

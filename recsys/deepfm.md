@@ -15,7 +15,7 @@
 1. **并行双核驱动**：结合 FM（提取低阶特征）与 DNN（提取高阶特征）。
 2. **共享输入表征（Shared Embedding）**：FM 部分与 Deep 部分共享同一套稠密向量（Embedding）输入，无需任何人工特征工程，实现真正的端到端（End-to-End）训练。
 
-## 2 DeepFM模型架构 (Model Architecture)
+## 2 DeepFM模型架构
 
 DeepFM 的整体架构非常优雅。它由 **FM Component** 和 **Deep Component** 两部分并联组成。
 
@@ -25,9 +25,9 @@ $$\hat{y} = \sigma(y_{FM} + y_{Deep})$$
 
 其中，$\sigma$ 为 Sigmoid 激活函数，$y_{FM}$ 为 FM 部分的输出，$y_{Deep}$ 为 Deep 部分的输出。
 
-![DeepFM模型结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/deepfm.svg)
+![DeepFM架构图](/img/deepfm-architecture.svg)
 
-### 2.1 共享 Embedding 机制
+### 2.1 共享 嵌入表示 机制
 
 DeepFM 的一大精妙之处在于其 **Shared Embedding**。
 
@@ -46,7 +46,7 @@ $$y_{FM} = \langle w, x \rangle + \sum_{i=1}^{d} \sum_{j=i+1}^{d} \langle v_i, v
 - **一阶部分** $\langle w, x \rangle$：反映单一特征对目标的影响。
 - **二阶部分** $\sum \sum \langle v_i, v_j \rangle x_i x_j$：通过隐向量内积 $\langle v_i, v_j \rangle$ 自动计算特征 $i$ 和 $j$ 的二阶交叉强度。
 
-### 2.3 Deep结构
+### 2.3 深度网络结构
 
 ![Deep结构](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/d3_deep.svg)
 

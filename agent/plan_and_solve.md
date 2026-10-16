@@ -87,7 +87,7 @@ class PlanAndSolveAgent:
 
 ```
 
-## 3 Plan-and-Solve vs ReAct
+## 3 Plan-and-Solve 与 ReAct
 
 | 特性 | ReAct (反应式) | Plan-and-Solve (规划式) |
 | --- | --- | --- |

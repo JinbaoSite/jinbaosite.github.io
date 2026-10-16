@@ -1,24 +1,24 @@
-# 深度交叉网络（Deep & Cross Network，DCN）
+# DCN：深度交叉网络
 
 DCN（Deep & Cross Network）是 Google 于 2017 年提出的推荐模型，发表于 AdKDD 2017，论文题为 *Deep & Cross Network for Ad Click Predictions* [1]。
 
 DCN 的核心思想是通过 **Cross Network 显式学习有界阶数的特征交叉**，同时利用 **Deep Network** 学习复杂的非线性特征关系，将两者结合用于点击率（CTR）预测。
 
-## 1. 背景（Background）
+## 1. 背景
 
 特征交叉是 CTR 预测中的重要技术。传统线性模型通常依赖人工构造交叉特征，例如用户性别与商品类别的组合；深度神经网络（DNN）虽然能够自动学习非线性关系，但其特征交互是隐式建模的，不一定能够高效学习特定的交叉关系。
 
 DCN 针对这一问题引入 Cross Network，通过特定的交叉层结构自动学习显式的高阶特征组合，并与 DNN 并行建模，从而减少人工特征工程，同时增强模型对特征交互的表达能力。
 
-## 2. 模型架构（Model Architecture）
+## 2. 模型架构
 
 ### 2.1 整体网络结构
 
 DCN 的整体模型架构如下图所示。
 
-![DCN 模型架构图](/img/dcn-figure1.svg)
+![DCN架构图](/img/dcn-architecture.svg)
 
-> 图 1：原始 DCN 的并行结构示意图（依据原论文 [1] 重新绘制）。
+> DCN架构图
 
 DCN 由四个部分组成：
 
@@ -29,7 +29,7 @@ DCN 由四个部分组成：
 
 原始 DCN 采用并行结构，Cross Network 和 Deep Network 接收相同的输入，分别学习不同类型的特征关系，最后融合用于预测。
 
-### 2.2 输入层（Embedding & Stacking Layer）
+### 2.2 输入层
 
 推荐场景中的输入通常包含稀疏类别特征（用户 ID、商品 ID、类别等）和稠密数值特征（价格、统计次数等）。类别特征先通过 Embedding 映射成稠密向量：
 
@@ -45,7 +45,7 @@ $$
 
 其中 $e_i$ 为类别特征的向量表示，$x_{\mathrm{dense}}$ 为数值特征，$x_0$ 是 Cross Network 和 Deep Network 的共同输入。
 
-### 2.3 交叉网络（Cross Network）
+### 2.3 交叉网络
 
 Cross Network 是 DCN 的核心，其目标是通过显式交叉构建高阶组合特征。
 
@@ -54,7 +54,7 @@ Cross Network 是 DCN 的核心，其目标是通过显式交叉构建高阶组�
 对于第 $l$ 层，原始 DCN 定义 [1]：
 
 $$
-\boxed{x_{l+1}=x_0(x_l^T w_l)+b_l+x_l}
+x_{l+1}=x_0(x_l^T w_l)+b_l+x_l
 $$
 
 其中 $x_0,x_l,x_{l+1}\in\mathbb{R}^d$，$w_l,b_l\in\mathbb{R}^d$。该公式包含三部分：
@@ -83,12 +83,12 @@ $$
 每层只包含长度为 $d$ 的权重向量与偏置向量，因此其参数量为 $2d$。$L$ 层 Cross Network 的参数量为：
 
 $$
-\boxed{2dL}
+2dL
 $$
 
 单个样本在每一层的主要计算是向量内积及逐元素运算，复杂度为 $O(d)$；整个 Cross Network 为 $O(Ld)$（不含输入 Embedding 计算）。
 
-### 2.4 深度网络（Deep Network）
+### 2.4 深度网络
 
 Cross Network 负责显式特征交叉，而 Deep Network 通过多层非线性变换学习更灵活的隐式交互关系：
 
@@ -105,7 +105,7 @@ $$
 | 交叉阶数 | 多项式最高阶受层数控制 | 无对应的显式阶数界定 |
 | 参数量 | 随 $d$ 和层数线性增长 | 取决于层宽与深度 |
 
-### 2.5 融合层（Combination Layer）
+### 2.5 融合层
 
 Cross Network 的输出为 $x_{L_c}\in\mathbb{R}^{d}$，Deep Network 的输出为 $h_{L_d}\in\mathbb{R}^{m}$。拼接两个分支：
 
@@ -116,10 +116,10 @@ $$
 再经过线性层与 Sigmoid，得到点击率预测：
 
 $$
-\boxed{\hat y=\sigma(w^Tz+b)},\qquad \sigma(t)=\frac{1}{1+e^{-t}}
+\hat y=\sigma(w^Tz+b),\qquad \sigma(t)=\frac{1}{1+e^{-t}}
 $$
 
-### 2.6 损失函数（Loss Function）
+### 2.6 损失函数
 
 对于 CTR 二分类任务，采用二元交叉熵（BCE）：
 
@@ -133,7 +133,7 @@ $$
 \mathcal{L}=\mathcal{L}_{\mathrm{BCE}}+\lambda\sum_{\theta\in\Theta_{\mathrm{reg}}}\|\theta\|_2^2
 $$
 
-## 3. 模型实现（Implementation）
+## 3. 模型实现
 
 ### 3.1 核心代码实现
 
@@ -243,20 +243,20 @@ print('Loss:', loss.item())
 
 示例数据仅用于演示前向传播与反向传播；真实 CTR 场景还需要特征编码、数据划分，以及 AUC、LogLoss 等评估指标。
 
-## 4. 总结（Conclusion）
+## 4. 总结
 
 DCN 通过 Cross Network 高效建模显式的有界阶数特征交叉，并借助并行 Deep Network 学习复杂的非线性关系。其核心创新是使用参数量较小的 Cross Layer 自动构造高阶交互，从而降低对人工交叉特征工程的依赖。
 
 原始 DCN 的向量式交叉层虽然高效，但表达能力受参数化方式限制。后续的 **DCN V2** 将交叉层扩展为矩阵形式，并引入低秩分解等改进，提高了复杂特征交互的建模能力 [2]。
 
-## 5. 参考文献（References）
+## 5. 参考文献
 
-[1] Wang R, Fu B, Fu G, Wang M. **Deep & Cross Network for Ad Click Predictions**. AdKDD, 2017. https://arxiv.org/abs/1708.05123
+[1] Wang R, Fu B, Fu G, Wang M. **Deep & Cross Network for Ad Click Predictions**. AdKDD, 2017.
 
-[2] Wang R, Shivanna R, Cheng D, et al. **DCN V2: Improved Deep & Cross Network and Practical Lessons for Web-scale Learning to Rank Systems**. WWW, 2021. https://arxiv.org/abs/2008.13535
+[2] Wang R, Shivanna R, Cheng D, et al. **DCN V2: Improved Deep & Cross Network and Practical Lessons for Web-scale Learning to Rank Systems**. WWW, 2021.
 
-[3] Cheng H T, Koc L, Harmsen J, et al. **Wide & Deep Learning for Recommender Systems**. DLRS, 2016. https://arxiv.org/abs/1606.07792
+[3] Cheng H T, Koc L, Harmsen J, et al. **Wide & Deep Learning for Recommender Systems**. DLRS, 2016.
 
-[4] Google. **Ranking with Deep & Cross Networks**. TensorFlow Recommenders. https://www.tensorflow.org/recommenders/examples/dcn
+[4] Google. **Ranking with Deep & Cross Networks**. TensorFlow Recommenders.
 
-[5] PyTorch. **PyTorch Documentation**. https://docs.pytorch.org/docs/stable/index.html
+[5] PyTorch. **PyTorch Documentation**.

@@ -45,7 +45,7 @@ FP32 master weights <──cast── FP16 weights <──update── FP32 upda
                           └──> backward (FP16)  
 ```
 
-### 2.1 Loss Scaling
+### 2.1 损失缩放
 
 针对 FP16 数值范围窄的问题，**在 loss 上乘一个大数 S（如 65536）**，让所有梯度同步放大，反向时再除回来。**Loss Scaling 是 FP16 训练不可或缺的一步**。
 
@@ -63,7 +63,7 @@ FP32 master weights <──cast── FP16 weights <──update── FP32 upda
 
 ## 三、PyTorch AMP 实战
 
-### 3.1 FP16 混合精度（需要 loss scaling）
+### 3.1 FP16 混合精度（需要 损失缩放）
 
 ```python
 import torch
@@ -171,7 +171,7 @@ Global Batch = 256, 4 GPUs
 每个 GPU 独立 forward + backward → NCCL all-reduce 同步梯度 → 各卡独立更新
 ```
 
-### 4.2 DDP vs DP vs FSDP
+### 4.2 DDP 与 DP 与 FSDP
 
 | 特性          | DataParallel (DP) | DistributedDataParallel (DDP) | FSDP (Fully Sharded DP) |
 | ------------- | ----------------- | ------------------------------ | ----------------------- |
@@ -280,7 +280,7 @@ loader = DataLoader(dataset, batch_size=64, sampler=sampler)
 - 一定要用 `DistributedSampler`，不能用普通 `shuffle=True`（数据分布会重叠）
 - 每个 epoch 开始时 `sampler.set_epoch(epoch)`，让不同 epoch 的 shuffle 不同
 
-### 4.6 保存与加载 checkpoint
+### 4.6 保存与加载检查点
 
 ```python
 # 只有 rank 0 保存
@@ -310,7 +310,7 @@ DDP 在每次 backward 结束时自动插入 `all-reduce` 同步梯度。
 
 ### 4.8 性能优化
 
-#### （1）Gradient Accumulation（梯度累积）
+#### （1）梯度累积
 
 显存不够大 batch 时，用梯度累积模拟：
 
@@ -325,15 +325,15 @@ for i, (x, y) in enumerate(loader):
         optimizer.zero_grad()
 ```
 
-#### （2）Gradient Compression / Compression-aware 优化
+#### （2）梯度压缩与压缩感知优化
 
 字节通信压缩梯度（PowerSGD、1-bit Adam）。
 
-#### （3）Overlap Communication 与 Computation
+#### （3）通信与计算重叠
 
 DDP 默认让 backward 梯度计算和 all-reduce **重叠**，减少通信延迟。
 
-#### （4）大 batch 训练 + LAMB/LARS
+#### （4）大批次训练 + LAMB/LARS
 
 参考 [optimizers.md](optimizers.md) 中 LAMB 的实现。
 

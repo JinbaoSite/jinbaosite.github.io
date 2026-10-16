@@ -1,22 +1,22 @@
-# 全空间多任务模型（Entire Space Multi-Task Model，ESMM）
+# ESMM：全空间多任务模型
 
 ESMM（Entire Space Multi-Task Model）由阿里巴巴研究者于 2018 年提出，发表于 SIGIR 2018，论文题为 *Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate*。[1]
 
 ESMM 的核心思想是利用用户行为的**曝光 → 点击 → 转化**顺序关系，将点击率（CTR）和点击转化率（CTCVR）作为全曝光空间上的监督目标，通过概率乘积关系间接学习点击后转化率（CVR），并通过共享 Embedding 缓解转化数据稀疏问题。
 
-## 1. 背景（Background）
+## 1. 背景
 
 传统点击后转化率（CVR）模型通常只使用已点击样本训练，但推理时需要对所有曝光候选进行预估，训练和预测数据分布不一致，容易产生**样本选择偏差（Sample Selection Bias，SSB）**。同时，转化行为远少于点击行为，导致 **数据稀疏（Data Sparsity，DS）** 问题。
 
 ESMM 利用曝光、点击与转化之间的概率关系，将 CTR 和点击且转化的联合概率（CTCVR）放到全曝光空间训练，并让 CTR 与 CVR 网络共享底层 Embedding，从而缓解样本选择偏差与数据稀疏问题。
 
-## 2. 模型架构（Model Architecture）
+## 2. 模型架构
 
 ### 2.1 整体网络结构
 
-![ESMM 模型架构图](../img/esmm-architecture.svg)
+![ESMM架构图](../img/esmm-architecture.svg)
 
-> 图 1：ESMM 整体架构示意图。根据原论文 Figure 2 重新绘制，非论文原图。[1]
+> ESMM架构图
 
 ESMM 主要由**共享 Embedding 层、CTR 网络、CVR 网络和概率乘积模块**组成。CTR 与 CVR 网络使用相同的特征表示参数，但拥有各自的 MLP 参数，分别输出 `pCTR` 与 `pCVR`；两者相乘得到 `pCTCVR`。
 
@@ -52,7 +52,7 @@ $$
 
 表示曝光后发生点击且转化的联合概率为 2%，而点击之后发生转化的条件概率为 10%。
 
-### 2.3 全空间建模（Entire-Space Learning）
+### 2.3 全空间建模
 
 传统 CVR 训练集只包含点击样本：
 
@@ -71,7 +71,7 @@ ESMM 不直接在点击子集上计算 CVR 的二分类损失，而是利用全�
 
 这种方式**缓解了由仅在点击子集上训练所引起的选择偏差**，但并不意味着它可以消除所有因曝光策略、未观测混杂或标签延迟造成的偏差。
 
-### 2.4 共享 Embedding 与特征迁移
+### 2.4 共享 嵌入表示 与特征迁移
 
 ESMM 使用共享的特征 Embedding 查找表，将用户、物品等离散特征转换为低维向量，并为 CTR、CVR 网络提供共同的输入表示：
 
@@ -99,7 +99,7 @@ $$
 
 两个任务的高层 MLP 仍然独立，从而保留各自的预测能力。共享 Embedding 是原始 ESMM 的重要设计，而并非要求两个任务共享所有网络参数。[1]
 
-### 2.5 损失函数（Loss Function）
+### 2.5 损失函数
 
 ESMM 通过 CTR 与 CTCVR 两项二元交叉熵进行联合训练，**原始方案没有对 CVR 预测值单独计算点击子集上的 BCE 损失**。
 
@@ -129,7 +129,7 @@ $$
 
 值得注意的是，**CTCVR 损失对 CTR 网络和 CVR 网络都会产生梯度**，因此 CVR 子网络可以通过全空间的联合事件标签间接学习，而无须在点击子集上单独优化 CVR 损失。
 
-## 3. 模型实现（Implementation）
+## 3. 模型实现
 
 ### 3.1 核心代码实现
 
@@ -220,27 +220,20 @@ print("Loss:", loss.item())
 
 上述三个预测张量的形状均为 `[8]`。示例标签满足“转化必须发生在点击之后”的顺序约束；真实业务中还需要处理转化归因窗口、尚未完成观察的样本及可能存在的延迟反馈问题。
 
-这里的共享 Embedding 聚合采用均值，仅是便于理解的简化实现。原论文的输入处理还涉及字段级池化及用户、物品特征组织，完整工程复现应根据论文和数据结构实现。[1]
+这里的共享 Embedding 聚合采用均值，仅是便于理解的简化实现。ESMM 的输入处理还涉及字段级池化及用户、物品特征组织，完整工程复现应根据论文和数据结构实现。[1]
 
-## 4. 总结（Conclusion）
+## 4. 总结
 
 ESMM 的核心创新是利用**曝光 → 点击 → 转化**的行为依赖关系，将 CTR 与 CTCVR 建模为全曝光空间上的两个监督任务，再通过 $pCTCVR=pCTR\times pCVR$ 间接学习点击后转化率。这与传统仅在点击样本上独立训练 CVR 的方式不同，可以缓解样本选择偏差。
 
 与此同时，CTR 与 CVR 网络共享 Embedding，使相对丰富的点击样本帮助学习底层特征表示，从而缓解转化数据稀疏问题。但 ESMM 仍依赖点击与转化的顺序假设，对标签延迟、曝光选择机制等问题没有提供完整解决方案。该模型也为后续基于用户行为链的多任务转化率预估方法提供了基础。[2]
 
-## 5. 参考文献（References）
+## 5. 参考文献
 
-[1] Ma X, Zhao L, Huang G, et al. **Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate**. SIGIR, 2018.  
-https://arxiv.org/abs/1804.07931
+[1] Ma X, Zhao L, Huang G, et al. **Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate**. SIGIR, 2018.
 
-[2] Wen H, Zhang J, Wang Y, et al. **Entire Space Multi-Task Modeling via Post-Click Behavior Decomposition for Conversion Rate Prediction**. 2019.  
-https://arxiv.org/abs/1910.07099
+[2] Wen H, Zhang J, Wang Y, et al. **Entire Space Multi-Task Modeling via Post-Click Behavior Decomposition for Conversion Rate Prediction**. 2019.
 
-[3] Alibaba. **全空间多任务模型（ESMM）**. X-DeepLearning Wiki.  
-https://github.com/alibaba/x-deeplearning/wiki/全空间多任务模型(ESMM)
+[3] DeepCTR. **ESMM Model Architecture**.
 
-[4] DeepCTR. **ESMM Model Architecture**.  
-https://deepctr-doc.readthedocs.io/en/latest/Features.html
-
-[5] PyTorch. **PyTorch Documentation**.  
-https://docs.pytorch.org/docs/stable/index.html
+[4] PyTorch. **PyTorch Documentation**.

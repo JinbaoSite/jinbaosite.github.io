@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Stack-TensorFlow%20%7C%20SQL%20%7C%20Hive-orange" alt="Stack" />
 </p>
 
-## 🧠 About Me
+## 🧠 关于我
 
 - 🎯 Building **large-scale recommender systems** and **LLM-powered applications**
 - ⚙️ Experienced in **TensorFlow production pipelines** from training to serving
@@ -18,33 +18,33 @@
 
 > Engineering first. Scalability and reliability over flashy prototypes.
 
-## 🏗 Core Expertise
+## 🏗 核心专长
 
-### Recommender Systems
+### 推荐系统
 - DSSM / YouTubeDNN / DeepFM / Wide & Deep
 - In-batch negative sampling and full-softmax training
 - Real-time recall and ranking architecture
 - Online incremental training with evolving feature space
 
-### Large Language Models
+### 大语言模型
 - Transformer architecture implementation and optimization
 - LLaMA-style model reproduction in TensorFlow
 - Streaming machine translation systems
 - Tokenization and inference pipeline design
 
-### ML Infrastructure
+### 机器学习基础设施
 - Dynamic embedding systems
 - End-to-end feature engineering pipelines
 - TensorFlow Serving deployment and performance tuning
 - Checkpoint compatibility during model/vocabulary expansion
 
-## 🛠 Tech Stack
+## 🛠 技术栈
 
 - **Languages:** Python, SQL
 - **ML:** TensorFlow, custom training loops, distributed strategy
 - **Data & Infra:** Hive, real-time feature pipelines, high-throughput embedding services
 
-## 📊 GitHub Analytics
+## 📊 GitHub 数据统计
 
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=JinbaoSite)](https://github.com/JinbaoSite/github-readme-stats)
 
@@ -53,20 +53,20 @@
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=JinbaoSite&layout=compact&hide_border=true" alt="Top Languages" />
 </p>
 
-## 🚀 Current Focus
+## 🚀 当前关注方向
 
 - Real-time attention-based lookalike modeling
 - Incremental DeepFM with dynamic vocabulary management
 - Streaming MT system optimization for low-latency inference
 - 0DTE quantitative strategy research with robust risk controls
 
-## 📌 Engineering Principles
+## 📌 工程原则
 
 - Production-grade > demo-grade
 - System design > model stacking
 - Stability and observability > leaderboard overfitting
 
-## 📫 Contact
+## 📫 联系方式
 
 - GitHub: [@JinbaoSite](https://github.com/JinbaoSite)
 - Open to collaboration on recommender systems, LLM infra, and applied quantitative ML.

@@ -43,13 +43,13 @@ $$
 
 整体结构如下图所示（对应论文 Figure 1，图中以 T=4 个 Token、Multi-Head Token Mixing 拆出 3 个 head 为例展示了内部机制）：
 
-![RankMixer架构图](https://raw.githubusercontent.com/JinbaoSite/jinbaosite.github.io/master/img/RankMixer.svg)
+![RankMixer架构图](/img/rankmixer-architecture.svg)
 
 *图1：RankMixer 整体架构。输入特征经 Tokenization 得到 T 个 Token，堆叠 L 层 RankMixer Block（Multi-Head Token Mixing + Per-token FFN/SMoE，均带残差与LayerNorm），最后 mean pooling 输出多任务预测。*
 
-### 2.2 输入层与特征 Tokenization
+### 2.2 输入层与特征 词元化
 
-#### 2.2.1 为什么需要 Tokenization
+#### 2.2.1 为什么需要 词元化
 
 推荐模型的输入特征包括：
 
@@ -65,7 +65,7 @@ $$
 1. **每个特征一个 Token**：由于特征数量高达数百个，会导致每个 Token 分到的参数量和计算量都极小，重要特征建模不充分，同时大量小 Token 也会造成 GPU 利用率低下（矩阵形状太"瘦"，无法发挥 GEMM 优势）。
 2. **只用一个 Token（全部特征拼接后过一个 DNN）**：模型退化为普通 DNN，无法区分不同特征子空间，高频/头部特征会淹没长尾特征信号。
 
-#### 2.2.2 基于语义分组的 Tokenization 方案
+#### 2.2.2 基于语义分组的 词元化 方案
 
 RankMixer 采用**基于领域知识的语义分组策略**：先利用业务先验知识，将数百个特征按语义划分为 $N$ 个组（比如"用户画像组""视频内容组""交互统计组"等），组内特征顺序拼接得到一个大向量：
 
@@ -88,9 +88,9 @@ $$
 
 这样每个 Token $x_i \in \mathbb{R}^D$ 都代表一组语义相对一致的特征子空间，既避免了 Token 过多导致的碎片化，也避免了单一 Token 导致的特征淹没问题。
 
-### 2.3 RankMixer Block 详解
+### 2.3 RankMixer 模块 详解
 
-#### 2.3.1 Multi-Head Token Mixing：无参数的特征交互算子
+#### 2.3.1 多头词元混合：无参数的特征交互算子
 
 这是 RankMixer 替代 Self-Attention 的核心模块，目的是让不同 Token（即不同特征子空间）之间做全局信息交换。
 
@@ -119,7 +119,7 @@ $$
 
 **为什么不用 Self-Attention？** 论文给出了明确论证：Self-Attention 的注意力权重基于 Token 间的内积相似度计算，这在 NLP 中效果很好，因为所有 token 共享统一的语言语义空间。但在推荐场景中，特征空间天然异构——用户侧和物品侧的 ID 空间可能各自包含数亿个元素，计算这些异构语义空间之间的内积相似度本身就"没有明确意义"，容易引入噪声，还会带来更高的计算量、显存 IO 开销和显存占用。实验结果也验证了这一点（见下文消融实验，Self-Attention 路由的 AUC 反而略逊于 Token Mixing，同时 FLOPs 增加 71.8%）。
 
-#### 2.3.2 Per-token FFN：参数隔离的特征子空间建模
+#### 2.3.2 逐词元前馈网络：参数隔离的特征子空间建模
 
 传统 DLRM/DHEN 类模型往往把不同语义空间的特征塞进同一个交互模块共同处理，容易造成"高频特征域主导，长尾/低频特征信号被淹没"的问题。
 
@@ -158,7 +158,7 @@ $$
 
 也就是说，PFFN 是"**输入和参数同时按 Token 切分**"，这种设计天然契合"让不同特征子空间学到有差异化的表达"这一目标，在不增加计算复杂度（相对共享 FFN 而言，计算量不变，只是参数量增加）的前提下显著提升了模型容量。
 
-#### 2.3.3 Sparse-MoE 变体：进一步提升 ROI
+#### 2.3.3 Sparse-MoE 变体：进一步提升投入产出比
 
 Per-token FFN 已经让参数量随 Token 数线性增长，如果想进一步扩容，一个自然的思路是把每个 Token 的 Dense FFN 换成 **Sparse Mixture-of-Experts（SMoE）**：模型容量继续增大，但计算量基本不变。
 
@@ -198,7 +198,7 @@ $$
 
 这一组合的效果是：专家在训练阶段都能被充分训练，不会出现"死亡专家"，而在推理阶段又能享受稀疏激活带来的低成本。实验（论文 Figure 3）显示，即使把激活专家比例压缩到 1/8，DTSI + ReLU Routing 组合几乎不损失 1B 稠密模型的精度，同时推理吞吐提升 50%。
 
-### 2.4 四个可扩展维度（Scaling 公式）
+### 2.4 四个可扩展维度
 
 RankMixer 是一个高度并行、可扩展的架构，其参数量和计算量可以沿**四个正交的方向**扩展：
 
@@ -245,7 +245,7 @@ $$
 
 ## 3 工程实现
 
-### 3.1 特征 Tokenization 模块
+### 3.1 特征 词元化 模块
 
 ```python
 import torch
@@ -283,7 +283,7 @@ class FeatureTokenizer(nn.Module):
         return torch.stack(tokens, dim=1)  # [B, T, D]
 ```
 
-### 3.2 Multi-Head Token Mixing（无参数特征交互）
+### 3.2 多头词元混合（无参数特征交互）
 
 这是全文实现中最关键、也最容易写错的部分。核心操作是：把每个 token 切成 H 份 head，然后**跨 token 拼接同一 head 位置**，形成新的 mixed token。用 `reshape + transpose` 即可高效实现，纯张量操作，不含任何可学习参数。
 
@@ -335,7 +335,7 @@ class MultiHeadTokenMixing(nn.Module):
 
 > **实现小贴士**：论文要求 $H=T$ 是为了让 Token Mixing 前后 Token 数量保持一致，从而可以直接做残差连接（`+ X_{n-1}`）。在实现里，只要保证 `D % T == 0`，上面的 `view+transpose+view` 三步就能保证输出形状 `[B, T, D]` 与输入完全对齐，可以直接残差相加。这个操作本质上等价于对 `[B, T, H, head_dim]` 张量做一次 `transpose(1,2)`，是纯 tensor 重排，没有任何矩阵乘法，正是论文强调的"parameter-free"、GPU 上极其高效（几乎零计算开销，只有内存重排）。
 
-### 3.3 Per-token FFN（Dense 版本）
+### 3.3 逐词元前馈网络（稠密版本）
 
 ```python
 class PerTokenFFN(nn.Module):
@@ -376,7 +376,7 @@ class PerTokenFFN(nn.Module):
         return v
 ```
 
-### 3.4 Sparse-MoE 版 Per-token FFN：ReLU Routing + DTSI
+### 3.4 Sparse-MoE 版 逐词元前馈网络：ReLU 路由 + DTSI
 
 ```python
 class Expert(nn.Module):
@@ -489,7 +489,7 @@ class PerTokenSparseMoEFFN(nn.Module):
 
 > **说明**：真实工业实现中，为了拿到论文所述"融合并行 kernel、大 GEMM 形状"的高 MFU 收益，逐 token / 逐专家 for 循环会被替换为**分组批量矩阵乘（grouped GEMM）+ 稀疏 gather/scatter kernel**（例如基于 CUTLASS 或 Triton 自定义 kernel），并结合 fp16/bf16 量化推理。上面的实现优先保证与论文公式的一一对应关系、便于理解，工程落地时的优化方向见下一节。
 
-### 3.5 完整的 RankMixer Block 与堆叠
+### 3.5 完整的 RankMixer 模块 与堆叠
 
 ```python
 class RankMixerBlock(nn.Module):

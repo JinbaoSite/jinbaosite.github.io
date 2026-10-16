@@ -103,7 +103,7 @@ $$
 
 </svg>
 
-### 2.1 Feature-Field Separated Cross Attention
+### 2.1 特征字段分离交叉注意力
 
 CCFormer 没有把所有 Token 放入一次全局 Self-Attention，而是根据推荐业务中的语义关系构造三条定向信息流：
 
@@ -151,7 +151,7 @@ $$
 
 工业场景通常满足 $L_u,L_t\ll L_s$，因此该部分相对于行为序列长度基本呈线性增长。
 
-### 2.2 Relative Time & Position Encoding
+### 2.2 相对时间与位置编码
 
 推荐系统中的行为具有很强的时间属性：用户几分钟前点击的商品通常比几个月前的行为更能反映当前兴趣。
 
@@ -191,7 +191,7 @@ O(L_s m).
 $$
 
 
-### 2.3 Subspace Token Mixing
+### 2.3 子空间词元混合
 
 仅解决跨域 Attention 还不够，行为序列内部仍然需要进行信息交互。CCFormer 的关键设计是不用 Self-Attention，而使用 **Subspace Token Mixing**。
 
@@ -244,7 +244,7 @@ $$
 
 这相当于把昂贵的“所有行为两两 Attention”，替换为局部子空间中的 Token/Channel Mixing，使序列建模复杂度相对于 $L_s$ 保持线性。
 
-### 2.4 Hierarchical Token Compression
+### 2.4 分层词元压缩
 
 即使 Token Mixing 已经是线性复杂度，当历史行为达到数千条时，每一层都处理完整序列仍然昂贵。
 
@@ -281,7 +281,7 @@ $$
 从整体上看，CCFormer 实际进行了三层复杂度优化：
 
 $$
-\boxed{
+
 \text{Global Self-Attention}
 \rightarrow
 \text{Directed Cross Attention}
@@ -289,7 +289,7 @@ $$
 \text{Subspace Mixing}
 \rightarrow
 \text{Hierarchical Compression}
-}
+
 $$
 
 也就是说，它并非简单设计一种“更快的 Attention”，而是重新拆解工业推荐中的信息交互路径：**跨域关系使用 Cross Attention，序列内部关系使用 Token Mixing，超长历史则通过层次压缩逐层降低计算量。**

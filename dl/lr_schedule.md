@@ -1,4 +1,4 @@
-# 学习率调度：Warmup + Cosine Annealing + OneCycle
+# 学习率调度：学习率预热 + 余弦退火 + OneCycle
 
 学习率（Learning Rate）是深度学习训练中**最重要的超参数**。固定学习率很难兼顾训练初期和末期：**初期需要小学习率避免发散，末期需要小学习率收敛到尖锐极小值**。本文系统讲解三大主流调度策略：**Warmup + Cosine Annealing + OneCycle**，以及它们的组合使用。
 
@@ -16,13 +16,13 @@
 
 ---
 
-## 二、Warmup（学习率预热）
+## 二、学习率预热
 
 ### 2.1 动机
 
 最初的 Transformer 论文 *Attention Is All You Need* 观察到：**直接用大学习率（如 5e-4）训练初期几个 step 就会发散**。解决方案：从一个很小的 LR 线性增加到目标 LR，给优化器「预热」时间。
 
-### 2.2 Linear Warmup
+### 2.2 线性预热
 
 $$
 \text{lr}(t) = \text{lr}_{\text{peak}} \cdot \frac{t}{T_{\text{warmup}}}
@@ -30,7 +30,7 @@ $$
 
 其中 $T_{\text{warmup}}$ 是 warmup 步数（通常是总步数的 1%–10%）。
 
-### 2.3 Warmup 的理论解释
+### 2.3 学习率预热 的理论解释
 
 - **自适应优化器的早期偏差**：Adam 的 $m, v$ 初始化为 0，前几步估计不准
 - **大 batch 训练的早期稳定性**：batch 越大，warmup 越重要
@@ -58,7 +58,7 @@ scheduler = torch.optim.lr_scheduler.LambdaLR(
 
 ---
 
-## 三、Step Decay（阶梯衰减）
+## 三、阶梯衰减
 
 最经典也最简单的策略：每隔若干 epoch 把 LR 降低为原来的 $\gamma$ 倍（通常 $\gamma = 0.1$）。
 
@@ -74,7 +74,7 @@ scheduler = torch.optim.lr_scheduler.StepLR(
 
 ---
 
-## 四、Exponential Decay（指数衰减）
+## 四、指数衰减
 
 $$
 \text{lr}(t) = \text{lr}_0 \cdot \gamma^t
@@ -88,7 +88,7 @@ scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.95)
 
 ---
 
-## 五、Cosine Annealing（余弦退火）
+## 五、余弦退火
 
 ### 5.1 基础公式
 
@@ -98,7 +98,7 @@ $$
 
 LR 从 $\text{lr}_{\max}$ 平滑下降到 $\text{lr}_{\min}$，曲线形状像半个余弦波。
 
-### 5.2 Cosine Annealing with Warm Restarts (SGDR)
+### 5.2 带热重启的余弦退火
 
 $$
 \text{lr}(t) = \text{lr}_{\min} + \frac{1}{2}(\text{lr}_{\max} - \text{lr}_{\min})\left(1 + \cos\left(\frac{t \mod T_i}{T_i}\pi\right)\right)
@@ -112,13 +112,13 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
 )
 ```
 
-### 5.3 Cosine Annealing 变体
+### 5.3 余弦退火 变体
 
 PyTorch 提供的 `CosineAnnealingLR` 在达到 `T_max` 步后保持 `eta_min`，不再重启。要实现 restart 行为，需要手动循环或用上文的 SGDR 版本。
 
 ---
 
-## 六、OneCycle Policy（Smith, 2018）
+## 六、单周期调度
 
 ### 6.1 核心思想
 
@@ -148,7 +148,7 @@ scheduler = torch.optim.lr_scheduler.OneCycleLR(
 )
 ```
 
-### 6.4 LR Range Test（找最优 max_lr）
+### 6.4 学习率范围测试：寻找合适的最大学习率
 
 **Leslie Smith** 同时提出了 LR Range Test：用一个 epoch，从极小 LR 线性增长到极大 LR，观察 loss 变化：
 
@@ -194,7 +194,7 @@ def lr_range_test(model, train_loader, criterion, optimizer,
 
 ---
 
-## 七、Warmup + Cosine Annealing（Transformer 默认）
+## 七、学习率预热 + 余弦退火（Transformer 默认）
 
 现代 Transformer/LLM 训练的事实标准：**线性 warmup + 余弦退火**。
 

@@ -1,4 +1,4 @@
-# 位置编码（Positional Encoding）
+# 位置编码
 
 位置编码（Positional Encoding）是 Transformer 架构中的关键组件之一。由于 Transformer 采用自注意力机制进行信息交互，其本身不具备处理序列顺序的能力——无论输入序列如何打乱，注意力计算的输出结果都是相同的。位置编码的引入正是为了解决这一问题，使模型能够区分序列中不同位置的 token。
 
@@ -18,7 +18,7 @@ $$\text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right
 
 绝对位置编码是最早被提出的位置编码方案，为序列中的每个绝对位置生成一个固定的编码向量。
 
-## 2. Learnable 位置编码
+## 2. 可学习位置编码
 
 Learnable 位置编码（可学习位置编码）最早由 Bahdanau 等人在论文《Neural Machine Translation by Jointly Learning to Align and Translate》（2014）中提出，随后被广泛应用于早期神经机器翻译模型。
 
@@ -49,7 +49,7 @@ class LearnablePositionalEncoding(torch.nn.Module):
         return x + self.position_embeddings(positions)
 ```
 
-## 3. Sinusoidal 位置编码
+## 3. 正弦位置编码
 
 Sinusoidal 位置编码（正弦位置编码）是 Transformer 架构奠基之作 *Attention Is All You Need* 中提出的一种**绝对位置编码**技术。它不需要通过数据训练去学习，而是直接利用不同频率的正弦和余弦函数组合，为序列中的每个位置生成一个固定的、唯一的特征向量。
 
@@ -357,7 +357,7 @@ YaRN（Yet another RoPE extensioN method）是目前大语言模型（LLM）用�
 
 它的核心痛点在于：标准的 RoPE 无法直接推广到比预训练更长的序列（会外推失败）。YaRN 基于"NTK-by-parts"插值法，通过对**不同特征维度（频率）进行分段非线性缩放**，并引入**温度修正**，使得模型只需极少的数据微调，就能将上下文窗口扩展 16 倍以上（例如从 4k 扩展到 64k/128k）。
 
-### 5.1 核心理论：频率分段（NTK-by-parts）
+### 5.1 核心理论：频率分段
 
 RoPE 的本质是不同维度有着不同的旋转"波长"。YaRN 的核心观察是：**不同波长的维度，在扩展上下文时扮演的角色完全不同。**
 

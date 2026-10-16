@@ -15,7 +15,7 @@ YouTube 拥有数以十亿计的用户和海量的视频资源。在如此庞大
 
 ## 2. 模型架构
 
-### 2.1 召回阶段：极端多分类视角 (Candidate Generation as Extreme Multiclass Classification)
+### 2.1 召回阶段：极端多分类视角
 
 ![YouTube DNN召回](https://cdn.jsdelivr.net/gh/JinbaoSite/jinbaosite.github.io@master/img/youtube_dnn_recall.png)
 
@@ -34,11 +34,11 @@ $$P(w_t = i \mid U) = \frac{e^{v_i \cdot u}}{\sum_{j \in V} e^{v_j \cdot u}}$$
 * **人口统计学及上下文特征 (Demographics & Context)：** 包括用户地理位置、设备、性别、年龄等特征，进行独热编码（One-Hot）或归一化处理。
 * **样本年龄 (Example Age)：** **全剧最惊艳的特征工程之一。** 视频的上传时间对点击率有极大影响（用户更偏爱新视频）。YouTube 在训练时将“样本距离当前时间的时间差”作为连续特征输入，并在预测时将其设为 0，从而完美消除了模型对老视频的过拟合偏置，大幅提升了新视频的曝光率。
 
-#### 2.1.2 多层感知机 (MLP)
+#### 2.1.2 多层感知机
 
 所有特征拼接（Concat）后，喂入多层全连接网络（ReLU 激活），逐层降维，最终输出用户向量 $u$。
 
-### 2.2 排序阶段：精细化预估 (Ranking Network)
+### 2.2 排序阶段：精细化预估
 
 ![YouTube DNN排序](https://cdn.jsdelivr.net/gh/JinbaoSite/jinbaosite.github.io@master/img/youtube_dnn_rank.png)
 
@@ -51,7 +51,7 @@ $$P(w_t = i \mid U) = \frac{e^{v_i \cdot u}}{\sum_{j \in V} e^{v_j \cdot u}}$$
 * **历史关联度特征：** 例如“该用户上一次观看此频道的视频是什么时候？”“该视频已被该用户展现过多少次但未被点击？”这类特征对于捕捉用户短期的疲劳感和即时兴趣至关重要。
 * **连续特征的非线性变换：** 对连续特征（如历史观看次数）进行 $\sqrt{x}$、 $x^2$ 以及归一化等多种非线性变换，赋予线性层和 DNN 更好的特征表达能力。
 
-#### 2.2.2 核心创新：加权逻辑回归 (Weighted Logistic Regression)
+#### 2.2.2 核心创新：加权逻辑回归
 
 传统的推荐模型通常以点击率（CTR）为优化目标，但这会导致系统倾向于推荐“标题党”视频。**YouTube 的核心改进是将优化目标设为“期望观看时长（Expected Watch Time）”。**
 
@@ -68,11 +68,11 @@ $$\text{Odds} = \frac{p}{1-p} \approx p = \frac{\sum T}{\text{Total Samples}} = 
 
 因此，在服务（Serving）阶段，模型只需计算 $e^{W^T x + b}$ 即可直接作为期望观看时长的估算值，用于最终的排序。
 
-## 3 工程实现与落地技巧 (Engineering Implementation)
+## 3 工程实现与落地技巧
 
 理论的优雅必须建立在工程的可落地性之上。YouTube 论文披露了数个极具参考价值的工程落地细节。
 
-### 3.1 召回阶段的在线近邻检索 (ANN Search)
+### 3.1 召回阶段的在线近邻检索
 
 在模型训练完成后，Softmax 层输出的参数即为视频的 embedding $v_i$，而最后一层全连接的输出即为用户向量 $u$。
 在在线服务时，为了保证毫秒级的响应，系统**不运行复杂的 DNN 预测**，而是采用高效的近邻检索库（如基于 LSH 或级联 K-Means 算法的局部敏感哈希）：
@@ -81,13 +81,13 @@ $$\text{Candidate Video} = \operatorname{argmax}_{i \in V} (v_i \cdot u)$$
 
 通过在多维空间中检索与用户向量 $u$ 距离最近的 $K$ 个视频，将计算复杂度从 $O(\vert{}V\vert{})$ 直接降至 $O(\log \vert{}V\vert{})$。
 
-### 3.2 离线训练的负采样 (Negative Sampling)
+### 3.2 离线训练的负采样
 
 召回分类的类别数 $\vert{}V\vert{}$ 高达数百万，直接计算 Softmax 的分母是不可承受之重。
 
 - **解决方案：** 论文在离线训练时采用了 **Sampled Softmax（样本负采样）**。每次更新时，仅抽取数千个负样本进行梯度更新，从而将计算复杂度降低了几个数量级，极大提升了训练速度。
 
-### 3.3 特征交叉与 Embedding 共享
+### 3.3 特征交叉与 嵌入表示 共享
 
 排序阶段和召回阶段存在特征共享。为了节省内存并加速收敛，系统对相同的稀疏 ID 属性（如 Video ID）在召回和排序两个网络间**共享 Embedding 表达**。此外，网络对稠密特征（Dense Features）进行了多项式级的非线性处理，以辅助深度模型更好地捕捉非线性边界。
 

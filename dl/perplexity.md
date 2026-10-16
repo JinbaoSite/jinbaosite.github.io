@@ -1,4 +1,4 @@
-# Measuring a Language Model（Perplexity 详解）
+# 语言模型评估：困惑度详解
 
 
 ## 一、文章核心主题
@@ -24,7 +24,7 @@
 1.81%    human
 ```
 
-### 2.2 什么是 Perplexity？
+### 2.2 什么是 困惑度？
 
 **Perplexity = 2^{cross-entropy}**
 
@@ -38,7 +38,7 @@ $$
 - **PPL = 1**：模型完美预测，完全确定
 - **PPL 越低越好**
 
-### 2.3 Perplexity 与 Cross-Entropy 的关系
+### 2.3 困惑度 与 交叉熵 的关系
 
 **Cross-entropy** 是平均每个 token 需要的编码位数：
 
@@ -52,7 +52,7 @@ $$
 \text{PPL} = 2^{H}
 $$
 
-### 2.4 Perplexity 与压缩的关系
+### 2.4 困惑度 与压缩的关系
 
 Cross-entropy 给出了**理论最优压缩的下界**（香农信息论）：
 
@@ -121,13 +121,13 @@ logits - logits.max(dim=-1, keepdim=True).values  # 数值稳定版
 
 ## 四、重要结论
 
-### 4.1 Perplexity 能对比吗？
+### 4.1 困惑度 能对比吗？
 
 - ✅ 可以跨模型架构对比（GPT-2、Llama、Mistral 等）
 - ❌ 不能直接用于 **BERT / T5** 等 Masked LM（需要用 pseudo-log likelihood）
 - ⚠️ HuggingFace 的 WikiText-2 perplexity 计算**有 bug**（按 token 切分而非按词）
 
-### 4.2 Perplexity 与下游任务的关系
+### 4.2 困惑度 与下游任务的关系
 
 | 关系 | 说明 |
 |------|------|

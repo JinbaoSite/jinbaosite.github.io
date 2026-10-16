@@ -55,7 +55,7 @@ $$\min_{U, V} \mathcal{L} = \sum_{(u,i) \in \mathcal{K}} (r_{u,i} - U_u V_i^T)^2
 
 由于目标函数 $\mathcal{L}$ 中 $U_u$ 和 $V_i$ 相互耦合，导致其关于整体参数集为非凸（Non-convex）。工程上主要采用以下两种经典的一阶优化算法进行数值求解：
 
-#### A. 随机梯度下降法（Stochastic Gradient Descent, SGD）
+#### A. 随机梯度下降法
 
 SGD 通过逐个或逐批次抽取已知样本，计算当前参数下的预测残差 $e_{ui} = r_{ui} - \hat{r}_{ui}$，并沿着负梯度方向对涉及的隐向量进行动态迭代更新：
 
@@ -65,7 +65,7 @@ $$V_i \leftarrow V_i + \gamma (e_{u,i} U_u - \lambda V_i)$$
 
 其中 $\gamma$ 为学习率（Learning Rate）。SGD 的优势在于算法逻辑实现简单、收敛速度较快，适用于大多数动态在线更新场景。
 
-#### B. 交替最小二乘法（Alternating Least Squares, ALS）
+#### B. 交替最小二乘法
 
 尽管目标函数非全局凸，但在固定其中一个矩阵时，它对于另一个矩阵是严谨的二次型凸函数。ALS 的核心机制即在于利用这一特性进行多轮交替迭代：
 

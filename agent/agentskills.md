@@ -47,7 +47,7 @@ Agent 通过**三阶段渐进式加载**技能：
 
 ## 4 SKILL.md 格式详解
 
-### 4.1 Frontmatter 必填字段
+### 4.1 前置元数据必填字段
 
 | 字段 | 约束 |
 |------|------|
@@ -91,7 +91,7 @@ metadata:
 - 从现有项目 artifact 合成（incident reports、runbooks、API specs）
 - 用真实失败案例和修复迭代优化
 
-### 5.2 上下文要精准——只加 agent 缺乏的
+### 5.2 上下文要精准——只补充智能体缺少的信息
 
 ❌ **过度说明**（agent 本来就知道）：
 > PDF (Portable Document Format) files are a common file format that contains text...
@@ -264,7 +264,7 @@ description 是 agent **决定是否加载技能的唯一依据**。描述不精
 
 Agent Skills 已形成**生态**。按类别整理：
 
-### 8.1 AI Coding Agent / IDE
+### 8.1 编程智能体与集成开发环境
 
 | 产品 | 说明 |
 |------|------|
@@ -277,7 +277,7 @@ Agent Skills 已形成**生态**。按类别整理：
 | TRAE | 自适应 AI IDE |
 | Workshop | 跨平台 coding agent，多 LLM + 子 agent |
 
-### 8.2 Terminal / CLI Agent
+### 8.2 终端与命令行智能体
 
 | 产品 | 说明 |
 |------|------|
@@ -288,7 +288,7 @@ Agent Skills 已形成**生态**。按类别整理：
 | OpenHands | 云端 coding agent，支持扩展到千量级 |
 | nanobot | 轻量跨平台 agent，支持 MCP |
 
-### 8.3 专业/垂直 Agent
+### 8.3 专业领域智能体
 
 | 产品 | 说明 |
 |------|------|

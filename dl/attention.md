@@ -2,7 +2,7 @@
 
 注意力机制（Attention）作为 Transformer 架构的核心组件，自提出以来一直是自然语言处理领域的研究热点。本文围绕 Transformer 中的四种注意力机制展开：Scaled Dot-Product Attention、Multi-Head Attention、Multi-Query Attention 以及 Grouped-Query Attention。
 
-## 1. Scaled Dot-Product Attention
+## 1. 缩放点积注意力
 
 Scaled Dot-Product Attention 最早由 Vaswani 等人在论文《Attention Is All You Need》（2017）中提出，是 Transformer 架构的基础计算单元。该机制的核心思想源于早期的神经机器翻译工作，通过计算查询向量与键向量的点积相似度来确定注意力权重，进而对值向量进行加权求和。
 
@@ -32,7 +32,7 @@ $$\text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right
 
 Attention 的计算主要分为以下 5 个步骤：
 
-#### 1.2.1 Step 1: 计算原始注意力分数（Scores）
+#### 1.2.1 步骤 1：计算原始注意力分数
 
 通过将 $Q$ 和 $K$ 的转置进行矩阵乘法，计算出 Query 和 Key 之间的相似度。点积结果越大，说明两个向量的相关性越高。
 
@@ -41,7 +41,7 @@ $$\text{Scores} = Q K^T$$
 * **维度变化**：$(n \times d_k) \times (d_k \times n) \rightarrow (n \times n)$
 * 结果矩阵中的第 $(i, j)$ 个元素，代表第 $i$ 个单词对第 $j$ 个单词的原始注意力得分。
 
-#### 1.2.2 Step 2: 缩放操作（Scaling）
+#### 1.2.2 步骤 2：缩放操作
 
 将原始分数除以 $\sqrt{d_k}$（即 Key 向量维度的平方根）。
 
@@ -49,7 +49,7 @@ $$\text{Scaled Scores} = \frac{Q K^T}{\sqrt{d_k}}$$
 
 * **目的**：当 $d_k$ 很大时，点积的结果会非常大，导致后面经过 Softmax 函数时梯度变得极小（进入饱和区）。除以 $\sqrt{d_k}$ 可以起到方差缩放的作用，让训练更加稳定。
 
-#### 1.2.3 Step 3: 掩码操作（Mask）
+#### 1.2.3 步骤 3：掩码操作
 
 对缩放后的分数应用掩码（Mask），将需要屏蔽的位置设置为负无穷（$-\infty$），使其在后续 Softmax 计算后的权重趋近于 0。
 
@@ -60,7 +60,7 @@ $$\text{Masked Scores} = \text{Mask}\left(\frac{Q K^T}{\sqrt{d_k}}\right)$$
   * **Causal Mask / Sequence Mask**：在 Decoder 中，防止当前位置看到后续位置的信息（确保自回归特性）
 * **实现方式**：将需要屏蔽的位置乘以一个非常大的负数（如 $-1e9$ 或 $-\infty$），Softmax 会对这些位置输出接近 0 的权重
 
-#### 1.2.4 Step 4: 归一化（Softmax）
+#### 1.2.4 步骤 4：归一化
 
 对掩码处理后的分数在**行方向**上应用 Softmax 函数，将其转化为概率分布（所有权重相加为 1）。
 
@@ -69,7 +69,7 @@ $$\text{Attention Weights} = \text{Softmax}\left(\text{Mask}\left(\frac{Q K^T}{\
 * **维度**：$(n \times n)$
 * 此时矩阵里的数值就是最终的**注意力权重**（矩阵中每行的和为 1）。
 
-#### 1.2.5 Step 5: 加权求和（Output）
+#### 1.2.5 步骤 5：加权求和
 
 用计算出的注意力权重矩阵去乘以 Value 矩阵 $V$，实现对 Value 的加权聚合。
 
@@ -132,7 +132,7 @@ class ScaleDotProductAttention(nn.Module):
 
 在 Vaswani 等人提出 Scaled Dot-Product Attention 之后，同一论文中进一步引入了多头注意力机制（Multi-Head Attention），以增强模型的表达能力。
 
-## 2. Multi-Head Attention
+## 2. 多头注意力
 
 **Multi-Head Attention（多头注意力机制）** 是在 Scaled Dot-Product Attention（缩放点积注意力）的基础上发展而来的。
 
@@ -158,7 +158,7 @@ $$\text{where } \text{head}_i = \text{Softmax}\left(\frac{Q_i K_i^T}{\sqrt{d_k}}
 
 Multi-Head Attention 的计算主要分为以下 4 个步骤：
 
-#### 2.2.1 Step 1: 线性映射（Linear Projection）
+#### 2.2.1 步骤 1：线性映射
 
 将输入矩阵 $X$ 分别乘以 $h$ 组不同的权重矩阵，得到每个头专属的 $Q_i, K_i, V_i$ 矩阵：
 
@@ -166,7 +166,7 @@ $$Q_i = X W_Q^{(i)}, \quad K_i = X W_K^{(i)}, \quad V_i = X W_V^{(i)}$$
 
 * **维度**：每个头的 $Q_i, K_i$ 维度为 $(n \times d_k)$，$V_i$ 维度为 $(n \times d_v)$。
 
-#### 2.2.2 Step 2: 独立计算每个头的注意力（Scaled Dot-Product Attention）
+#### 2.2.2 步骤 2：独立计算每个头的注意力（缩放点积注意力）
 
 每个头独立运行标准的缩放点积注意力机制，得到该头的输出 $\text{head}_i$：
 
@@ -174,7 +174,7 @@ $$\text{head}_i = \text{Attention}(Q_i, K_i, V_i) = \text{Softmax}\left(\frac{Q_
 
 * **维度**：$\text{head}_i \in \mathbb{R}^{n \times d_v}$
 
-#### 2.2.3 Step 3: 拼接（Concat）
+#### 2.2.3 步骤 3：拼接
 
 将所有 $h$ 个头计算出来的输出矩阵在特征维度（列方向）上横向拼接在一起：
 
@@ -183,7 +183,7 @@ $$\text{Concat}(\text{head}_1, \text{head}_2, \dots, \text{head}_h)$$
 * **维度变化**：由于有 $h$ 个维度为 $(n \times d_v)$ 的矩阵拼接，拼接后的总维度变为 $(n \times (h \times d_v))$。
 * 因为 $h \times d_v = d_{\text{model}}$，所以拼接后的矩阵维度重新恢复到了 $(n \times d_{\text{model}})$。
 
-#### 2.2.4 Step 4: 最后的线性变换（Output Linear）
+#### 2.2.4 步骤 4：最后的线性变换
 
 为了让多头聚集起来的信息能够充分融合，拼接后的结果会通过一个最终的输出权重矩阵 $W^O \in \mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$ 进行线性映射：
 
@@ -264,7 +264,7 @@ class MultiHeadAttention(nn.Module):
 
 尽管 Multi-Head Attention 在建模能力上表现优异，但随着模型规模增大和序列长度增加，其推理效率问题日益突出。针对这一问题，Shazeer 等人在论文《Fast Transformer Decoding: One Write-Head is All You Need》（2019）中提出了 Multi-Query Attention（MQA），通过让多个 Query 头共享同一组 Key 和 Value 来显著降低推理时的 KV Cache 开销。
 
-## 3. Multi-Query Attention
+## 3. 多查询注意力
 
 **Multi-Query Attention (MQA)** 是由 Noam Shazeer 在 2019 年提出的一种 Attention 变体。
 
@@ -288,7 +288,7 @@ MQA 的核心思想极其精简：**让所有的 Query 头共享同一组 Key �
 
 MQA 的计算步骤与标准注意力机制相似，但由于 $K$ 和 $V$ 的共享特性，矩阵的维度和广播（Broadcasting）逻辑发生了变化：
 
-#### 3.2.1 Step 1: 线性映射（Linear Projection）
+#### 3.2.1 步骤 1：线性映射
 
 投影时，Query 依然有 $h$ 个不同的结果，而 $K$ 和 $V$ 只有单份：
 
@@ -296,7 +296,7 @@ MQA 的计算步骤与标准注意力机制相似，但由于 $K$ 和 $V$ 的共
 * 公共的 Key 矩阵：$K = X W_K \quad \in \mathbb{R}^{n \times d_k}$
 * 公共的 Value 矩阵：$V = X W_V \quad \in \mathbb{R}^{n \times d_v}$
 
-#### 3.2.2 Step 2: 独立计算每个 Query 头的注意力
+#### 3.2.2 步骤 2：独立计算每个查询头的注意力
 
 每个独立的 Query 头 $Q_i$ 都去和**同一个** $K$ 计算注意力分数，并和**同一个** $V$ 进行加权求和。
 
@@ -305,7 +305,7 @@ $$\text{head}_i = \text{Attention}(Q_i, K, V) = \text{Softmax}\left(\frac{Q_i K^
 * **维度**：$\text{head}_i \in \mathbb{R}^{n \times d_v}$
 * **注意**：这里的 $K^T$ 和 $V$ 对所有的 $\text{head}_i$ 来说是完全一模一样的。
 
-#### 3.2.3 Step 3: 拼接（Concat）
+#### 3.2.3 步骤 3：拼接
 
 将这 $h$ 个头得到的输出矩阵在特征维度上横向拼接：
 
@@ -313,7 +313,7 @@ $$\text{Concat}(\text{head}_1, \text{head}_2, \dots, \text{head}_h)$$
 
 * **维度**：$h \times (n \times d_v) \rightarrow (n \times d_{\text{model}})$
 
-#### 3.2.4 Step 4: 最后的线性变换（Output Linear）
+#### 3.2.4 步骤 4：最后的线性变换
 
 与 MHA 一样，通过一个输出权重矩阵 $W^O \in \mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$ 融合多头信息：
 
@@ -405,7 +405,7 @@ class MultiQueryAttention(nn.Module):
 
 MQA 虽然有效降低了推理开销，但过度共享 KV 导致模型表达能力下降。为解决这一问题，Ainslie 等人在论文《GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints》（2023）中提出了 Grouped-Query Attention（GQA），通过引入分组机制在 MHA 和 MQA 之间取得平衡。
 
-## 4. Grouped-Query Attention
+## 4. 分组查询注意力
 
 **Grouped-Query Attention (GQA)** 是由 Ainslie 等人在 2023 年提出的一种 Attention 变体。
 
@@ -434,7 +434,7 @@ GQA 的核心思想是：**将 Query 头分成若干个组（Groups），每一�
 
 GQA 的计算通过“分组共享”的逻辑进行，以下是具体的 4 个步骤：
 
-#### 4.2.1 Step 1: 线性映射（Linear Projection）
+#### 4.2.1 步骤 1：线性映射
 
 将输入矩阵 $X$ 通过各自的线性层进行投影。
 
@@ -442,7 +442,7 @@ GQA 的计算通过“分组共享”的逻辑进行，以下是具体的 4 个�
 * 得到 $g$ 个 Key 矩阵：$K_j = X W_K^{(j)} \quad (j = 1, \dots, g)$
 * 得到 $g$ 个 Value 矩阵：$V_j = X W_V^{(j)} \quad (j = 1, \dots, g)$
 
-#### 4.2.2 Step 2: 映射 Query 到对应的 KV 组
+#### 4.2.2 步骤 2：将查询映射到对应的键值组
 
 每一个 Query 头 $Q_i$ 都有一个专属的 KV 组索引 $j$。对应关系为：
 
@@ -450,7 +450,7 @@ $$j = \lfloor (i - 1) / m \rfloor + 1$$
 
 也就是说，前 $m$ 个 Query 头共享 $K_1, V_1$，接下来的 $m$ 个 Query 头共享 $K_2, V_2$，以此类推。
 
-#### 4.2.3 Step 3: 独立计算每个头的注意力
+#### 4.2.3 步骤 3：独立计算每个头的注意力
 
 每个 Query 头 $Q_i$ 与它所属组的 $K_j$ 和 $V_j$ 进行标准的缩放点积注意力计算：
 
@@ -458,7 +458,7 @@ $$\text{head}_i = \text{Attention}(Q_i, K_j, V_j) = \text{Softmax}\left(\frac{Q_
 
 * **维度**：$\text{head}_i \in \mathbb{R}^{n \times d_v}$
 
-#### 4.2.4 Step 4: 拼接与最终映射（Concat & Output）
+#### 4.2.4 步骤 4：拼接与最终映射
 
 将所有 $h$ 个头的输出进行拼接，并通过最终的输出矩阵 $W^O \in \mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$ 融合信息：
 

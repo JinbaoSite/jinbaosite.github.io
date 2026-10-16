@@ -4,7 +4,7 @@ AlexNet 之后，研究者开始系统性地探索「**网络深度和宽度对�
 
 ---
 
-## 一、VGG（Visual Geometry Group, 2014）
+## 一、VGG
 
 ### 1.1 核心思想
 
@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
 ---
 
-## 二、GoogLeNet / Inception-v1（Szegedy et al., 2014）
+## 二、GoogLeNet / Inception-v1
 
 ### 2.1 核心思想
 
@@ -111,7 +111,7 @@ GoogLeNet 与 VGG 同期发表，但走了完全不同的路：**用稀疏连接
 
 论文的核心洞见来自 Arora 等人的理论工作：一个**最优的神经网络拓扑结构应该是逐层稀疏的**，但当前的硬件（GPU）更适合密集计算。GoogLeNet 通过 **Inception 模块**在密集计算中近似这种稀疏性。
 
-### 2.2 Inception 模块（Naive 版本）
+### 2.2 基础 Inception 模块
 
 最朴素的 Inception 模块在同一层并行使用 1×1、3×3、5×5 卷积和 3×3 池化，最后拼接：
 
@@ -273,7 +273,7 @@ class GoogLeNet(nn.Module):
 
 ---
 
-## 三、VGG vs GoogLeNet 的对比
+## 三、VGG 与 GoogLeNet 的对比
 
 | 维度              | VGG-16                       | GoogLeNet                    |
 | ----------------- | ---------------------------- | ---------------------------- |

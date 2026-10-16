@@ -14,7 +14,7 @@ $$
 
 朴素 SGD 收敛慢，且容易在高曲率方向震荡、在低曲率方向爬行。
 
-### 1.2 SGD with Momentum
+### 1.2 带动量的随机梯度下降
 
 引入动量项，把过去梯度的指数移动平均作为更新方向：
 
@@ -48,7 +48,7 @@ optimizer = torch.optim.SGD(
 
 ---
 
-## 二、AdaGrad（Adaptive Gradient, 2011）
+## 二、AdaGrad
 
 AdaGrad 让**每个参数用自适应学习率**：对更新频繁的参数降低学习率，对稀疏更新的参数保持较大学习率。
 
@@ -68,7 +68,7 @@ $$
 
 ---
 
-## 三、RMSProp（Geoff Hinton, 未发表）
+## 三、RMSProp
 
 RMSProp 解决了 AdaGrad 学习率单调下降的问题，用**指数移动平均**代替累积和：
 
@@ -84,7 +84,7 @@ $$
 
 ---
 
-## 四、Adam（Kingma & Ba, 2015）
+## 四、Adam
 
 Adam = **Momentum（动量项）+ RMSProp（自适应学习率）**。它同时维护两个移动平均：
 
@@ -133,7 +133,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
 
 ---
 
-## 五、AdamW（Loshchilov & Hutter, 2019）
+## 五、AdamW
 
 ### 5.1 Adam + L2 正则化的陷阱
 
@@ -163,7 +163,7 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=0.01)
 
 ---
 
-## 六、LAMB（You et al., 2020）
+## 六、LAMB
 
 ### 6.1 动机
 
@@ -245,7 +245,7 @@ class LAMB(Optimizer):
 
 ---
 
-## 七、Lion（Chen et al., 2023）
+## 七、Lion
 
 ### 7.1 动机
 

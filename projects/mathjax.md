@@ -44,7 +44,7 @@
 
 *(注：上下限不止一位时需要用花括号包裹)*
 
-### 1.6 分数（fraction）
+### 1.6 分数
 
 有两种方法来显示分数：
 1. 使用 `\frac a b` 显示为 $\frac a b$
@@ -98,7 +98,7 @@ MathJax 中直接输入空格不会改变表达式。如果想在表达式中加
 - 特大空格：`\qquad`
 - 插入文本：如果想在公式中加入一段正常文本，可用 `\text{…}`。例如：`\{x \in s \mid x \text{ is extra large}\}` 显示为 $\{x \in s \mid x \text{ is extra large}\}$。在 `\text{…}` 里面还可以嵌套数学符号 `$…$`。
 
-### 1.12 Accents (重音符) and diacritical (变音符) marks
+### 1.12 重音符与变音符
 
 - 单字符重音：`\hat x` ($\hat x$)，变音：`\widehat {xy}` ($\widehat {xy}$)
 - 平均值/长横线：`\bar x` ($\bar x$)，`\overline {xyz}` ($\overline {xyz}$)
@@ -146,7 +146,7 @@ $$
 \end{pmatrix}
 $$
 
-### 2.4 增广矩阵 augmented matrix
+### 2.4 增广矩阵
 
 写增广矩阵需要用到 `array` 语法。
 
@@ -192,7 +192,7 @@ $$\left [
 
 其显示效果会自动为每一行附带编号（在支持 align 编号的 MathJax 环境中）。在使用 align 时，外层的 `$$` 符号可以省略。
 
-## 4 分段函数 piecewise functions
+## 4 分段函数
 
 分段函数使用 `cases` 语法：`\begin{cases} … \end{cases}`，用 `\\` 换行，用 `&` 对齐条件。
 
@@ -218,7 +218,7 @@ n/2,  & \text{if $n$ is even} \\
 如果想让两行之间的行间距更大一些，可以用 `\\[2ex]` 代替 `\\`（`ex` 是指字母 x 的高度，`2ex` 表示两倍的字母 x 高度）。
 
 
-## 5 Array (数组与表格)
+## 5 数组与表格
 
 在 `\begin{array}` 之后，必须用一对花括号 `{}` 定义每一列的对齐方式和分隔线：
 
@@ -289,7 +289,7 @@ $$x = a_0 + \frac{1^2}{a_1
           + \frac{2^2}{a_2
           + \frac{3^2}{a_3 + \frac{4^4}{a_4 + \cdots}}}}$$
 
-## 8 打 Tag 和引用公式
+## 8 公式编号与引用
 
 在 MathJax 中可以使用标记与引用系统。
 
@@ -308,7 +308,7 @@ $$a+y^3 \stackrel{\eqref{*}}= x^2$$
 
 $$a+y^3 \stackrel{\ref{*}}= x^2$$
 
-## 9 Commutative diagrams (交换图表)
+## 9 交换图表
 
 为了兼容静态 MathJax 渲染器，可以使用基础的 `array` 环境组合箭头：
 

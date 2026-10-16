@@ -17,7 +17,7 @@
 
 ---
 
-## 二、BatchNorm（Ioffe & Szegedy, 2015）
+## 二、BatchNorm
 
 ### 2.1 算法
 
@@ -45,7 +45,7 @@ $$
 
 其中 $\gamma, \beta$ 是可学习参数，初始化为 $(\gamma=1, \beta=0)$。
 
-### 2.2 训练 vs 推理
+### 2.2 训练与推理
 
 **训练时**：用当前 mini-batch 的均值和方差。
 **推理时**：用**滑动平均**的 running mean 和 running variance（训练时累积）。
@@ -70,7 +70,7 @@ y = bn(x)  # 用 running 统计
 | **RNN/Transformer 不友好** | 时序数据中每个时间步的统计量不一致 |
 | **分布式训练同步问题** | 多卡训练时 BN 统计量需要跨卡同步（SyncBN） |
 
-### 2.4 BatchNorm 的位置：Conv-BN vs BN-Conv
+### 2.4 BatchNorm 的位置：卷积与归一化的先后顺序
 
 现代框架默认**Conv → BN → ReLU**（post-activation）。Pre-activation ResNet 改为 **BN → ReLU → Conv**，效果更好。
 
@@ -90,7 +90,7 @@ print(f"输出均值/方差: {y.mean():.4f} / {y.var():.4f}")
 
 ---
 
-## 三、LayerNorm（Ba et al., 2016）
+## 三、LayerNorm
 
 ### 3.1 算法
 
@@ -120,7 +120,7 @@ $$
 | 可学习参数 | $\gamma, \beta \in \mathbb{R}^C$ | $\gamma, \beta \in \mathbb{R}^H$ |
 | 主流场景   | CNN                        | Transformer / RNN                |
 
-### 3.3 现代 LLM 标准配置
+### 3.3 现代大语言模型的标准配置
 
 现代 Transformer 几乎都用 **Pre-Norm**（LN 在注意力/FFN 之前）：
 
@@ -157,7 +157,7 @@ y = ln(x)
 
 ---
 
-## 四、GroupNorm（Wu & He, 2018）
+## 四、GroupNorm
 
 ### 4.1 动机
 
@@ -201,7 +201,7 @@ y = gn(x)  # batch=2 也能稳定工作
 
 ---
 
-## 五、InstanceNorm（Ulyanov et al., 2016）
+## 五、InstanceNorm
 
 ### 5.1 算法
 

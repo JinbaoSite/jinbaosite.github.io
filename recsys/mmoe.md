@@ -1,16 +1,16 @@
-# 多门控混合专家模型（Multi-gate Mixture-of-Experts，MMoE）
+# MMoE：多门控混合专家模型
 
 MMoE（Multi-gate Mixture-of-Experts）是 Google 于 2018 年提出的多任务学习模型，发表于 KDD 2018，论文题为 *Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts*。[1]
 
 MMoE 的核心思想是通过**共享专家网络（Expert Networks）与任务独立的门控网络（Gate Networks）**，动态学习不同任务之间的共享关系，在实现知识共享的同时保留任务差异性。
 
-## 1. 背景（Background）
+## 1. 背景
 
 多任务学习（Multi-task Learning，MTL）通过共享模型参数，同时优化多个相关任务，例如推荐系统中的点击率（CTR）和转化率（CVR）预测。传统 Shared-Bottom 结构采用共享底层网络和任务独立预测层，但当任务相关性较低时，容易产生负迁移（Negative Transfer），影响模型性能。
 
 MMoE 针对这一问题，引入多个共享专家网络，并为每个任务设计独立的门控网络。不同任务可以根据输入动态选择专家的组合权重，从而实现更灵活的参数共享，缓解任务间的负迁移问题。
 
-## 2. 模型架构（Model Architecture）
+## 2. 模型架构
 
 ### 2.1 整体网络结构
 
@@ -26,7 +26,7 @@ MMoE 由三个核心部分组成：
 
 这种结构的核心在于：共享 Expert 负责知识共享，独立 Gate 负责任务选择，独立 Tower 负责任务输出。因此，MMoE 能够在共享表示学习的基础上，更灵活地建模任务之间的相关性与差异性。
 
-### 2.2 从 Shared-Bottom 到 MMoE
+### 2.2 从 共享底层网络 到 MMoE
 
 为了理解 MMoE 的设计动机，可以先比较三种多任务学习架构。
 
@@ -127,7 +127,7 @@ $$
 
 MMoE 的主要创新并不是简单增加专家数量，而是通过**任务独立的 Gate 实现任务相关性的自适应建模**。
 
-### 2.3 专家网络（Expert Network）
+### 2.3 专家网络
 
 Expert Network 是 MMoE 的共享特征提取模块。
 
@@ -156,7 +156,7 @@ $$
 
 需要注意，MMoE 并没有强制规定各个 Expert 必须学习特定语义。专家之间的分工是训练过程中形成的，并不保证每个 Expert 都具有明确、独立的功能。
 
-### 2.4 门控网络（Gate Network）
+### 2.4 门控网络
 
 Gate Network 是 MMoE 最关键的模块。
 
@@ -245,7 +245,7 @@ MMoE 同时实现了两个层面的自适应：
 - **任务级自适应**：不同任务使用不同的 Gate 参数。
 - **样本级自适应**：同一任务根据不同输入生成不同的专家权重。
 
-### 2.5 任务塔（Task Tower）
+### 2.5 任务塔
 
 经过 Gate 加权融合后，每个任务得到自己的特征表示：
 
@@ -277,7 +277,7 @@ $$
 
 例如，分类任务可以使用 Sigmoid，回归任务则可以直接输出连续数值。
 
-### 2.6 损失函数（Loss Function）
+### 2.6 损失函数
 
 MMoE 本身是一种多任务特征共享架构，并没有引入必须使用的特殊损失函数。
 
@@ -323,7 +323,7 @@ $$
 
 需要注意：如果 CVR 被定义为点击后转化概率，实际数据中通常需要对未点击样本进行标签掩码或采用其他合适的训练目标，不能直接将全部未点击样本当作未转化样本。本节的公式仅表示一般的多任务二分类训练形式。
 
-## 3. 模型实现（Implementation）
+## 3. 模型实现
 
 ### 3.1 核心代码实现
 
@@ -507,27 +507,22 @@ optimizer.step()
 
 这里的两个任务都使用完整样本上的二分类损失，仅用于演示多任务联合训练。实际实现需要根据各任务的标签定义、样本有效性和业务目标确定损失计算方式。
 
-## 4. 总结（Conclusion）
+## 4. 总结
 
 MMoE 通过共享 Expert 和任务独立 Gate，将传统多任务学习中的固定参数共享改进为动态的专家组合。相比 Shared-Bottom 和 OMoE，MMoE 能够为不同任务生成不同的特征表示，从而更灵活地建模任务之间的共享关系。
 
-MMoE 的主要优势在于能够根据输入动态分配专家权重，在任务相关性较低时有助于缓解负迁移。原论文通过合成数据、公开分类数据及 Google 的大规模内容推荐任务验证了模型的有效性。[1]
+MMoE 的主要优势在于能够根据输入动态分配专家权重，在任务相关性较低时有助于缓解负迁移。相关实验通过合成数据、公开分类数据及 Google 的大规模内容推荐任务验证了模型的有效性。[1]
 
 不过，MMoE 并不能完全消除任务冲突。当任务数量或 Expert 数量增加时，模型的计算开销也会相应增加。此外，任务损失权重、专家数量以及不同 Gate 的学习效果都会影响最终性能。MMoE 因而适用于需要联合优化多个目标的推荐场景，也是理解后续多任务专家网络结构的重要基础。
 
-## 5. 参考文献（References）
+## 5. 参考文献
 
-[1] Ma J, Zhao Z, Yi X, et al. **Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts**. KDD, 2018.  
-https://doi.org/10.1145/3219819.3220007
+[1] Ma J, Zhao Z, Yi X, et al. **Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts**. KDD, 2018.
 
-[2] Jacobs R A, Jordan M I, Nowlan S J, Hinton G E. **Adaptive Mixtures of Local Experts**. Neural Computation, 1991.  
-https://doi.org/10.1162/neco.1991.3.1.79
+[2] Jacobs R A, Jordan M I, Nowlan S J, Hinton G E. **Adaptive Mixtures of Local Experts**. Neural Computation, 1991.
 
-[3] Caruana R. **Multitask Learning**. Machine Learning, 1997.  
-https://doi.org/10.1023/A:1007379606734
+[3] Caruana R. **Multitask Learning**. Machine Learning, 1997.
 
-[4] Google Research. **Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts**.  
-https://research.google/pubs/modeling-task-relationships-in-multi-task-learning-with-multi-gate-mixture-of-experts/
+[4] Google Research. **Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts**.
 
-[5] PyTorch. **PyTorch Documentation**.  
-https://docs.pytorch.org/docs/stable/index.html
+[5] PyTorch. **PyTorch Documentation**.

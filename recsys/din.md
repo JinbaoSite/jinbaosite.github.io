@@ -1,4 +1,4 @@
-# 深度兴趣网络Deep Interest Network (DIN)
+# DIN：深度兴趣网络
 
 ## 1 背景
 
@@ -18,7 +18,7 @@ $$\mathbf{x}_u = \text{Pooling}(\mathbf{e}_1, \mathbf{e}_2, \dots, \mathbf{e}_n)
 基于上述痛点，DIN 的核心动机非常直观：**不应该用一个固定的向量来表征用户所有的兴趣，而应该针对不同的候选广告，自适应地计算出用户与当前广告相关的“局部兴趣表达”。**
 
 
-## 2 模型架构 (Model Architecture)
+## 2 模型架构
 
 DIN 并没有颠覆传统的 Embedding & MLP 骨架，而是优雅地在用户历史行为序列与候选广告之间引入了一个**兴趣激活模块（Activation Unit）**。
 
@@ -31,7 +31,7 @@ DIN 并没有颠覆传统的 Embedding & MLP 骨架，而是优雅地在用户�
 - **Local Activation Unit（核心创新）**：
 输入包括两部分：用户历史行为序列的 Embedding $\mathbf{e}_i$ 和候选广告的 Embedding $\mathbf{v}_A$。该模块为每个历史行为计算一个标量权重 $a(\mathbf{e}_i, \mathbf{v}_A)$，代表该行为与当前广告的相关性。
 
-### 2.2 兴趣激活模块 (Activation Unit) 
+### 2.2 兴趣激活模块
 
 不同于自然语言处理（NLP）中标准的注意力机制（Softmax Attention），DIN 的 Activation Unit 放宽了权重的约束。其计算公式如下：
 
@@ -52,11 +52,11 @@ $$p(s) = \frac{1}{1 + \exp\left(-\frac{s - E[s]}{\sqrt{Var[s] + \epsilon}}\right
 
 Dice 核心思想是**根据输入数据的均值 $E[s]$ 和方差 $Var[s]$ 动态调整修正点的位置**，使得控制函数 $p(s)$ 随数据分布平滑移动，极大增强了大规模稀疏特征下的泛化能力。
 
-## 3 工程实现与优化 (Engineering Implementation)
+## 3 工程实现与优化
 
 在工业级生产环境中，海量稀疏特征（如阿里巴巴场景下动辄百亿级参数）直接投入深度网络训练，极易引发过拟合以及单机计算瓶颈。DIN 提出了两项重大的工程优化手段。
 
-### 3.1 自适应正则化 (Mini-batch Aware Regularization)
+### 3.1 自适应正则化
 
 传统的 $L_2$ 正则化需要计算全量参数，但在稀疏场景下，每个 Mini-batch 仅有极少量的特征被激活。如果对未出现的特征也强行进行全量反向传播更新 $L_2$ 惩罚，不仅计算量爆炸，还会破坏原本未激活特征的 embedding 状态。
 
