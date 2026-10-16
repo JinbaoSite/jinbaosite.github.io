@@ -1,0 +1,25 @@
+title: Jinbao
+author: Jinbao
+description: 记录推荐算法、深度学习与工程项目的学习和实践
+logo: J
+base_url: /
+posts_per_page: 5
+
+categories:
+  recsys:
+    title: 推荐算法
+    icon: RS
+  dl:
+    title: 深度学习
+    icon: DL
+  projects:
+    title: 项目
+    icon: PX
+  agent:
+    title: Agent
+    icon: AI
+
+navigation:
+  - recsys
+  - dl
+  - projects

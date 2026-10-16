@@ -3,6 +3,21 @@ layout: listpage
 title: 推荐算法
 subtitle: 召回、排序、重排、序列推荐、多目标优化、生成式推荐
 article-list:
+  - article-title: 深度交叉网络（Deep & Cross Network，DCN）
+    article-url: /recsys/dcn
+    article-date: 2026-10-08
+    article-desc: DCN 通过 Cross Network 显式学习有界阶数的特征交叉，并与 Deep Network 的非线性表达并行融合，在保持参数量和计算复杂度随特征维度线性增长的同时减少人工特征工程，本文系统讲解 Cross Layer 公式、高阶交叉原理、模型结构、PyTorch 实现与工程实践。
+    article-tags: [DCN, 特征交叉, CTR]
+  - article-title: CCFormer：腾讯工业推荐中的高效长序列建模
+    article-url: /recsys/ccformer
+    article-date: 2026-09-30
+    article-desc: CCFormer 面向工业推荐中的超长用户行为序列，通过 Feature-Field Separated Cross Attention 建模用户、序列与候选物品的定向交互，并结合相对时间位置编码、Subspace Token Mixing 和分层序列压缩，将传统 Self-Attention 的平方复杂度降低为近似线性复杂度。
+    article-tags: [长序列, CCFormer, Attention]
+  - article-title: 神经协同过滤算法解析：从矩阵分解到深度神经网络
+    article-url: /recsys/ncf
+    article-date: 2026-09-22
+    article-desc: NCF 用神经网络替代传统矩阵分解中的线性内积，通过用户与物品 Embedding、GMF 和多层感知机学习复杂的非线性交互，并以 NeuMF 融合两条建模路径，本文涵盖核心结构、负采样损失、应用场景与 PyTorch 实现。
+    article-tags: [NCF, 协同过滤, NeuMF]
   - article-title: RankMixer：工业级推荐排序模型的规模化之路
     article-url: /recsys/rankmixer
     article-date: 2026-07-20

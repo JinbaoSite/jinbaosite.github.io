@@ -310,33 +310,30 @@ $$a+y^3 \stackrel{\ref{*}}= x^2$$
 
 ## 9 Commutative diagrams (交换图表)
 
-交换图表（AMScd）必须以 `\require{AMScd}` 开头引入：
+为了兼容静态 MathJax 渲染器，可以使用基础的 `array` 环境组合箭头：
 
 ```latex
-\require{AMScd}
-\begin{CD}
-    A @>a>> B\\
-    @V b V V= @VV c V\\
-    C @>>d> D
-\end{CD}
+\begin{array}{ccc}
+A & \xrightarrow{a} & B \\
+{\scriptstyle b}\downarrow & & \downarrow{\scriptstyle c} \\
+C & \xrightarrow{d} & D
+\end{array}
 
 ```
 
 显示为：
 
-$$\require{AMScd}
-\begin{CD}
-    A @>a>> B\\
-    @V b V V= @VV c V\\
-    C @>>d> D
-\end{CD}$$
+$$
+\begin{array}{ccc}
+A & \xrightarrow{a} & B \\
+{\scriptstyle b}\downarrow & & \downarrow{\scriptstyle c} \\
+C & \xrightarrow{d} & D
+\end{array}
+$$
 
 **符号说明：**
 
-* `@>>>` 向右箭头
-* `@<<<` 向左箭头
-* `@VVV` 向下箭头
-* `@AAA` 向上箭头
-* `@=` 水平双线
-* `@|` 垂直双线
-* `@.` 空白（无箭头）
+* `\xrightarrow{a}` 表示带标签的向右箭头
+* `\downarrow` 表示向下箭头
+* `\scriptstyle` 用于缩小箭头旁的标签
+* `array` 的列对齐参数 `{ccc}` 表示三列居中

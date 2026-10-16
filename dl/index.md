@@ -43,4 +43,29 @@ article-list:
     article-date: 2026-07-08
     article-desc: 详解 FP16/BF16 混合精度与 DistributedDataParallel 的原理、PyTorch 实战与踩坑指南,LLM 训练六件套。
     article-tags: [AMP, DDP, 分布式]
+  - article-title: Xgboost
+    article-url: /dl/xgboost
+    article-date: 2026-07-07
+    article-desc: Transformer 注意力机制研究综述：详解 Scaled Dot-Product Attention, Multi-Head Attention (MHA), Multi-Query Attention (MQA)及Grouped-Query Attention (GQA)四种经典机制。
+    article-tags: [Atttention, MHA, MQA, GQA]
+  - article-title: 注意力机制（Attention）
+    article-url: /dl/attention
+    article-date: 2026-07-07
+    article-desc: 详解 Scaled Dot-Product Attention, Multi-Head Attention (MHA), Multi-Query Attention (MQA)及Grouped-Query Attention (GQA)四种经典机制。
+    article-tags: [Atttention, MHA, MQA, GQA]
+  - article-title: 位置编码（Positional Encoding）
+    article-url: /dl/positional_encoding
+    article-date: 2026-07-06
+    article-desc: 详解 Learnable、Sinusoidal、RoPE 及 YaRN 四种主流位置编码方案的数学原理与代码实现，梳理从绝对位置编码到相对位置编码的演进脉络。
+    article-tags: [Sinusoidal, RoPE, YaRN]
+  - article-title: 字节对编码(BPE):一种简单而高效的开放词表分词方法
+    article-url: /dl/bpe
+    article-date: 2026-06-17
+    article-desc: 从最小的符号单元出发,反复将训练语料中共现频率最高的相邻符号对合并为一个新符号,直至词表达到预设规模。
+    article-tags: [BPE, tokenizer]
+  - article-title: Measuring a Language Model（Perplexity 详解）
+    article-url: /dl/perplexity
+    article-date: 2025-05-08
+    article-desc: Perplexity衡量模型在给定文本上的困惑程度，即模型对文本预测的不确定程度。
+    article-tags: [指标]
 ---

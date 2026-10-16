@@ -198,7 +198,7 @@ $$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \text{head}_2, \dots,
 
 1. **一次性投影**：直接用一个大矩阵将 $X$ 映射成总维度为 $(n \times d_{\text{model}})$ 的 $Q, K, V$。
 2. **维度重塑（Reshape）**：将维度从 $(n \times d_{\text{model}})$ 改为 $(n \times h \times d_k)$。
-3. **维度置换（Transpose）**：转换为 $(\text{batch_size}, h, n, d_k)$。
+3. **维度置换（Transpose）**：转换为 $(\text{batch\_size}, h, n, d_k)$。
 4. **批量矩阵乘法（BMM）**：利用高维矩阵乘法，一条指令同时计算所有样本、所有头的注意力，极大提升了 GPU 的运行效率。
 
 ### 2.4 代码实现
@@ -557,5 +557,4 @@ class GroupedQueryAttention(nn.Module):
 | **GQA** | Ainslie et al., 2023 | $g$ 个 | 中等 | 中等 |
 
 综上所述，GQA 作为 MHA 与 MQA 的折中方案，在保持较好表达能力的同时显著降低了 KV Cache 开销，已成为当代大语言模型的主流选择。
-
 

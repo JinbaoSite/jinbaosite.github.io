@@ -83,7 +83,7 @@ $$pos = \begin{bmatrix} 0 \\ 1 \\ 2 \\ \vdots \\ L-1 \end{bmatrix}$$
 
 根据维度的前半部分（偶数项），计算缩放系数（也叫角速度 $\omega_i$）。共有 $d/2$ 个项：
 
-$$\text{inv_freq} = \left[ \frac{1}{10000^0}, \frac{1}{10000^{\frac{2}{d}}}, \frac{1}{10000^{\frac{4}{d}}}, \dots, \frac{1}{10000^{\frac{d-2}{d}}} \right]$$
+$$\text{inv\_freq} = \left[ \frac{1}{10000^0}, \frac{1}{10000^{\frac{2}{d}}}, \frac{1}{10000^{\frac{4}{d}}}, \dots, \frac{1}{10000^{\frac{d-2}{d}}} \right]$$
 
 其形状为 $(1, d/2)$ 的行向量。
 
@@ -91,7 +91,7 @@ $$\text{inv_freq} = \left[ \frac{1}{10000^0}, \frac{1}{10000^{\frac{2}{d}}}, \fr
 
 将位置列向量与逆频率行向量进行外积（Matrix Outer Product）相乘，得到一个形状为 $(L, d/2)$ 的角度矩阵。矩阵中的每一个元素都是 $pos \cdot \omega_i$：
 
-$$\text{angles} = pos \times \text{inv_freq} = \begin{bmatrix}
+$$\text{angles} = pos \times \text{inv\_freq} = \begin{bmatrix}
 0 \cdot \omega_0 & 0 \cdot \omega_1 & \cdots & 0 \cdot \omega_{d/2-1} \\
 1 \cdot \omega_0 & 1 \cdot \omega_1 & \cdots & 1 \cdot \omega_{d/2-1} \\
 \vdots & \vdots & \ddots & \vdots \\
