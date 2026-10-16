@@ -18,6 +18,12 @@ article-list:
     article-date: 2025-07-21
     article-desc: RankMixer 用无参数的 Multi-Head Token Mixing（切分 head 后跨 Token 重组）替代平方复杂度的 Self-Attention 完成全局特征交互，再用 Per-token FFN 让每个特征子空间拥有独立参数、避免高频特征淹没长尾特征，并可扩展为 ReLU Routing + DTSI 的 Sparse-MoE 变体，用可堆叠矩阵乘架构大幅提升 GPU 利用率，实现推荐排序模型的低成本参数扩容。
     article-tags: [精排, RankMixer]
+  - article-title: DCN V2：矩阵交叉与低秩混合专家
+    article-url: /recsys/dcnv2/
+    # 日期依据：WWW 2021；DOI:10.1145/3442381.3450078；正式出版日期
+    article-date: 2021-04-19
+    article-desc: DCN V2 将向量式交叉扩展为矩阵式交叉，通过低秩分解与混合专家平衡表达能力和计算成本。本文讲解交叉层公式、串行与并行结构、交互次数边界，以及三种交叉模块的 PyTorch 实现。
+    article-tags: [DCN V2, 特征交叉, 精排]
   - article-title: AutoInt：用自注意力机制自动学习特征交互
     article-url: /recsys/autoint
     # 日期依据：CIKM 2019；DOI:10.1145/3357384.3357925；正式出版日期
