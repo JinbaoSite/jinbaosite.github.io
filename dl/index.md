@@ -18,7 +18,7 @@ article-list:
     article-date: 2026-07-08
     article-desc: ResNet 用加法捷径让网络深到 152 层,DenseNet 用拼接捷径让每层复用所有历史特征,共同确立了「跨层连接 = 现代 CNN 标配」。
     article-tags: [ResNet, DenseNet, 残差连接]
-  - article-title: 卷积运算详解：从 2D 卷积到深度可分离卷积
+  - article-title: "卷积运算详解：从 二维卷积到深度可分离卷积"
     article-url: /dl/convolution
     article-date: 2026-07-08
     article-desc: 系统讲解 2D 卷积、1×1 卷积、空洞卷积、转置卷积与深度可分离卷积的原理、PyTorch 实现与计算量对比。
@@ -33,7 +33,7 @@ article-list:
     article-date: 2026-07-08
     article-desc: 系统梳理 SGD、Momentum、Adam、AdamW、LAMB、Lion 的算法、PyTorch 实现与适用场景,Transformer 默认 AdamW。
     article-tags: [优化器, AdamW, LAMB]
-  - article-title: 学习率调度：Warmup + Cosine Annealing + OneCycle
+  - article-title: "学习率调度：学习率预热 + 余弦退火 + OneCycle"
     article-url: /dl/lr_schedule
     article-date: 2026-07-08
     article-desc: 讲解 Warmup、Step Decay、Exponential、Cosine Annealing、OneCycle 五种调度策略,附 LR Range Test 找最优学习率。
@@ -48,12 +48,12 @@ article-list:
     article-date: 2026-07-07
     article-desc: Transformer 注意力机制研究综述：详解 Scaled Dot-Product Attention, Multi-Head Attention (MHA), Multi-Query Attention (MQA)及Grouped-Query Attention (GQA)四种经典机制。
     article-tags: [Atttention, MHA, MQA, GQA]
-  - article-title: 注意力机制（Attention）
+  - article-title: "Transformer 注意力机制"
     article-url: /dl/attention
     article-date: 2026-07-07
     article-desc: 详解 Scaled Dot-Product Attention, Multi-Head Attention (MHA), Multi-Query Attention (MQA)及Grouped-Query Attention (GQA)四种经典机制。
     article-tags: [Atttention, MHA, MQA, GQA]
-  - article-title: 位置编码（Positional Encoding）
+  - article-title: "位置编码"
     article-url: /dl/positional_encoding
     article-date: 2026-07-06
     article-desc: 详解 Learnable、Sinusoidal、RoPE 及 YaRN 四种主流位置编码方案的数学原理与代码实现，梳理从绝对位置编码到相对位置编码的演进脉络。
@@ -63,7 +63,7 @@ article-list:
     article-date: 2026-06-17
     article-desc: 从最小的符号单元出发,反复将训练语料中共现频率最高的相邻符号对合并为一个新符号,直至词表达到预设规模。
     article-tags: [BPE, tokenizer]
-  - article-title: Measuring a Language Model（Perplexity 详解）
+  - article-title: "语言模型评估：困惑度详解"
     article-url: /dl/perplexity
     article-date: 2025-05-08
     article-desc: Perplexity衡量模型在给定文本上的困惑程度，即模型对文本预测的不确定程度。

@@ -42,7 +42,7 @@ article-list:
     article-date: 2018-07-19
     article-desc: xDeepFM 通过压缩交互网络 CIN 显式建模向量级高阶交互，并融合线性分支与深度网络。本文讲解交互与压缩、阶数推导、多层池化、计算成本，以及完整的 PyTorch 实现。
     article-tags: [xDeepFM, 特征交叉, 精排]
-  - article-title: 多任务模型MMoE
+  - article-title: "MMoE：多门控混合专家模型"
     article-url: /recsys/mmoe
     # 日期依据：KDD 2018；DOI:10.1145/3219819.3220007；正式出版日期
     article-date: 2018-07-19
@@ -54,7 +54,7 @@ article-list:
     article-date: 2018-07-19
     article-desc: DIN 根据候选物品激活相关历史行为，通过未归一化加权求和构建目标相关兴趣。本文讲解兴趣激活、Dice、小批量感知正则化及模型边界，并提供支持补零掩码和空历史的 PyTorch 实现。
     article-tags: [DIN,排序]
-  - article-title: CVR预估模型ESMM
+  - article-title: "ESMM：全空间多任务模型"
     article-url: /recsys/esmm
     # 日期依据：SIGIR 2018；DOI:10.1145/3209978.3210104；正式出版日期
     article-date: 2018-06-27
@@ -66,7 +66,7 @@ article-list:
     article-date: 2017-08-19
     article-desc: DeepFM融合FM与DNN,采用并行双流架构，能自动捕获低阶与高阶特征交叉,两部分共享底层Embedding，无需人工特征工程，实现了高效、端到端的联合训练。
     article-tags: [DeepFM,排序]
-  - article-title: 深度交叉网络（Deep & Cross Network，DCN）
+  - article-title: "DCN：深度交叉网络"
     article-url: /recsys/dcn
     # 日期依据：AdKDD 2017；DOI:10.1145/3124749.3124754；正式出版日期
     article-date: 2017-08-14
@@ -90,7 +90,7 @@ article-list:
     article-date: 2016-09-07
     article-desc: YouTube 深度神经网络推荐系统架构采用“召回+排序”的两阶段推荐：召回阶段将海量视频检索简化为“极端多分类”问题，引入 Example Age 特征消除时间偏置，通过高效近邻检索（ANN）粗滤出候选集；排序阶段则巧妙利用加权逻辑回归，将优化目标从点击率转化为“期望观看时长”，对候选视频进行精准打分。
     article-tags: [DNN,ANN]
-  - article-title: FM因子分解
+  - article-title: "FM因子分解机"
     article-url: /recsys/fm
     # 日期依据：ICDM 2010；DOI:10.1109/ICDM.2010.127；出版记录精确到月，按会议首日排序
     article-date: 2010-12-13
