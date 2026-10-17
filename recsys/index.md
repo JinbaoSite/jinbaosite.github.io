@@ -30,6 +30,12 @@ article-list:
     article-date: 2019-11-03
     article-desc: AutoInt 通过多头自注意力机制显式建模特征间的交互,用残差连接保留原始信息、用堆叠层数控制交互阶数,在自动学习高阶特征组合的同时,借注意力权重提供可解释性。
     article-tags: [精排, 特征交叉]
+  - article-title: MIND：动态路由多兴趣网络
+    article-url: /recsys/mind/
+    # 日期依据：CIKM 2019；DOI:10.1145/3357384.3357814；正式出版日期
+    article-date: 2019-11-03
+    article-desc: MIND 面向召回阶段，通过行为到兴趣动态路由将用户历史聚合为多个兴趣向量，训练时以标签感知注意力对齐目标物品，服务时由多个兴趣分别查询向量索引。本文包含动态兴趣数量、采样训练和 PyTorch 实现。
+    article-tags: [MIND, 多兴趣, 召回]
   - article-title: DSIN：深度会话兴趣网络
     article-url: /recsys/dsin/
     # 日期依据：IJCAI 2019；DOI:10.24963/ijcai.2019/319；出版记录精确到月，按会议首日排序
