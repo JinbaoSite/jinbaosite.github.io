@@ -130,6 +130,6 @@ article-list:
     article-url: /recsys/cf
     # 日期依据：基础综述按代表文献 Item-based collaborative filtering recommendation algorithms 排序；DOI:10.1145/371920.372071；明尼苏达大学出版记录日期
     article-date: 2001-04-01
-    article-desc: 基于用户的协同过滤算法根据用户对物品的偏好，计算用户与其他用户的相似度，根据用户的相似度，推荐与用户兴趣相似的物品。基于物品的协同过滤算法根据物品之间的相似度，推荐与用户之前喜欢的物品相似的物品
-    article-tags: [itemcf,usercf,协调过滤]
+    article-desc: 基于邻域的协同过滤通过用户或物品共现生成推荐，涵盖相似度计算、候选打分、热门与活跃因素修正、显式评分预测，以及可运行的 Python 实现与时间划分评估方法。
+    article-tags: [UserCF, ItemCF, 协同过滤]
 ---
