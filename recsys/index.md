@@ -24,6 +24,12 @@ article-list:
     article-date: 2021-04-19
     article-desc: DCN V2 将向量式交叉扩展为矩阵式交叉，通过低秩分解与混合专家平衡表达能力和计算成本。本文讲解交叉层公式、串行与并行结构、交互次数边界，以及三种交叉模块的 PyTorch 实现。
     article-tags: [DCN V2, 特征交叉, 精排]
+  - article-title: SIM：基于搜索的终身序列兴趣建模
+    article-url: /recsys/sim/
+    # 日期依据：CIKM 2020；DOI:10.1145/3340531.3412744；正式出版日期
+    article-date: 2020-10-19
+    article-desc: SIM 面向点击率预估中的终身行为序列，以通用搜索单元从上万条历史中检索候选相关行为，再由精确搜索单元融合时间间隔并进行多头注意力建模。本文讲解硬搜索、软搜索、联合训练、在线索引及可运行的 PyTorch 实现。
+    article-tags: [SIM, 长序列, 精排]
   - article-title: AutoInt：用自注意力机制自动学习特征交互
     article-url: /recsys/autoint
     # 日期依据：CIKM 2019；DOI:10.1145/3357384.3357925；正式出版日期
