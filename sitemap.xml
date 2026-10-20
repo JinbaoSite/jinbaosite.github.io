@@ -168,4 +168,13 @@
   <url>
     <loc>https://dongjinbao.com/dl/catboost/</loc>
   </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/mlp/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/backpropagation/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/activation_functions/</loc>
+  </url>
 </urlset>

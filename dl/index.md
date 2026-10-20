@@ -1,8 +1,38 @@
 ---
 layout: listpage
 title: 深度学习
-subtitle: CNN、Transformer、训练优化
+subtitle: 神经网络基础、CNN、Transformer、训练优化与机器学习算法
 article-list:
+  - article-title: 多层感知机：从线性模型到非线性神经网络
+    article-url: /dl/mlp/
+    article-date: 2026-10-20
+    article-desc: 多层感知机通过仿射层与非线性激活学习特征表示，涵盖异或构造、反向传播、输出任务、初始化与容量控制，并提供包含验证集早停的完整 PyTorch 实现。
+    article-tags: [多层感知机, 神经网络, 反向传播]
+  - article-title: 反向传播：链式法则与自动求导
+    article-url: /dl/backpropagation/
+    article-date: 2026-10-20
+    article-desc: 反向传播通过计算图与链式法则高效计算参数梯度，涵盖分支累加、矩阵与广播求导、梯度存储及高阶导数，并提供标量求导引擎、有限差分和 PyTorch 核对代码。
+    article-tags: [反向传播, 自动求导, 链式法则]
+  - article-title: 激活函数：从逻辑函数到门控线性单元
+    article-url: /dl/activation_functions/
+    article-date: 2026-10-20
+    article-desc: 激活函数为网络引入非线性，涵盖 Sigmoid、Tanh、ReLU、GELU、SiLU 及 GLU、GEGLU、SwiGLU，说明梯度、饱和与参数预算，并提供公式核对及门控前馈模块实现。
+    article-tags: [激活函数, 门控, 神经网络]
+  - article-title: 归一化：从批次统计到均方根缩放
+    article-url: /dl/normalization
+    article-date: 2026-07-08
+    article-desc: 归一化通过指定轴上的统计调整激活尺度，涵盖批、层、组、实例及均方根归一化，厘清运行方差、训练推理差异和等价条件，并提供公式与梯度核对实现。
+    article-tags: [归一化, LayerNorm, RMSNorm]
+  - article-title: 优化器：从梯度下降到自适应更新
+    article-url: /dl/optimizers
+    article-date: 2026-07-08
+    article-desc: 优化器通过动量、梯度统计与权重衰减调整参数，涵盖 SGD、AdaGrad、RMSprop、Adam、AdamW、LAMB 和 Lion，提供更新公式核对、状态内存分析及完整训练示例。
+    article-tags: [优化器, AdamW, LAMB]
+  - article-title: "学习率调度：学习率预热 + 余弦退火 + OneCycle"
+    article-url: /dl/lr_schedule
+    article-date: 2026-07-08
+    article-desc: 讲解 Warmup、Step Decay、Exponential、Cosine Annealing、OneCycle 五种调度策略,附 LR Range Test 找最优学习率。
+    article-tags: [学习率, Cosine, OneCycle]
   - article-title: LeNet-5 与 AlexNet：CNN 的奠基之作
     article-url: /dl/lenet_alexnet
     article-date: 2026-07-08
@@ -23,21 +53,6 @@ article-list:
     article-date: 2026-07-08
     article-desc: 系统讲解 2D 卷积、1×1 卷积、空洞卷积、转置卷积与深度可分离卷积的原理、PyTorch 实现与计算量对比。
     article-tags: [CNN, 卷积, MobileNet]
-  - article-title: 归一化层：BatchNorm / LayerNorm / GroupNorm
-    article-url: /dl/normalization
-    article-date: 2026-07-08
-    article-desc: 对比 BatchNorm、LayerNorm、GroupNorm、InstanceNorm、RMSNorm 五种归一化方法,给出按任务类型选择的工程指南。
-    article-tags: [BatchNorm, LayerNorm, GroupNorm]
-  - article-title: 优化器演进：SGD → Adam → AdamW → LAMB
-    article-url: /dl/optimizers
-    article-date: 2026-07-08
-    article-desc: 系统梳理 SGD、Momentum、Adam、AdamW、LAMB、Lion 的算法、PyTorch 实现与适用场景,Transformer 默认 AdamW。
-    article-tags: [优化器, AdamW, LAMB]
-  - article-title: "学习率调度：学习率预热 + 余弦退火 + OneCycle"
-    article-url: /dl/lr_schedule
-    article-date: 2026-07-08
-    article-desc: 讲解 Warmup、Step Decay、Exponential、Cosine Annealing、OneCycle 五种调度策略,附 LR Range Test 找最优学习率。
-    article-tags: [学习率, Cosine, OneCycle]
   - article-title: 混合精度训练与分布式训练（DDP）
     article-url: /dl/mixed_precision_ddp
     article-date: 2026-07-08
