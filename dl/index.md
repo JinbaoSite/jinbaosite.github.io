@@ -43,11 +43,6 @@ article-list:
     article-date: 2026-07-08
     article-desc: 详解 FP16/BF16 混合精度与 DistributedDataParallel 的原理、PyTorch 实战与踩坑指南,LLM 训练六件套。
     article-tags: [AMP, DDP, 分布式]
-  - article-title: Xgboost
-    article-url: /dl/xgboost
-    article-date: 2026-07-07
-    article-desc: Transformer 注意力机制研究综述：详解 Scaled Dot-Product Attention, Multi-Head Attention (MHA), Multi-Query Attention (MQA)及Grouped-Query Attention (GQA)四种经典机制。
-    article-tags: [Atttention, MHA, MQA, GQA]
   - article-title: "Transformer 注意力机制"
     article-url: /dl/attention
     article-date: 2026-07-07
@@ -68,4 +63,50 @@ article-list:
     article-date: 2025-05-08
     article-desc: Perplexity衡量模型在给定文本上的困惑程度，即模型对文本预测的不确定程度。
     article-tags: [指标]
+  - article-title: CatBoost：有序统计与类别特征树提升
+    article-url: /dl/catboost/
+    article-date: 2026-10-20
+    article-desc: CatBoost 通过有序目标统计和有序提升控制类别标签泄漏与预测偏移，结合对称树提升预测效率，涵盖先验、类别组合与数据划分，并提供可运行的核心组件实现。
+    article-tags: [CatBoost, 类别特征, 有序提升]
+  - article-title: LightGBM：直方图与叶子优先的高效树提升
+    article-url: /dl/lightgbm/
+    article-date: 2026-10-20
+    article-desc: LightGBM 通过直方图分桶与叶子优先生长提升训练效率，涵盖直方图相减、梯度单边采样、互斥特征捆绑及类别处理，并提供可运行的直方图提升回归实现。
+    article-tags: [LightGBM, 集成学习, 直方图]
+  - article-title: XGBoost：二阶优化与正则化树提升
+    article-url: /dl/xgboost/
+    article-date: 2026-10-20
+    article-desc: XGBoost 结合二阶损失近似与树正则化，推导叶权重、分裂增益及海森约束，说明直方图搜索与缺失值默认方向，并提供可运行的二阶提升树桩实现。
+    article-tags: [XGBoost, 集成学习, 二阶优化]
+  - article-title: 随机森林：从自助采样到多树集成
+    article-url: /dl/random_forest/
+    article-date: 2026-10-20
+    article-desc: 随机森林通过自助采样和节点级随机特征选择降低树间相关性，涵盖分类概率聚合、回归平均、袋外评估与方差分析，并提供完整 Python 实现。
+    article-tags: [随机森林, 集成学习, 袋外评估]
+  - article-title: 梯度提升树：从负梯度拟合到加法模型
+    article-url: /dl/gradient_boosting/
+    article-date: 2026-10-20
+    article-desc: 梯度提升树通过逐轮拟合负梯度构建加法模型，涵盖平方误差回归、二分类交叉熵、叶值优化、学习率与早停，并提供基于回归树桩的完整 Python 实现。
+    article-tags: [梯度提升树, 集成学习, GBDT]
+  - article-title: 决策树：从特征划分到分类与回归
+    article-url: /dl/decision_tree/
+    article-date: 2026-10-20
+    article-desc: 决策树通过递归划分特征空间完成分类与回归，涵盖基尼不纯度、信息增益、平方误差、预剪枝与后剪枝，并提供支持分类和回归的完整 Python 实现。
+    article-tags: [决策树, 分类, 回归]
+  - article-title: 朴素贝叶斯：从条件概率到文本分类
+    article-url: /dl/naive_bayes/
+    article-date: 2026-10-20
+    article-desc: 朴素贝叶斯利用类别先验和类条件分布完成分类，涵盖条件独立假设、多项式、伯努利与高斯模型、加性平滑及对数概率，并提供可运行的文本分类实现。
+    article-tags: [朴素贝叶斯, 概率模型, 文本分类]
+  - article-title: 逻辑回归：从概率建模到交叉熵优化
+    article-url: /dl/logistic_regression/
+    article-date: 2026-10-20
+    article-desc: 逻辑回归通过线性对数几率估计分类概率，涵盖伯努利似然、交叉熵梯度、数值稳定性、决策阈值、正则化与概率校准，并提供手动梯度和自动求导的完整 PyTorch 实现。
+    article-tags: [逻辑回归, 分类, 交叉熵]
+  - article-title: 线性回归：从最小二乘到梯度下降
+    article-url: /dl/linear_regression/
+    article-date: 2026-10-20
+    article-desc: 线性回归通过特征加权求和预测连续目标，涵盖平方损失、正规方程、梯度下降、标准化与正则化，并提供最小二乘、手动梯度和自动求导的完整 PyTorch 实现。
+    article-tags: [线性回归, 最小二乘, 梯度下降]
+
 ---

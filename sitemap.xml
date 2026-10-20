@@ -144,4 +144,28 @@
   <url>
     <loc>https://dongjinbao.com/recsys/sim/</loc>
   </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/linear_regression/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/logistic_regression/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/naive_bayes/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/decision_tree/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/gradient_boosting/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/random_forest/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/lightgbm/</loc>
+  </url>
+  <url>
+    <loc>https://dongjinbao.com/dl/catboost/</loc>
+  </url>
 </urlset>
