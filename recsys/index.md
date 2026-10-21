@@ -9,7 +9,7 @@ article-list:
   - article-title: CCFormer：腾讯工业推荐中的高效长序列建模
     article-url: /recsys/ccformer
     article-date: 2026-07-30
-    article-desc: CCFormer 面向工业推荐中的超长用户行为序列，通过 Feature-Field Separated Cross Attention 建模用户、序列与候选物品的定向交互，并结合相对时间位置编码、Subspace Token Mixing 和分层序列压缩，将传统 Self-Attention 的平方复杂度降低为近似线性复杂度。
+    article-desc: CCFormer 结合字段分离交叉注意力、局部时间位置编码、独立通道组词元混合与分层卷积压缩，高效处理长行为序列，涵盖查询方向、复杂度条件、候选并行及支持补零和空历史的 PyTorch 核心实现。
     article-tags: [长序列, CCFormer, Attention]
   - article-title: RankMixer：工业级推荐排序模型的规模化之路
     article-url: /recsys/rankmixer
