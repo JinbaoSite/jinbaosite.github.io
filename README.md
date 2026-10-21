@@ -1,31 +1,63 @@
-# Jinbao Blog
+## 推荐算法
 
-这个仓库只维护博客的 Markdown 内容，网站由
-[JinbaoSite/markdown-pages](https://github.com/JinbaoSite/markdown-pages)
-自动构建并发布到 GitHub Pages。
+- [CCFormer：腾讯工业推荐中的高效长序列建模](https://dongjinbao.com/recsys/ccformer)
+- [RankMixer：工业级推荐排序模型的规模化之路](https://dongjinbao.com/recsys/rankmixer)
+- [DCN V2：矩阵交叉与低秩混合专家](https://dongjinbao.com/recsys/dcnv2/)
+- [SIM：基于搜索的终身序列兴趣建模](https://dongjinbao.com/recsys/sim/)
+- [AutoInt：用自注意力机制自动学习特征交互](https://dongjinbao.com/recsys/autoint)
+- [MIND：动态路由多兴趣网络](https://dongjinbao.com/recsys/mind/)
+- [DSIN：深度会话兴趣网络](https://dongjinbao.com/recsys/dsin/)
+- [DIEN：深度兴趣演化网络](https://dongjinbao.com/recsys/dien/)
+- [SASRec：基于自注意力的序列推荐](https://dongjinbao.com/recsys/sasrec/)
+- [xDeepFM：显式与隐式特征交互融合](https://dongjinbao.com/recsys/xdeepfm/)
+- [MMoE：多门控混合专家模型](https://dongjinbao.com/recsys/mmoe)
+- [DIN：深度兴趣网络](https://dongjinbao.com/recsys/din)
+- [ESMM：全空间多任务模型](https://dongjinbao.com/recsys/esmm)
+- [深度模型DeepFM模型](https://dongjinbao.com/recsys/deepfm)
+- [DCN：深度交叉网络](https://dongjinbao.com/recsys/dcn)
+- [神经协同过滤算法解析：从矩阵分解到深度神经网络](https://dongjinbao.com/recsys/ncf)
+- [深度模型Wide&Deep模型](https://dongjinbao.com/recsys/wdl)
+- [YouTube 深度神经网络推荐系统架构](https://dongjinbao.com/recsys/youtube_dnn)
+- [FM因子分解机](https://dongjinbao.com/recsys/fm)
+- [协同过滤推荐系统中矩阵分解](https://dongjinbao.com/recsys/mf)
+- [基于邻域的协同过滤](https://dongjinbao.com/recsys/cf)
 
-访问地址：<https://jinbaosite.github.io/blog/>
+## 深度学习
 
-## 添加文章
+- [LeNet-5 与 AlexNet：CNN 的奠基之作](https://dongjinbao.com/dl/lenet_alexnet)
+- [VGG 与 GoogLeNet：更深更宽的探索](https://dongjinbao.com/dl/vgg_googlenet)
+- [ResNet 与 DenseNet：残差连接的胜利](https://dongjinbao.com/dl/resnet_densenet)
+- [卷积运算详解：从 二维卷积到深度可分离卷积](https://dongjinbao.com/dl/convolution)
+- [混合精度训练与分布式训练（DDP）](https://dongjinbao.com/dl/mixed_precision_ddp)
+- [Transformer 注意力机制](https://dongjinbao.com/dl/attention)
+- [位置编码](https://dongjinbao.com/dl/positional_encoding)
+- [字节对编码(BPE):一种简单而高效的开放词表分词方法](https://dongjinbao.com/dl/bpe)
+- [语言模型评估：困惑度详解](https://dongjinbao.com/dl/perplexity)
+- [学习率调度：学习率预热 + 余弦退火 + OneCycle](https://dongjinbao.com/dl/lr_schedule)
+- [优化器：从梯度下降到自适应更新](https://dongjinbao.com/dl/optimizers)
+- [归一化：从批次统计到均方根缩放](https://dongjinbao.com/dl/normalization)
+- [激活函数：从逻辑函数到门控线性单元](https://dongjinbao.com/dl/activation_functions/)
+- [反向传播：链式法则与自动求导](https://dongjinbao.com/dl/backpropagation/)
+- [多层感知机：从线性模型到非线性神经网络](https://dongjinbao.com/dl/mlp/)
+- [CatBoost：有序统计与类别特征树提升](https://dongjinbao.com/dl/catboost/)
+- [LightGBM：直方图与叶子优先的高效树提升](https://dongjinbao.com/dl/lightgbm/)
+- [XGBoost：二阶优化与正则化树提升](https://dongjinbao.com/dl/xgboost/)
+- [随机森林：从自助采样到多树集成](https://dongjinbao.com/dl/random_forest/)
+- [梯度提升树：从负梯度拟合到加法模型](https://dongjinbao.com/dl/gradient_boosting/)
+- [决策树：从特征划分到分类与回归](https://dongjinbao.com/dl/decision_tree/)
+- [朴素贝叶斯：从条件概率到文本分类](https://dongjinbao.com/dl/naive_bayes/)
+- [逻辑回归：从概率建模到交叉熵优化](https://dongjinbao.com/dl/logistic_regression/)
+- [线性回归：从最小二乘到梯度下降](https://dongjinbao.com/dl/linear_regression/)
 
-按照主题把 Markdown 放入相应目录：
+## Agent
 
-```text
-ml/          机器学习
-dl/          深度学习
-llm/         LLM
-recsys/      推荐算法
-agent/       Agent
-projects/    项目
-```
+- [Agent Skills 完整指南](https://dongjinbao.com/agent/agentskills)
+- [构建具备“反思”能力的 Reflection 智能体](https://dongjinbao.com/agent/reflection)
+- [解锁大模型智能体的高阶范式: Plan-and-Solve](https://dongjinbao.com/agent/plan_and_solve)
+- [深入浅出大模型智能体经典范式：ReAct](https://dongjinbao.com/agent/react)
 
-每篇文章至少包含一个一级标题：
+## 项目
 
-```markdown
-# 文章标题
-
-正文内容。
-```
-
-推送到 `main` 后，GitHub Actions 会自动重新发布网站。
-
+- [面向智能营销的 Lookalike 人群拓展：从 5000 万候选用户中寻找高价值人群](https://dongjinbao.com/projects/lookalike-ac)
+- [Kaggle比赛 - Kannada MNIST](https://dongjinbao.com/projects/kannada-mnist)
+- [返乡发展人群预测](https://dongjinbao.com/projects/581)
