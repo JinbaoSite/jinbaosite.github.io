@@ -33,7 +33,7 @@
 - [位置编码](https://dongjinbao.com/dl/positional_encoding)
 - [字节对编码(BPE):一种简单而高效的开放词表分词方法](https://dongjinbao.com/dl/bpe)
 - [语言模型评估：困惑度详解](https://dongjinbao.com/dl/perplexity)
-- [学习率调度：学习率预热 + 余弦退火 + OneCycle](https://dongjinbao.com/dl/lr_schedule)
+- [学习率调度：从预热到周期退火](https://dongjinbao.com/dl/lr_schedule)
 - [优化器：从梯度下降到自适应更新](https://dongjinbao.com/dl/optimizers)
 - [归一化：从批次统计到均方根缩放](https://dongjinbao.com/dl/normalization)
 - [激活函数：从逻辑函数到门控线性单元](https://dongjinbao.com/dl/activation_functions/)

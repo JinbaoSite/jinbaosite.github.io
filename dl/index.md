@@ -48,10 +48,10 @@ article-list:
     article-date: 2025-05-08
     article-desc: Perplexity衡量模型在给定文本上的困惑程度，即模型对文本预测的不确定程度。
     article-tags: [指标]
-  - article-title: "学习率调度：学习率预热 + 余弦退火 + OneCycle"
+  - article-title: 学习率调度：从预热到周期退火
     article-url: /dl/lr_schedule
     article-date: 2026-07-08
-    article-desc: 讲解 Warmup、Step Decay、Exponential、Cosine Annealing、OneCycle 五种调度策略,附 LR Range Test 找最优学习率。
+    article-desc: 学习率调度按照更新步数或验证反馈调整步长，涵盖预热、阶梯与余弦衰减、周期重启及 OneCycle，提供明确边界的 PyTorch 实现与断点续训核对。
     article-tags: [学习率, Cosine, OneCycle]
   - article-title: 优化器：从梯度下降到自适应更新
     article-url: /dl/optimizers
