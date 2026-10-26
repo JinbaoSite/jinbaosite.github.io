@@ -78,6 +78,11 @@ article-list:
     article-date: 2026-10-20
     article-desc: 多层感知机通过仿射层与非线性激活学习特征表示，涵盖异或构造、反向传播、输出任务、初始化与容量控制，并提供包含验证集早停的完整 PyTorch 实现。
     article-tags: [多层感知机, 神经网络, 反向传播]
+  - article-title: DNN：深度神经网络的模型结构与实现
+    article-url: /dl/dnn/
+    article-date: 2026-10-26
+    article-desc: DNN 通过输入编码、全连接隐藏主干与任务头构建预测模型，详细说明类别嵌入、隐藏块、前向与反向逐层计算、参数规模，配有数值算例、手推梯度核对和完整 PyTorch 训练示例。
+    article-tags: [DNN, 神经网络, 模型结构]
   - article-title: CatBoost：有序统计与类别特征树提升
     article-url: /dl/catboost/
     article-date: 2026-10-20

@@ -39,6 +39,7 @@
 - [激活函数：从逻辑函数到门控线性单元](https://dongjinbao.com/dl/activation_functions/)
 - [反向传播：链式法则与自动求导](https://dongjinbao.com/dl/backpropagation/)
 - [多层感知机：从线性模型到非线性神经网络](https://dongjinbao.com/dl/mlp/)
+- [DNN：深度神经网络的模型结构与实现](https://dongjinbao.com/dl/dnn/)
 - [CatBoost：有序统计与类别特征树提升](https://dongjinbao.com/dl/catboost/)
 - [LightGBM：直方图与叶子优先的高效树提升](https://dongjinbao.com/dl/lightgbm/)
 - [XGBoost：二阶优化与正则化树提升](https://dongjinbao.com/dl/xgboost/)
