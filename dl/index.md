@@ -81,8 +81,8 @@ article-list:
   - article-title: DNN：深度神经网络的模型结构与实现
     article-url: /dl/dnn/
     article-date: 2026-10-26
-    article-desc: DNN 通过输入编码、全连接隐藏主干与任务头构建预测模型，详细说明类别嵌入、隐藏块、前向与反向逐层计算、参数规模，配有数值算例、手推梯度核对和完整 PyTorch 训练示例。
-    article-tags: [DNN, 神经网络, 模型结构]
+    article-desc: DNN 由输入编码、隐藏主干与任务输出组成，结合三层全连接架构图详解模型结构、张量形状与参数量，逐步推导前向计算和反向梯度，并提供数值算例、自动求导核对及完整训练代码。
+    article-tags: [DNN, 模型结构, 前向传播, 反向传播]
   - article-title: CatBoost：有序统计与类别特征树提升
     article-url: /dl/catboost/
     article-date: 2026-10-20
