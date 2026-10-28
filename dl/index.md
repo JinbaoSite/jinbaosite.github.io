@@ -28,6 +28,11 @@ article-list:
     article-date: 2026-07-08
     article-desc: 详解 FP16/BF16 混合精度与 DistributedDataParallel 的原理、PyTorch 实战与踩坑指南,LLM 训练六件套。
     article-tags: [AMP, DDP, 分布式]
+  - article-title: Transformer：编码器与解码器的结构与计算
+    article-url: /dl/transformer/
+    article-date: 2026-10-27
+    article-desc: Transformer 按编码器与解码器堆叠、缩放点积与多头注意力、逐位置前馈、嵌入与输出概率、位置编码展开，配有整体及九张模块结构图，独立说明掩码、目标右移、训练与自回归生成，并提供完整 PyTorch 实现。
+    article-tags: [Transformer, 编码器, 解码器, 注意力]
   - article-title: "Transformer 注意力机制"
     article-url: /dl/attention
     article-date: 2026-07-07
