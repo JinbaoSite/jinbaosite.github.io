@@ -29,6 +29,7 @@
 - [ResNet 与 DenseNet：残差连接的胜利](https://dongjinbao.com/dl/resnet_densenet)
 - [卷积运算详解：从 二维卷积到深度可分离卷积](https://dongjinbao.com/dl/convolution)
 - [混合精度训练与分布式训练（DDP）](https://dongjinbao.com/dl/mixed_precision_ddp)
+- [BERT：双向编码器与预训练机制](https://dongjinbao.com/dl/bert/)
 - [Transformer：编码器与解码器的结构与计算](https://dongjinbao.com/dl/transformer/)
 - [Transformer 注意力机制](https://dongjinbao.com/dl/attention)
 - [位置编码](https://dongjinbao.com/dl/positional_encoding)

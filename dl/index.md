@@ -28,6 +28,11 @@ article-list:
     article-date: 2026-07-08
     article-desc: 详解 FP16/BF16 混合精度与 DistributedDataParallel 的原理、PyTorch 实战与踩坑指南,LLM 训练六件套。
     article-tags: [AMP, DDP, 分布式]
+  - article-title: BERT：双向编码器与预训练机制
+    article-url: /dl/bert/
+    article-date: 2026-10-28
+    article-desc: BERT 通过双向编码器学习上下文表示，详解词元、句段与位置嵌入、MLM 与 NSP 预训练、共享词表头及下游微调结构，配有架构与模块图、可运行代码和补零检查。
+    article-tags: [BERT, 双向编码器, 预训练]
   - article-title: Transformer：编码器与解码器的结构与计算
     article-url: /dl/transformer/
     article-date: 2026-10-27
