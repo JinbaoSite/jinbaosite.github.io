@@ -16,6 +16,11 @@ article-list:
     article-date: 2025-07-21
     article-desc: RankMixer 用无参数的 Multi-Head Token Mixing（切分 head 后跨 Token 重组）替代平方复杂度的 Self-Attention 完成全局特征交互，再用 Per-token FFN 让每个特征子空间拥有独立参数、避免高频特征淹没长尾特征，并可扩展为 ReLU Routing + DTSI 的 Sparse-MoE 变体，用可堆叠矩阵乘架构大幅提升 GPU 利用率，实现推荐排序模型的低成本参数扩容。
     article-tags: [精排, RankMixer]
+  - article-title: TIGER：从商品语义编码到生成式召回
+    article-url: /recsys/tiger/
+    article-date: 2023-12-10 # NeurIPS 2023 会议首日
+    article-desc: TIGER 用 RQ-VAE 把商品内容向量量化为 Semantic ID，再通过 Transformer 逐位生成下一个商品的编码。本文结合论文原图，讲解残差量化、生成式召回、编码消融与冷启动实验。
+    article-tags: [TIGER, 生成式召回, Semantic ID]
   - article-title: DCN V2：矩阵交叉与低秩混合专家
     article-url: /recsys/dcnv2/
     article-date: 2021-04-19
