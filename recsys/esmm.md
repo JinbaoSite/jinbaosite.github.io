@@ -14,7 +14,7 @@ ESMM 利用曝光、点击与转化之间的概率关系，将 CTR 和点击且�
 
 ### 2.1 整体网络结构
 
-![ESMM架构图](../img/esmm-architecture.svg)
+![ESMM架构图](/img/esmm-architecture.svg)
 
 > ESMM架构图
 
