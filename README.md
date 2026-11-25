@@ -1,5 +1,6 @@
 ## 推荐算法
 
+- [TIGER：从商品语义编码到生成式召回](https://dongjinbao.com/recsys/tiger/)
 - [CCFormer：腾讯工业推荐中的高效长序列建模](https://dongjinbao.com/recsys/ccformer)
 - [RankMixer：工业级推荐排序模型的规模化之路](https://dongjinbao.com/recsys/rankmixer)
 - [DCN V2：矩阵交叉与低秩混合专家](https://dongjinbao.com/recsys/dcnv2/)
